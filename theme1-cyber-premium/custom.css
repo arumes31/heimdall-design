@@ -37,8 +37,8 @@ body {
   gap: 24px;
 }
 
-/* --- Tech Widget Boxes (Date & Weather & Metrics) --- */
-.divDate, .meteo, .divMetrics {
+/* --- Tech Widget Boxes (Date & Weather) --- */
+.divDate, .meteo {
   background-color: var(--glass-bg) !important;
   border-radius: 8px !important;
   border: 1px solid var(--glass-border) !important;
@@ -55,7 +55,7 @@ body {
 }
 
 /* Micro-accent lighting top border for widgets */
-.divDate::before, .meteo::before, .divMetrics::before {
+.divDate::before, .meteo::before {
   content: '';
   position: absolute;
   top: 0;
@@ -65,7 +65,7 @@ body {
   background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
 }
 
-.divDate:hover, .meteo:hover, .divMetrics:hover {
+.divDate:hover, .meteo:hover {
   border-color: rgba(255, 0, 229, 0.4) !important;
   box-shadow: 0 0 25px rgba(255, 0, 229, 0.15), 
               inset 0 0 15px rgba(0, 242, 255, 0.1) !important;
@@ -154,58 +154,6 @@ body {
 .icon {
   margin-top: 2px;
   filter: drop-shadow(0 0 6px var(--neon-cyan));
-}
-
-/* --- SYSTEM METRICS WIDGET STYLINGS (.divMetrics) --- */
-.divMetrics {
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  min-width: 220px;
-  box-sizing: border-box;
-}
-
-.metric-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.metric-label {
-  font-size: 0.75em;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.7);
-  font-family: var(--font-tech);
-}
-
-.metric-track {
-  width: 90px;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-left: 10px;
-  position: relative;
-}
-
-.metric-bar {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 1s ease-in-out;
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-  box-shadow: 0 0 6px var(--neon-cyan);
-}
-
-.metric-value {
-  font-size: 0.8em;
-  font-weight: 700;
-  font-family: var(--font-tech);
-  color: #fff;
-  width: 45px;
-  text-align: right;
 }
 
 /* --- Dashboard Application Cards Override (.item) --- */

@@ -34,7 +34,7 @@ body {
 }
 
 /* --- Minimalist Matte Panels --- */
-.divDate, .meteo, .divMetrics {
+.divDate, .meteo {
   background-color: var(--matte-bg) !important;
   border-radius: 12px !important;
   border: 1px solid var(--matte-border) !important;
@@ -49,7 +49,7 @@ body {
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.divDate:hover, .meteo:hover, .divMetrics:hover {
+.divDate:hover, .meteo:hover {
   background-color: rgba(25, 25, 30, 0.55) !important;
   border-color: rgba(255, 255, 255, 0.15) !important;
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.35) !important;
@@ -130,57 +130,6 @@ body {
 
 .icon {
   opacity: 0.85;
-}
-
-/* --- SYSTEM METRICS WIDGET STYLINGS (.divMetrics) --- */
-.divMetrics {
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  min-width: 220px;
-  box-sizing: border-box;
-}
-
-.metric-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.metric-label {
-  font-size: 0.75em;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.5);
-  font-family: var(--font-editorial);
-}
-
-.metric-track {
-  width: 90px;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-left: 10px;
-  position: relative;
-}
-
-.metric-bar {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 1s ease-in-out;
-  background: #ffffff;
-}
-
-.metric-value {
-  font-size: 0.8em;
-  font-weight: 700;
-  font-family: var(--font-editorial);
-  color: #fff;
-  width: 45px;
-  text-align: right;
 }
 
 /* --- Dashboard Application Cards Override (.item) --- */
@@ -271,6 +220,20 @@ body {
   pointer-events: none;
 }
 
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
 /* Scrollbar customization */
 ::-webkit-scrollbar {
   width: 8px;

@@ -1,17 +1,20 @@
 /*
  * =========================================================================
- * 🎨 HEIMDALL UNIVERSAL MASTER THEME
+ * 🎨 HEIMDALL UNIVERSAL MASTER THEME (Redesigned Gallery - 10 Premium Themes)
  * =========================================================================
- * Features three toggleable premium design styles that preserve your configured
- * custom widget/card colors and icon colors, adding professional 3D glass sheens,
- * micro-animations, quick search filters, and animated system metrics.
+ * A high-end redesign featuring ten toggleable styles, dynamic sheens,
+ * search filters, and an elegant toggle-hidden theme selector panel.
+ * 
+ * *PRESERVES ALL NATIVE CARD COLORS AND FULL-COLOR ICONS*
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;600;800&family=Quicksand:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Orbitron:wght@400;600;800&family=Quicksand:wght@400;500;700&family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 
-/* --- MASTER CORE OVERRIDES --- */
+/* --- MASTER CORE RESET & TRANSITIONS --- */
 body {
-  transition: background-color 0.5s ease, color 0.3s ease !important;
+  transition: background-color 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              color 0.4s ease !important;
+  min-height: 100vh;
 }
 
 /* Base style for dashboard items (.item) to preserve user colors and icons */
@@ -19,9 +22,9 @@ body {
   position: relative !important;
   overflow: hidden !important;
   border-radius: 12px !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 
-              0 6px 20px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.22), 
+              0 8px 24px rgba(0, 0, 0, 0.2) !important;
   transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 
@@ -34,9 +37,9 @@ body {
   right: 0;
   bottom: 0;
   background: linear-gradient(135deg, 
-              rgba(255, 255, 255, 0.16) 0%, 
+              rgba(255, 255, 255, 0.18) 0%, 
               rgba(255, 255, 255, 0.0) 50%, 
-              rgba(0, 0, 0, 0.18) 100%) !important;
+              rgba(0, 0, 0, 0.2) 100%) !important;
   pointer-events: none;
   border-radius: inherit;
   z-index: 1;
@@ -44,327 +47,677 @@ body {
 
 /* Hover Zoom & Elevation */
 #sortable .item:hover {
-  transform: translateY(-4px) scale(1.02) !important;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35), 
-              0 12px 30px rgba(0, 0, 0, 0.3) !important;
-  border-color: rgba(255, 255, 255, 0.35) !important;
+  transform: translateY(-5px) scale(1.025) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 
+              0 15px 35px rgba(0, 0, 0, 0.35) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 /* Preserve original icon colors and add micro-hover action */
 #sortable .item img {
   filter: none !important; /* Keeps icon colors completely intact */
-  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.25) !important;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.25) !important;
 }
 #sortable .item:hover img {
-  transform: translateY(-2px) scale(1.06) !important;
+  transform: translateY(-2px) scale(1.08) !important;
 }
 
-/* --- THEME 1: CYBER-PREMIUM CLASS OVERRIDES --- */
+
+/* =========================================================================
+ * THEME 1: CYBER-PREMIUM (Neon Command Center)
+ * =========================================================================
+ */
 body.theme-cyber-premium {
   --neon-cyan: #00f2ff;
   --neon-magenta: #ff00e5;
-  --glass-bg: rgba(25, 14, 36, 0.65);
-  background-color: #190e24 !important;
+  background-color: #0f0817 !important;
   font-family: 'JetBrains Mono', monospace !important;
   color: #efdcfb !important;
 }
-
 body.theme-cyber-premium .divDate,
-body.theme-cyber-premium .meteo,
-body.theme-cyber-premium .divMetrics {
-  background-color: var(--glass-bg) !important;
+body.theme-cyber-premium .meteo {
+  background-color: rgba(25, 14, 36, 0.65) !important;
   border-radius: 8px !important;
   border: 1px solid rgba(0, 242, 255, 0.2) !important;
-  box-shadow: 0 0 20px rgba(0, 242, 255, 0.08), 
-              inset 0 0 12px rgba(255, 0, 229, 0.05) !important;
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.08) !important;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  position: relative;
 }
-
-/* Tech top-border lighting accent */
 body.theme-cyber-premium .divDate::before,
-body.theme-cyber-premium .meteo::before,
-body.theme-cyber-premium .divMetrics::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
+body.theme-cyber-premium .meteo::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
 }
-
 body.theme-cyber-premium .horloge {
   font-family: 'Orbitron', sans-serif;
   color: var(--neon-cyan) !important;
   text-shadow: 0 0 10px rgba(0, 242, 255, 0.4), 0 0 2px var(--neon-cyan) !important;
-  font-weight: 800;
 }
-
 body.theme-cyber-premium .ladate span {
   font-family: 'Orbitron', sans-serif;
   color: var(--neon-magenta) !important;
   text-shadow: 0 0 8px rgba(255, 0, 229, 0.4) !important;
-  font-weight: 700;
 }
-
 body.theme-cyber-premium #sortable .item {
   border-radius: 6px !important;
   border: 1px solid rgba(0, 242, 255, 0.15) !important;
 }
-
 body.theme-cyber-premium #sortable .item:hover {
   border-color: var(--neon-magenta) !important;
-  box-shadow: 0 10px 25px rgba(255, 0, 229, 0.25), 
-              0 0 10px rgba(0, 242, 255, 0.15) !important;
+  box-shadow: 0 10px 25px rgba(255, 0, 229, 0.25), 0 0 10px rgba(0, 242, 255, 0.15) !important;
 }
 
-/* --- THEME 2: CYBER-ORGANIC CLASS OVERRIDES --- */
+
+/* =========================================================================
+ * THEME 2: CYBER-ORGANIC (Bioluminescent Hologram)
+ * =========================================================================
+ */
 body.theme-cyber-organic {
   --emerald-biolum: #10b981;
   --cyan-hologram: #06b6d4;
-  --glass-layer: rgba(12, 33, 49, 0.55);
-  background-color: #051424 !important;
+  background-color: #030d1a !important;
   font-family: 'Quicksand', sans-serif !important;
   color: #d4e4fa !important;
 }
-
 body.theme-cyber-organic .divDate,
-body.theme-cyber-organic .meteo,
-body.theme-cyber-organic .divMetrics {
-  background-color: var(--glass-layer) !important;
+body.theme-cyber-organic .meteo {
+  background-color: rgba(12, 33, 49, 0.55) !important;
   border-radius: 16px !important;
   border: 1px solid rgba(20, 184, 166, 0.25) !important;
-  box-shadow: 0 8px 32px rgba(1, 15, 31, 0.4), 
-              inset 0 1px 2px rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(1, 15, 31, 0.4) !important;
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
-
 body.theme-cyber-organic .horloge {
   font-family: 'Quicksand', sans-serif;
   color: var(--emerald-biolum) !important;
   text-shadow: 0 0 12px rgba(16, 185, 129, 0.35) !important;
-  font-weight: 700;
 }
-
 body.theme-cyber-organic .ladate span {
   font-family: 'Quicksand', sans-serif;
   color: var(--cyan-hologram) !important;
   text-shadow: 0 0 8px rgba(6, 182, 212, 0.3) !important;
-  font-weight: 700;
 }
-
 body.theme-cyber-organic #sortable .item {
   border-radius: 16px !important;
   border: 1px solid rgba(20, 184, 166, 0.2) !important;
 }
-
 body.theme-cyber-organic #sortable .item:hover {
   border-color: var(--cyan-hologram) !important;
-  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15),
-              inset 0 0 12px rgba(6, 182, 212, 0.08) !important;
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15) !important;
 }
 
-/* --- THEME 3: SLATE MINIMALIST CLASS OVERRIDES --- */
+
+/* =========================================================================
+ * THEME 3: SLATE MINIMALIST (Premium Matte Glass)
+ * =========================================================================
+ */
 body.theme-slate-minimalist {
-  --matte-bg: rgba(22, 22, 26, 0.55);
-  background-color: #121214 !important;
+  background-color: #0d0e10 !important;
   font-family: 'Inter', sans-serif !important;
   color: rgba(255, 255, 255, 0.6) !important;
 }
-
 body.theme-slate-minimalist .divDate,
-body.theme-slate-minimalist .meteo,
-body.theme-slate-minimalist .divMetrics {
-  background-color: var(--matte-bg) !important;
+body.theme-slate-minimalist .meteo {
+  background-color: rgba(22, 22, 26, 0.55) !important;
   border-radius: 12px !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2),
-              inset 0 1px 0px rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
 }
-
 body.theme-slate-minimalist .horloge {
   font-family: 'Outfit', sans-serif;
   color: #fff !important;
   font-weight: 200;
 }
-
 body.theme-slate-minimalist .ladate span {
   font-family: 'Outfit', sans-serif;
   color: #fff !important;
   font-weight: 500;
 }
-
 body.theme-slate-minimalist #sortable .item {
   border-radius: 10px !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
-
 body.theme-slate-minimalist #sortable .item:hover {
   border-color: rgba(255, 255, 255, 0.2) !important;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45) !important;
 }
 
 
 /* =========================================================================
- * SYSTEM METRICS WIDGET STYLINGS (.divMetrics)
+ * THEME 4: SUNSET AURORA (Warm Twilight Gradient)
  * =========================================================================
  */
-.divMetrics {
-  order: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 20px !important;
-  min-width: 220px;
-  box-sizing: border-box;
+body.theme-sunset-aurora {
+  --sunset-orange: #ff7e47;
+  --sunset-rose: #ff4b72;
+  background-color: #12071d !important;
+  font-family: 'Outfit', sans-serif !important;
+  color: #fce7f3 !important;
+}
+body.theme-sunset-aurora .divDate,
+body.theme-sunset-aurora .meteo {
+  background-color: rgba(30, 15, 45, 0.55) !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 126, 71, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(18, 7, 29, 0.4) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+body.theme-sunset-aurora .horloge {
+  font-family: 'Outfit', sans-serif;
+  color: var(--sunset-orange) !important;
+  text-shadow: 0 0 10px rgba(255, 126, 71, 0.35) !important;
+  font-weight: 600;
+}
+body.theme-sunset-aurora .ladate span {
+  font-family: 'Outfit', sans-serif;
+  color: var(--sunset-rose) !important;
+  text-shadow: 0 0 8px rgba(255, 75, 114, 0.3) !important;
+  font-weight: 700;
+}
+body.theme-sunset-aurora #sortable .item {
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 75, 114, 0.15) !important;
+}
+body.theme-sunset-aurora #sortable .item:hover {
+  border-color: var(--sunset-orange) !important;
+  box-shadow: 0 12px 30px rgba(255, 126, 71, 0.2) !important;
 }
 
-.metric-row {
+
+/* =========================================================================
+ * THEME 5: NORDIC FROST (Arctic Ice & Cold Ocean)
+ * =========================================================================
+ */
+body.theme-nordic-frost {
+  --ice-blue: #93c5fd;
+  --frost-white: #e2e8f0;
+  background-color: #050b14 !important;
+  font-family: 'Inter', sans-serif !important;
+  color: #cbd5e1 !important;
+}
+body.theme-nordic-frost .divDate,
+body.theme-nordic-frost .meteo {
+  background-color: rgba(10, 20, 35, 0.6) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(147, 197, 253, 0.2) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+body.theme-nordic-frost .horloge {
+  font-family: 'Inter', sans-serif;
+  color: #fff !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
+  font-weight: 300;
+}
+body.theme-nordic-frost .ladate span {
+  font-family: 'Inter', sans-serif;
+  color: var(--ice-blue) !important;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(147, 197, 253, 0.25) !important;
+}
+body.theme-nordic-frost #sortable .item {
+  border-radius: 12px !important;
+  border: 1px solid rgba(147, 197, 253, 0.12) !important;
+}
+body.theme-nordic-frost #sortable .item:hover {
+  border-color: #fff !important;
+  box-shadow: 0 12px 30px rgba(147, 197, 253, 0.15) !important;
+}
+
+
+/* =========================================================================
+ * THEME 6: SOLARIZED AMBER (Cyber-Retro Terminal)
+ * =========================================================================
+ */
+body.theme-solarized-amber {
+  --terminal-amber: #f59e0b;
+  --warm-bronze: #854d0e;
+  background-color: #140e05 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  color: #fed7aa !important;
+}
+body.theme-solarized-amber .divDate,
+body.theme-solarized-amber .meteo {
+  background-color: rgba(28, 20, 10, 0.7) !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.05) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+body.theme-solarized-amber .horloge {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--terminal-amber) !important;
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.45) !important;
+  font-weight: 700;
+}
+body.theme-solarized-amber .ladate span {
+  font-family: 'JetBrains Mono', monospace;
+  color: #fff !important;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3) !important;
+  font-weight: 700;
+}
+body.theme-solarized-amber #sortable .item {
+  border-radius: 6px !important;
+  border: 1px solid rgba(245, 158, 11, 0.15) !important;
+}
+body.theme-solarized-amber #sortable .item:hover {
+  border-color: var(--terminal-amber) !important;
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2) !important;
+}
+
+
+/* =========================================================================
+ * THEME 7: MONOLITH DARK (Midnight Obsidian Matte)
+ * =========================================================================
+ */
+body.theme-monolith-dark {
+  background-color: #070708 !important;
+  font-family: 'Inter', sans-serif !important;
+  color: #88888b !important;
+}
+body.theme-monolith-dark .divDate,
+body.theme-monolith-dark .meteo {
+  background-color: rgba(14, 14, 15, 0.75) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+}
+body.theme-monolith-dark .horloge {
+  font-family: 'Inter', sans-serif;
+  color: #fff !important;
+  font-weight: 200;
+}
+body.theme-monolith-dark .ladate span {
+  font-family: 'Inter', sans-serif;
+  color: #fff !important;
+  font-weight: 600;
+}
+body.theme-monolith-dark #sortable .item {
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+body.theme-monolith-dark #sortable .item:hover {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.55) !important;
+}
+
+
+/* =========================================================================
+ * THEME 8: DRACULA DARK (Vampire Neon Purple/Green)
+ * =========================================================================
+ */
+body.theme-dracula-dark {
+  --drac-green: #50fa7b;
+  --drac-purple: #bd93f9;
+  background-color: #171224 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  color: #f8f8f2 !important;
+}
+body.theme-dracula-dark .divDate,
+body.theme-dracula-dark .meteo {
+  background-color: rgba(28, 22, 43, 0.6) !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(189, 147, 249, 0.25) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+body.theme-dracula-dark .horloge {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--drac-green) !important;
+  text-shadow: 0 0 10px rgba(80, 250, 123, 0.35) !important;
+  font-weight: 700;
+}
+body.theme-dracula-dark .ladate span {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--drac-purple) !important;
+  text-shadow: 0 0 8px rgba(189, 147, 249, 0.3) !important;
+  font-weight: 700;
+}
+body.theme-dracula-dark #sortable .item {
+  border-radius: 10px !important;
+  border: 1px solid rgba(189, 147, 249, 0.15) !important;
+}
+body.theme-dracula-dark #sortable .item:hover {
+  border-color: var(--drac-green) !important;
+  box-shadow: 0 10px 25px rgba(80, 250, 123, 0.2) !important;
+}
+
+
+/* =========================================================================
+ * THEME 9: RETROWAVE 80S (Outrun Neon Synth)
+ * =========================================================================
+ */
+body.theme-retrowave-80s {
+  --retro-pink: #ff007f;
+  --retro-yellow: #fff200;
+  background-color: #0e041c !important;
+  font-family: 'Orbitron', sans-serif !important;
+  color: #fff !important;
+}
+body.theme-retrowave-80s .divDate,
+body.theme-retrowave-80s .meteo {
+  background-color: rgba(22, 6, 45, 0.65) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 0, 127, 0.3) !important;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.15) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+body.theme-retrowave-80s .horloge {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--retro-yellow) !important;
+  text-shadow: 0 0 12px rgba(255, 242, 0, 0.5) !important;
+  font-weight: 800;
+}
+body.theme-retrowave-80s .ladate span {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--retro-pink) !important;
+  text-shadow: 0 0 10px rgba(255, 0, 127, 0.45) !important;
+  font-weight: 700;
+}
+body.theme-retrowave-80s #sortable .item {
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 0, 127, 0.2) !important;
+}
+body.theme-retrowave-80s #sortable .item:hover {
+  border-color: var(--retro-yellow) !important;
+  box-shadow: 0 10px 25px rgba(255, 242, 0, 0.25) !important;
+}
+
+
+/* =========================================================================
+ * THEME 10: SAKURA BLOSSOM (Japanese Zen Pink)
+ * =========================================================================
+ */
+body.theme-sakura-blossom {
+  --sakura-pink: #fda4af;
+  --sakura-gold: #f59e0b;
+  background-color: #170d12 !important;
+  font-family: 'Quicksand', sans-serif !important;
+  color: #ffe4e6 !important;
+}
+body.theme-sakura-blossom .divDate,
+body.theme-sakura-blossom .meteo {
+  background-color: rgba(35, 17, 24, 0.55) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(253, 164, 175, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+body.theme-sakura-blossom .horloge {
+  font-family: 'Quicksand', sans-serif;
+  color: var(--sakura-pink) !important;
+  text-shadow: 0 0 12px rgba(253, 164, 175, 0.4) !important;
+  font-weight: 700;
+}
+body.theme-sakura-blossom .ladate span {
+  font-family: 'Quicksand', sans-serif;
+  color: var(--sakura-gold) !important;
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.25) !important;
+  font-weight: 700;
+}
+body.theme-sakura-blossom #sortable .item {
+  border-radius: 14px !important;
+  border: 1px solid rgba(253, 164, 175, 0.15) !important;
+}
+body.theme-sakura-blossom #sortable .item:hover {
+  border-color: var(--sakura-pink) !important;
+  box-shadow: 0 10px 25px rgba(253, 164, 175, 0.18) !important;
+}
+
+
+/* =========================================================================
+ * REDESIGNED GENERAL WIDGETS
+ * =========================================================================
+ */
+.headerInfos {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin: 30px 45px;
+  gap: 25px;
+}
+
+.divDate, .meteo {
+  padding: 20px 28px !important;
+  display: flex !important;
+  align-items: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.divDate:hover, .meteo:hover {
+  transform: translateY(-2px);
+}
+
+.horloge, .ladate {
+  display: inline-block;
+  margin-right: 15px;
+  color: #fff !important;
+}
+
+.horloge {
+  font-size: 3.4em !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.5px;
+}
+
+.ladate {
+  font-size: 0.9em !important;
+  line-height: 1.5;
+}
+
+.ladate span {
+  display: block;
+  font-size: 1.3em;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.meteo {
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 260px;
+}
+
+.ville-temp-container {
+  display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
 }
 
-.metric-label {
-  font-size: 0.75em;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.7);
-  font-family: 'JetBrains Mono', monospace;
+.temperature {
+  font-size: 3em !important;
+  font-weight: 700 !important;
+  color: #fff !important;
 }
 
-.metric-track {
-  width: 90px;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-left: 10px;
-  position: relative;
+.ville {
+  font-size: 1.15em !important;
+  font-weight: 700 !important;
+  color: #fff !important;
 }
 
-.metric-bar {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 1s ease-in-out;
-}
-
-/* Theme color links for bar graphs */
-body.theme-cyber-premium .metric-bar {
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-  box-shadow: 0 0 6px var(--neon-cyan);
-}
-body.theme-cyber-organic .metric-bar {
-  background: var(--emerald-biolum);
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
-}
-body.theme-slate-minimalist .metric-bar {
-  background: #ffffff;
-}
-
-.metric-value {
-  font-size: 0.8em;
-  font-weight: 700;
-  font-family: 'JetBrains Mono', monospace;
-  color: #fff;
-  width: 45px;
-  text-align: right;
+.description {
+  font-size: 0.85em !important;
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 
 /* =========================================================================
- * FLOATING THEME SELECTOR DIAL
+ * REDESIGNED SEARCH & FILTER SYSTEM
  * =========================================================================
  */
-.theme-selector-pill {
-  position: fixed;
-  bottom: 24px;
-  right: 80px; /* Aligned nicely next to Heimdall settings gear icon */
-  background: rgba(20, 20, 25, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 30px;
-  padding: 6px 12px;
-  display: flex;
-  gap: 6px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  z-index: 99999;
-  transition: all 0.3s ease;
+#search input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+  padding: 10px 18px !important;
+  backdrop-filter: blur(16px) !important;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
 }
 
-.theme-selector-pill:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-}
-
-.theme-btn {
-  background: transparent;
-  border: none;
-  border-radius: 20px;
-  color: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  font-size: 0.75em;
-  font-weight: 600;
-  padding: 6px 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  font-family: 'Inter', sans-serif;
+#search input:focus {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15), 
+              inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
   outline: none !important;
 }
 
-.theme-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.theme-btn.active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
-}
-
-/* Theme-specific styles inside switcher active state */
-body.theme-cyber-premium .theme-btn.active {
-  background: rgba(0, 242, 255, 0.2);
-  color: var(--neon-cyan);
-  border: 1px solid rgba(0, 242, 255, 0.3);
-}
-
-body.theme-cyber-organic .theme-btn.active {
-  background: rgba(16, 185, 129, 0.2);
-  color: var(--emerald-biolum);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-}
-
-
-/* =========================================================================
- * SEARCH BAR & REAL-TIME FILTER SYSTEM
- * =========================================================================
- */
 .search-highlight {
-  box-shadow: 0 0 15px rgba(0, 242, 255, 0.4), inset 0 1px 2px rgba(255,255,255,0.4) !important;
+  box-shadow: 0 0 15px rgba(255,255,255,0.3), inset 0 1px 2px rgba(255,255,255,0.4) !important;
   transform: scale(1.03) !important;
-  z-index: 10 !important;
 }
 
-/* Softly dim out non-matching cards during active searches */
 .item-dimmed {
-  opacity: 0.15 !important;
+  opacity: 0.12 !important;
   transform: scale(0.92) !important;
   pointer-events: none;
 }
 
-/* Custom placeholder styles to fit tech themes */
-::placeholder {
-  color: rgba(255, 255, 255, 0.35) !important;
+
+/* =========================================================================
+ * REDESIGNED TOGGLE-HIDDEN THEME SELECTOR DIAL
+ * =========================================================================
+ */
+
+/* Theme Toggle Button (FAB) */
+.theme-trigger-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 80px; /* Positions perfectly adjacent to gear icon */
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(20, 20, 25, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  outline: none !important;
 }
+
+.theme-trigger-btn:hover {
+  transform: scale(1.08) rotate(45deg);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.theme-trigger-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: #fff;
+  transition: fill 0.3s ease;
+}
+
+/* Hidden Switcher Panel */
+.theme-selection-panel {
+  position: fixed;
+  bottom: 84px;
+  right: 80px;
+  background: rgba(18, 18, 22, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+  z-index: 99999;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: scale(0.9) translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Expand class when triggered */
+.theme-selection-panel.open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 8px;
+  padding-left: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 6px;
+}
+
+.theme-option-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 8px 12px;
+  text-align: left;
+  transition: all 0.25s ease;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  outline: none !important;
+}
+
+.theme-option-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
+}
+
+.theme-option-btn.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+/* Active Theme highlights in option list */
+body.theme-cyber-premium .theme-option-btn.active { border-color: rgba(0, 242, 255, 0.4); color: var(--neon-cyan); }
+body.theme-cyber-organic .theme-option-btn.active { border-color: rgba(16, 185, 129, 0.4); color: var(--emerald-biolum); }
+body.theme-sunset-aurora .theme-option-btn.active { border-color: rgba(255, 126, 71, 0.4); color: var(--sunset-orange); }
+body.theme-nordic-frost .theme-option-btn.active { border-color: rgba(147, 197, 253, 0.4); color: var(--ice-blue); }
+body.theme-solarized-amber .theme-option-btn.active { border-color: rgba(245, 158, 11, 0.4); color: var(--terminal-amber); }
+body.theme-dracula-dark .theme-option-btn.active { border-color: rgba(189, 147, 249, 0.4); color: var(--drac-purple); }
+body.theme-retrowave-80s .theme-option-btn.active { border-color: rgba(255, 0, 127, 0.4); color: var(--retro-pink); }
+body.theme-sakura-blossom .theme-option-btn.active { border-color: rgba(253, 164, 175, 0.4); color: var(--sakura-pink); }
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }

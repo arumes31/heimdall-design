@@ -1,8 +1,8 @@
 // =========================================================================
 // 🎨 HEIMDALL UNIVERSAL MASTER ENGINE (custom.js)
 // =========================================================================
-// Injects animated widgets, real-time search filtering, dynamic greetings,
-// and a floating premium theme switcher to change aesthetics on-the-fly.
+// Features 10 togglable premium designs, dynamic greeting readouts, real-time 
+// instant search, and a floating selector dial hidden behind a micro-interactive toggle.
 
 (function() {
   const sortableElement = document.querySelector('.appheader');
@@ -25,45 +25,26 @@
   // Clear existing modifications on re-load to prevent duplicate injections
   const existingHeader = document.querySelector('.headerInfos');
   if (existingHeader) existingHeader.remove();
-  const existingSwitcher = document.querySelector('.theme-selector-pill');
+  const existingSwitcher = document.querySelector('.theme-selection-panel');
   if (existingSwitcher) existingSwitcher.remove();
+  const existingTrigger = document.querySelector('.theme-trigger-btn');
+  if (existingTrigger) existingTrigger.remove();
 
   // --- 2. Injected Structure Setup ---
   var headerInfos = document.createElement('div');
   headerInfos.classList.add('headerInfos');
   insertAfter(sortableElement, headerInfos);
 
-  // Widget A: Date & Clock Widget
+  // Date & Clock Widget Shell
   var divDate = createAndInsertDiv('divDate', headerInfos);
   var timeDiv = createAndInsertDiv('horloge', divDate);
   var dateDiv = createAndInsertDiv('ladate', divDate);
-
-  // Widget B: System Metrics Widget (New Feature!)
-  var divMetrics = createAndInsertDiv('divMetrics', headerInfos);
-  divMetrics.innerHTML = `
-    <div class="metric-row">
-      <span class="metric-label">CPU LOAD</span>
-      <div class="metric-track"><div class="metric-bar" id="cpu-bar" style="width: 32%"></div></div>
-      <span class="metric-value" id="cpu-val">32%</span>
-    </div>
-    <div class="metric-row">
-      <span class="metric-label">RAM USED</span>
-      <div class="metric-track"><div class="metric-bar" id="ram-bar" style="width: 58%"></div></div>
-      <span class="metric-value" id="ram-val">58%</span>
-    </div>
-    <div class="metric-row">
-      <span class="metric-label">WAN LATENCY</span>
-      <div class="metric-track"><div class="metric-bar" id="net-bar" style="width: 14%"></div></div>
-      <span class="metric-value" id="net-val">14ms</span>
-    </div>
-  `;
 
   // Dynamic Weather Widget Alignment
   setTimeout(function() {
     const existingMeteo = document.querySelector('.meteo');
     if (existingMeteo && existingMeteo.parentNode !== headerInfos) {
-      // Move meteo between clock and metrics
-      headerInfos.insertBefore(existingMeteo, divMetrics);
+      headerInfos.appendChild(existingMeteo);
     }
   }, 100);
 
@@ -107,60 +88,53 @@
   updateClock();
   setInterval(updateClock, 1000);
 
-  // --- 4. Animated System Metrics Logic ---
-  function fluctuateMetrics() {
-    const cpuBar = document.getElementById('cpu-bar');
-    const cpuVal = document.getElementById('cpu-val');
-    const ramBar = document.getElementById('ram-bar');
-    const ramVal = document.getElementById('ram-val');
-    const netBar = document.getElementById('net-bar');
-    const netVal = document.getElementById('net-val');
-
-    if (!cpuBar || !ramBar || !netBar) return;
-
-    // Generate natural fluctuations
-    const cpu = Math.floor(Math.random() * (48 - 18) + 18);
-    const ram = Math.floor(Math.random() * (64 - 55) + 55);
-    const net = Math.floor(Math.random() * (35 - 12) + 12);
-
-    cpuBar.style.width = cpu + '%';
-    cpuVal.textContent = cpu + '%';
-
-    ramBar.style.width = ram + '%';
-    ramVal.textContent = ram + '%';
-
-    // Latency scales from 0 to 100ms representing width (capped)
-    netBar.style.width = Math.min((net * 2.5), 100) + '%';
-    netVal.textContent = net + 'ms';
-  }
-
-  setInterval(fluctuateMetrics, 3000);
-
-  // --- 5. Interactive Theme Selector ---
+  // --- 4. Interactive Floating Toggle-Hidden Theme Switcher ---
   const themes = [
     { id: 'theme-cyber-premium', name: '🌌 Cyber-Premium' },
     { id: 'theme-cyber-organic', name: '🌿 Cyber-Organic' },
-    { id: 'theme-slate-minimalist', name: '📐 Slate Minimalist' }
+    { id: 'theme-slate-minimalist', name: '📐 Slate Minimalist' },
+    { id: 'theme-sunset-aurora', name: '🌅 Sunset Aurora' },
+    { id: 'theme-nordic-frost', name: '❄️ Nordic Frost' },
+    { id: 'theme-solarized-amber', name: '🍂 Solarized Amber' },
+    { id: 'theme-monolith-dark', name: '🖤 Monolith Dark' },
+    { id: 'theme-dracula-dark', name: '🧛 Dracula Dark' },
+    { id: 'theme-retrowave-80s', name: '⚡ Retrowave 80s' },
+    { id: 'theme-sakura-blossom', name: '🌸 Sakura Blossom' }
   ];
 
   // Retrieve saved theme or default to Cyber-Premium
   let currentTheme = localStorage.getItem('heimdall-current-theme') || 'theme-cyber-premium';
   document.body.classList.add(currentTheme);
 
-  var selectorPill = document.createElement('div');
-  selectorPill.classList.add('theme-selector-pill');
+  // A. Create Trigger Button (FAB)
+  var triggerBtn = document.createElement('button');
+  triggerBtn.classList.add('theme-trigger-btn');
+  triggerBtn.title = "Customize Dashboard Theme";
+  triggerBtn.innerHTML = `
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3a9 9 0 0 0-9 9c0 1.25.5 2.39 1.32 3.22.4.4.4 1.04 0 1.44a1.01 1.01 0 0 1-1.44 0A10.93 10.93 0 0 1 1 12 11 11 0 0 1 12 1a11 11 0 0 1 11 11c0 1.46-.3 2.87-.87 4.14-.38.86-.73 1.76-1.03 2.68-.2.62-.77 1.05-1.43 1.05h-3.66a2.02 2.02 0 0 1-2.02-2.02v-1.63c0-.62-.25-1.22-.69-1.66l-1.66-1.66a2.38 2.38 0 0 1-.69-1.66V9.02A2.02 2.02 0 0 1 13.06 7H17c1.1 0 2-.9 2-2a2 2 0 0 0-2-2h-5zM6.5 10a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3.5-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm2.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+    </svg>
+  `;
+
+  // B. Create Selection Panel
+  var selectionPanel = document.createElement('div');
+  selectionPanel.classList.add('theme-selection-panel');
+
+  var panelTitle = document.createElement('div');
+  panelTitle.classList.add('panel-title');
+  panelTitle.textContent = "Dashboard Style";
+  selectionPanel.appendChild(panelTitle);
 
   themes.forEach(t => {
-    var btn = document.createElement('button');
-    btn.classList.add('theme-btn');
-    if (t.id === currentTheme) btn.classList.add('active');
-    btn.textContent = t.name.split(' ')[1]; // Short label (Premium, Organic, Slate)
-    btn.title = t.name;
+    var optBtn = document.createElement('button');
+    optBtn.classList.add('theme-option-btn');
+    if (t.id === currentTheme) optBtn.classList.add('active');
+    optBtn.innerHTML = `<span>${t.name}</span>`;
 
-    btn.addEventListener('click', () => {
-      // Deactivate current active button
-      selectorPill.querySelector('.theme-btn.active').classList.remove('active');
-      btn.classList.add('active');
+    optBtn.addEventListener('click', () => {
+      // Toggle active visual class on buttons
+      selectionPanel.querySelector('.theme-option-btn.active').classList.remove('active');
+      optBtn.classList.add('active');
 
       // Swap body classes
       document.body.classList.remove(...themes.map(x => x.id));
@@ -171,12 +145,26 @@
       currentTheme = t.id;
     });
 
-    selectorPill.appendChild(btn);
+    selectionPanel.appendChild(optBtn);
   });
 
-  document.body.appendChild(selectorPill);
+  // Toggle Panel Open/Close Click Handler
+  triggerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    selectionPanel.classList.toggle('open');
+  });
 
-  // --- 6. Real-Time Client-Side Quick Search & Card Filter ---
+  // Close Panel when clicking anywhere outside
+  document.addEventListener('click', (e) => {
+    if (!selectionPanel.contains(e.target) && e.target !== triggerBtn && !triggerBtn.contains(e.target)) {
+      selectionPanel.classList.remove('open');
+    }
+  });
+
+  document.body.appendChild(triggerBtn);
+  document.body.appendChild(selectionPanel);
+
+  // --- 5. Real-Time Client-Side Quick Search & Card Filter ---
   const searchInput = document.querySelector('#search input') || document.querySelector('input[type="search"]');
   if (searchInput) {
     searchInput.addEventListener('input', function(e) {
@@ -214,5 +202,5 @@
     });
   }
 
-  console.log("Heimdall Master Engine fully active. Enjoy your upgraded workspace!");
+  console.log("Heimdall Master Engine fully active. 10 Premium Themes loaded.");
 })();
