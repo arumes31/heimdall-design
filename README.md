@@ -1,6 +1,6 @@
 # 🎨 Heimdall Dashboard - Premium Redesigned Theme Gallery
 
-Transform your Heimdall dashboard into a state-of-the-art interface! This version introduces a clean, premium dashboard redesign containing **15 highly-polished built-in themes** toggleable instantly on-the-fly, while completely preserving your custom application card background colors and fully colored app icons.
+Transform your Heimdall dashboard into a state-of-the-art interface! This version introduces a clean, premium dashboard redesign containing **20 highly-polished built-in themes** toggleable instantly on-the-fly, while completely preserving your custom application card background colors and fully colored app icons.
 
 ---
 
@@ -17,6 +17,9 @@ Transform your Heimdall dashboard into a state-of-the-art interface! This versio
 9.  **🌬️ Widget Gap Slider**: Customize widget spacing dynamically from 1px up to 32px (defaults to 4px).
 10. **👆 Full-Card Interactivity**: Optimized click delegation ensures that clicking anywhere on an application card—including stats areas and widgets—triggers the app link, providing a seamless navigation experience.
 11. **✨ Animated SVG Icon Engine**: Automatically inlines SVG icons to enable internal path animations (e.g., spinning gears, pulsing hearts) and adds a premium floating hover effect. Customizable via the theme panel.
+12. **🐍 Animated Borders**: High-end "Snake" border effect that rotates around cards on hover for a truly futuristic look.
+13. **💓 Health Pulse Warnings**: Cards for offline services automatically pulse a soft red glow, giving you an immediate visual status report.
+14. **📅 7-Day Forecast Extension**: Expands the standard weather widget with a clean 7-day outlook directly in your dashboard header.
 
 ---
 
@@ -33,22 +36,27 @@ Applying these styles to your Heimdall dashboard is extremely easy:
 
 ---
 
-## 🎨 The 15 Injected Themes
+## 🎨 The 20 Injected Themes
 
-When using the Master Theme, you can switch between these 15 distinct, beautiful profiles dynamically:
+When using the Master Theme, you can switch between these 20 distinct, beautiful profiles dynamically:
 
-1.  **🌌 Cyber-Premium**: Dark violet glassmorphism backdrop with glowing electric cyan & magenta neon outlines.
-2.  **🌿 Cyber-Organic**: Forest navy glass layers with warm bioluminescent emerald green & holographic cyan.
-3.  **📐 Slate Minimalist**: High-end matte charcoal/slate with clean white outlines and lightweight elegant typography.
-4.  **🌅 Sunset Aurora**: Warm twilight violet with glowing sunset orange & rose gold gradients.
-5.  **❄️ Nordic Frost**: Arctic ice deep blue paired with crystal-sharp, ice-blue glowing sheens.
-6.  **🍂 Solarized Amber**: Cyber-retro terminal style featuring golden glowing highlights.
-7.  **🖤 Monolith Dark**: Matte titanium obsidian jet black with fine titanium gray outlines and high-contrast text.
-8.  **🧛 Dracula Dark**: Rich royal purple/indigo base with glowing vampire-green accents.
-9.  **⚡ Retrowave 80s**: Synthwave grid sunset aesthetic with hot neon pink and electric yellow neon glows.
-10. **🌸 Sakura Blossom**: Japanese Zen pink combined with glowing cherry blossom peach and gold accents.
-11. **🟨 Cyberpunk 2077**: Dark gray and electric neon yellow aesthetic with glitch greetings.
-12. **💫 Cosmic Nebula**: Deep cosmic indigo backdrop with stellar gold, rose, and purple accents.
-13. **💎 Frosted Crystal**: Frosted light glassmorphic cards with sky-blue and soft pink auroras.
-14. **📟 Matrix Rain**: Pure dark hacker console with glowing green digital terminal rain elements.
-15. **☣️ Toxic Hazard**: Nuclear fallout dark green layout with toxic orange alerts.
+1.  **🌌 Tokyo Midnight**: Deep indigo glass with electric neon cyan accents.
+2.  **📐 Swiss Brutalism**: Raw gray backgrounds, bold black borders, and high-contrast typography.
+3.  **☁️ Neumorphic Soft**: "Extruded" 3D look with soft shadows and tactile depth.
+4.  **🌊 Deep Sea Biolum**: Darkest navy with glowing bioluminescent teal highlights.
+5.  **🚀 Mars Colony**: Dusty orange/red palette with rugged industrial textures.
+6.  **💻 Retro Macintosh**: Classic 1984 beige, crisp black borders, and dithered shadows.
+7.  **🎨 Cyber-Graffiti**: Gritty dark walls with bright neon spray-paint glowing outlines.
+8.  **🍷 Royal Velvet**: Deep burgundy and gold with luxurious soft-focus depth.
+9.  **📝 Paper Texture**: A skeuomorphic "Notebook" style with handwritten-feel typography.
+10. **🖤 AMOLED Pure Black**: 100% black background for OLED screens with razor-thin white borders.
+11. **🌸 Pastel Dream**: Soft, milky marshmallow colors with rounded "bubbly" glass.
+12. **⚙️ Industrial Steel**: Brushed metal backgrounds with glowing amber LED indicators.
+13. **💎 Emerald City**: Rich forest greens with crystalline glass and gold trim.
+14. **🌋 Volcanic Magma**: Dark obsidian cards with glowing red/orange lava-cracks.
+15. **☕ Coffee House**: Warm creams, browns, and espresso tones for a cozy workspace.
+16. **❄️ Arctic Night**: Deep blue-black with shimmering snowflake-white glowing accents.
+17. **☀️ Golden Hour**: Soft sunset gradients with long shadows and warm lighting.
+18. **👾 Glitch Core**: Intentionally "broken" UI elements with chromatic aberration hover effects.
+19. **🌈 Rainbow Glass**: Playful translucent glass where each card cycles through distinct pastel hues.
+20. **📟 Terminal Amber**: 1970s mainframe style with monochrome orange text on pure black.

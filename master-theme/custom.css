@@ -227,457 +227,217 @@ body.auroras-active .aurora-blob {
 
 
 /* =========================================================================
- * THEME 1: CYBER-PREMIUM (Neon Command Center)
+ * THEME 1: TOKYO MIDNIGHT (Deep Indigo Glass)
  * =========================================================================
  */
-body.theme-cyber-premium {
-  --neon-cyan: #00f2ff;
-  --neon-magenta: #ff00e5;
-  background-color: #0f0817 !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  color: #efdcfb !important;
+body.theme-tokyo-midnight {
+  --bg: #0a0a12; --accent: #00ffff; --secondary: #bb9af7;
+  background-color: var(--bg) !important; color: #a9b1d6 !important; font-family: 'JetBrains Mono', monospace !important;
 }
-body.theme-cyber-premium.auroras-active .blob-1 { background-color: var(--neon-cyan); }
-body.theme-cyber-premium.auroras-active .blob-2 { background-color: var(--neon-magenta); }
-body.theme-cyber-premium.auroras-active .blob-3 { background-color: var(--neon-cyan); }
+body.theme-tokyo-midnight.auroras-active .blob-1 { background-color: #7aa2f7; }
+body.theme-tokyo-midnight.auroras-active .blob-2 { background-color: #bb9af7; }
+body.theme-tokyo-midnight.auroras-active .blob-3 { background-color: #00ffff; }
+body.theme-tokyo-midnight .divDate, body.theme-tokyo-midnight .meteo {
+  background: rgba(16, 16, 26, 0.7) !important; border: 1px solid rgba(187, 154, 247, 0.3) !important;
+  box-shadow: 0 0 20px rgba(187, 154, 247, 0.1) !important; backdrop-filter: blur(20px);
+}
+body.theme-tokyo-midnight .horloge { color: var(--accent) !important; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5) !important; }
+body.theme-tokyo-midnight #sortable .item { border-radius: 8px; border: 1px solid rgba(122, 162, 247, 0.15); background: rgba(16, 16, 26, 0.8) !important; }
+body.theme-tokyo-midnight #sortable .item:hover { border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 255, 255, 0.2) !important; }
 
-body.theme-cyber-premium .divDate,
-body.theme-cyber-premium .meteo {
-  background-color: rgba(25, 14, 36, 0.65) !important;
-  border-radius: 8px !important;
-  border: 1px solid rgba(0, 242, 255, 0.2) !important;
-  box-shadow: 0 0 20px rgba(0, 242, 255, 0.08) !important;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+/* THEME 2: SWISS BRUTALISM (Raw Gray & High Contrast) */
+body.theme-brutalism {
+  --bg: #e0e0e0; --accent: #000;
+  background-color: var(--bg) !important; color: #000 !important; font-family: 'Space Grotesk', sans-serif !important;
 }
-body.theme-cyber-premium .divDate::before,
-body.theme-cyber-premium .meteo::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+body.theme-brutalism .divDate, body.theme-brutalism .meteo, body.theme-brutalism #sortable .item {
+  background: #fff !important; border: 3px solid #000 !important; border-radius: 0 !important; box-shadow: 8px 8px 0 #000 !important;
 }
-body.theme-cyber-premium .horloge {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--neon-cyan) !important;
-  text-shadow: 0 0 12px rgba(0, 242, 255, 0.5), 0 0 2px var(--neon-cyan) !important;
+body.theme-brutalism .horloge { font-weight: 900; color: #000 !important; }
+body.theme-brutalism #sortable .item:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0 #000 !important; }
+
+/* THEME 3: NEUMORPHIC SOFT (Extruded 3D) */
+body.theme-neumorphic {
+  --bg: #e0e5ec;
+  background-color: var(--bg) !important; color: #444 !important;
 }
-body.theme-cyber-premium .ladate span {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--neon-magenta) !important;
-  text-shadow: 0 0 8px rgba(255, 0, 229, 0.4) !important;
+body.theme-neumorphic .divDate, body.theme-neumorphic .meteo, body.theme-neumorphic #sortable .item {
+  background: var(--bg) !important; border: none !important; border-radius: 20px !important;
+  box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5) !important;
 }
-body.theme-cyber-premium #sortable .item {
-  border-radius: 6px !important;
-  border: 1px solid rgba(0, 242, 255, 0.15) !important;
+body.theme-neumorphic #sortable .item:hover { box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.1), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.7) !important; }
+
+/* THEME 4: DEEP SEA BIOLUM (Darkest Navy & Teal) */
+body.theme-biolum {
+  --bg: #010409; --accent: #00ffcc;
+  background-color: var(--bg) !important; color: #c9d1d9 !important;
 }
-body.theme-cyber-premium #sortable .item:hover {
-  border-color: var(--neon-magenta) !important;
-  box-shadow: 0 10px 25px rgba(255, 0, 229, 0.25), 0 0 10px rgba(0, 242, 255, 0.15) !important;
+body.theme-biolum.auroras-active .blob-1 { background-color: #00ffcc; }
+body.theme-biolum #sortable .item { border: 1px solid rgba(0, 255, 204, 0.2); background: rgba(13, 17, 23, 0.8) !important; box-shadow: 0 0 15px rgba(0, 255, 204, 0.05); }
+body.theme-biolum .horloge { color: var(--accent) !important; text-shadow: 0 0 15px rgba(0, 255, 204, 0.8) !important; }
+
+/* THEME 5: MARS COLONY (Dusty Orange & Industrial) */
+body.theme-mars {
+  --bg: #1a0f0a; --accent: #ff4d00;
+  background-color: var(--bg) !important; color: #ffcc99 !important;
+}
+body.theme-mars .divDate, body.theme-mars .meteo, body.theme-mars #sortable .item {
+  background: rgba(43, 22, 12, 0.7) !important; border: 1px solid #ff4d0033 !important; border-radius: 4px;
+}
+body.theme-mars .divDate::after { content: 'PROPERTY OF MARS SEC'; position: absolute; bottom: 4px; right: 8px; font-size: 0.5em; opacity: 0.3; }
+
+/* THEME 6: RETRO MACINTOSH (1984 Beige) */
+body.theme-macintosh {
+  --bg: #dcd9d4; --accent: #000;
+  background-color: var(--bg) !important; color: #000 !important; font-family: 'Courier New', Courier, monospace !important;
+}
+body.theme-macintosh .divDate, body.theme-macintosh .meteo, body.theme-macintosh #sortable .item {
+  background: #fff !important; border: 2px solid #000 !important; border-radius: 0 !important; box-shadow: 4px 4px 0 #888 !important;
 }
 
+/* THEME 7: CYBER-GRAFFITI (Neon Spray Paint) */
+body.theme-graffiti {
+  --bg: #050505; --accent: #ff00ff;
+  background-color: var(--bg) !important; color: #fff !important;
+}
+body.theme-graffiti #sortable .item { border: 2px solid #ff00ff; box-shadow: 0 0 10px #ff00ff, inset 0 0 10px #ff00ff !important; border-radius: 12px; }
+body.theme-graffiti .horloge { font-family: 'Permanent Marker', cursive; color: #39ff14 !important; }
+
+/* THEME 8: ROYAL VELVET (Deep Burgundy & Gold) */
+body.theme-velvet {
+  --bg: #1c0202; --accent: #d4af37;
+  background-color: var(--bg) !important; color: #fdf2f2 !important;
+}
+body.theme-velvet .divDate, body.theme-velvet .meteo, body.theme-velvet #sortable .item {
+  background: rgba(44, 4, 4, 0.6) !important; border: 1px solid #d4af3766 !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+}
+
+/* THEME 9: PAPER TEXTURE (Notebook Style) */
+body.theme-paper {
+  --bg: #fdf6e3; --accent: #268bd2;
+  background-color: var(--bg) !important; color: #586e75 !important; font-family: 'Patrick Hand', cursive !important;
+}
+body.theme-paper .divDate, body.theme-paper .meteo, body.theme-paper #sortable .item {
+  background: #fffef0 !important; border: 1px solid #eee8d5 !important; border-radius: 2px; box-shadow: 2px 2px 5px rgba(0,0,0,0.05) !important;
+}
+
+/* THEME 10: AMOLED PURE BLACK */
+body.theme-amoled {
+  --bg: #000000; --accent: #ffffff;
+  background-color: #000 !important; color: #fff !important;
+}
+body.theme-amoled .divDate, body.theme-amoled .meteo, body.theme-amoled #sortable .item {
+  background: #000 !important; border: 1px solid rgba(255,255,255,0.15) !important; border-radius: 0;
+}
+
+/* THEME 11: PASTEL DREAM (Soft Bubbly Glass) */
+body.theme-pastel {
+  --bg: #fdf2f8; --accent: #f472b6;
+  background-color: var(--bg) !important; color: #831843 !important;
+}
+body.theme-pastel .divDate, body.theme-pastel .meteo, body.theme-pastel #sortable .item {
+  background: rgba(255, 255, 255, 0.4) !important; border: 2px solid #fff !important; border-radius: 25px !important; backdrop-filter: blur(10px);
+}
+
+/* THEME 12: INDUSTRIAL STEEL (Brushed Metal) */
+body.theme-steel {
+  --bg: #2d3436; --accent: #ffa502;
+  background-color: var(--bg) !important; color: #dfe6e9 !important;
+}
+body.theme-steel #sortable .item {
+  background: linear-gradient(135deg, #2d3436 0%, #636e72 100%) !important; border: 1px solid #000; box-shadow: inset 0 1px 1px #fff3 !important;
+}
+
+/* THEME 13: EMERALD CITY (Crystal Green) */
+body.theme-emerald {
+  --bg: #064e3b; --accent: #34d399;
+  background-color: var(--bg) !important; color: #d1fae5 !important;
+}
+body.theme-emerald .divDate, body.theme-emerald .meteo { background: rgba(6, 78, 59, 0.8) !important; border: 1px solid var(--accent); }
+
+/* THEME 14: VOLCANIC MAGMA (Obsidian & Lava) */
+body.theme-magma {
+  --bg: #0f0000; --accent: #ff4500;
+  background-color: var(--bg) !important; color: #ff9900 !important;
+}
+body.theme-magma #sortable .item { border-color: #ff450033; box-shadow: 0 0 15px rgba(255, 69, 0, 0.1), inset 0 0 10px rgba(255, 69, 0, 0.1) !important; }
+
+/* THEME 15: COFFEE HOUSE (Espresso Tones) */
+body.theme-coffee {
+  --bg: #2b1d0e; --accent: #d2b48c;
+  background-color: var(--bg) !important; color: #f5f5dc !important;
+}
+
+/* THEME 16: ARCTIC NIGHT (Shimmering Ice) */
+body.theme-arctic {
+  --bg: #000814; --accent: #00b4d8;
+  background-color: var(--bg) !important; color: #caf0f8 !important;
+}
+
+/* THEME 17: GOLDEN HOUR (Warm Glow) */
+body.theme-golden {
+  --bg: #451a03; --accent: #fbbf24;
+  background-color: var(--bg) !important; color: #fef3c7 !important;
+}
+
+/* THEME 18: GLITCH CORE (Cyber Static) */
+body.theme-glitch {
+  --bg: #111; --accent: #f0f;
+  background-color: #111 !important; color: #0f0 !important;
+}
+body.theme-glitch #sortable .item:hover { animation: glitch-shake 0.2s infinite; }
+@keyframes glitch-shake { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
+
+/* THEME 19: RAINBOW GLASS */
+body.theme-rainbow #sortable .item:nth-child(5n+1) { border-color: #ff0000 !important; }
+body.theme-rainbow #sortable .item:nth-child(5n+2) { border-color: #00ff00 !important; }
+body.theme-rainbow #sortable .item:nth-child(5n+3) { border-color: #0000ff !important; }
+body.theme-rainbow #sortable .item:nth-child(5n+4) { border-color: #ffff00 !important; }
+body.theme-rainbow #sortable .item:nth-child(5n+5) { border-color: #ff00ff !important; }
+
+/* THEME 20: TERMINAL AMBER */
+body.theme-amber {
+  --bg: #000; --accent: #ffb000;
+  background-color: #000 !important; color: #ffb000 !important; font-family: 'VT323', monospace !important;
+}
+body.theme-amber .divDate, body.theme-amber .meteo, body.theme-amber #sortable .item { border: 1px solid var(--accent); border-radius: 0; box-shadow: none !important; }
 
 /* =========================================================================
- * THEME 2: CYBER-ORGANIC (Bioluminescent Hologram)
+ * FEATURE 47: ANIMATED BORDERS (The Snake Effect)
  * =========================================================================
  */
-body.theme-cyber-organic {
-  --emerald-biolum: #10b981;
-  --cyan-hologram: #06b6d4;
-  background-color: #030d1a !important;
-  font-family: 'Quicksand', sans-serif !important;
-  color: #d4e4fa !important;
+.animated-borders-active #sortable .item { position: relative; z-index: 1; border: 1px solid rgba(255,255,255,0.1) !important; }
+.animated-borders-active #sortable .item::before {
+  content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: conic-gradient(from 0deg, transparent, var(--accent, #fff), transparent 30%);
+  border-radius: inherit; animation: border-rotate 4s linear infinite; z-index: -1; opacity: 0; transition: opacity 0.3s ease;
 }
-body.theme-cyber-organic.auroras-active .blob-1 { background-color: var(--emerald-biolum); }
-body.theme-cyber-organic.auroras-active .blob-2 { background-color: var(--cyan-hologram); }
-body.theme-cyber-organic.auroras-active .blob-3 { background-color: var(--emerald-biolum); }
-
-body.theme-cyber-organic .divDate,
-body.theme-cyber-organic .meteo {
-  background-color: rgba(12, 33, 49, 0.55) !important;
-  border-radius: 16px !important;
-  border: 1px solid rgba(20, 184, 166, 0.25) !important;
-  box-shadow: 0 8px 32px rgba(1, 15, 31, 0.4) !important;
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-}
-body.theme-cyber-organic .horloge {
-  font-family: 'Quicksand', sans-serif;
-  color: var(--emerald-biolum) !important;
-  text-shadow: 0 0 12px rgba(16, 185, 129, 0.35) !important;
-}
-body.theme-cyber-organic .ladate span {
-  font-family: 'Quicksand', sans-serif;
-  color: var(--cyan-hologram) !important;
-  text-shadow: 0 0 8px rgba(6, 182, 212, 0.3) !important;
-}
-body.theme-cyber-organic #sortable .item {
-  border-radius: 16px !important;
-  border: 1px solid rgba(20, 184, 166, 0.2) !important;
-}
-body.theme-cyber-organic #sortable .item:hover {
-  border-color: var(--cyan-hologram) !important;
-  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15) !important;
-}
-
+.animated-borders-active #sortable .item:hover::before { opacity: 1; }
+@keyframes border-rotate { 100% { transform: rotate(360deg); } }
 
 /* =========================================================================
- * THEME 3: SLATE MINIMALIST (Premium Matte Glass)
+ * FEATURE 53: HEALTH PULSE (Status Warning)
  * =========================================================================
  */
-body.theme-slate-minimalist {
-  background-color: #0d0e10 !important;
-  font-family: 'Inter', sans-serif !important;
-  color: rgba(255, 255, 255, 0.6) !important;
+.health-pulse-active #sortable .item:has(.latency-dot.offline) {
+  animation: health-pulse-anim 2s infinite cubic-bezier(0.4, 0, 0.6, 1) !important;
+  border-color: #ef4444 !important;
 }
-body.theme-slate-minimalist.auroras-active .blob-1 { background-color: #475569; }
-body.theme-slate-minimalist.auroras-active .blob-2 { background-color: #334155; }
-body.theme-slate-minimalist.auroras-active .blob-3 { background-color: #1e293b; }
-
-body.theme-slate-minimalist .divDate,
-body.theme-slate-minimalist .meteo {
-  background-color: rgba(22, 22, 26, 0.55) !important;
-  border-radius: 12px !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+@keyframes health-pulse-anim {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 25px 5px rgba(239, 68, 68, 0.5); }
 }
-body.theme-slate-minimalist .horloge {
-  font-family: 'Outfit', sans-serif;
-  color: #fff !important;
-  font-weight: 200;
-}
-body.theme-slate-minimalist .ladate span {
-  font-family: 'Outfit', sans-serif;
-  color: #fff !important;
-  font-weight: 500;
-}
-body.theme-slate-minimalist #sortable .item {
-  border-radius: 10px !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
-body.theme-slate-minimalist #sortable .item:hover {
-  border-color: rgba(255, 255, 255, 0.2) !important;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45) !important;
-}
-
 
 /* =========================================================================
- * THEME 4: SUNSET AURORA (Warm Twilight Gradient)
+ * FEATURE 63: 7-DAY FORECAST EXPANSION
  * =========================================================================
  */
-body.theme-sunset-aurora {
-  --sunset-orange: #ff7e47;
-  --sunset-rose: #ff4b72;
-  background-color: #12071d !important;
-  font-family: 'Outfit', sans-serif !important;
-  color: #fce7f3 !important;
+.forecast-7day-active .meteo { min-width: 320px !important; }
+.forecast-7day-active .forecast-row {
+  display: flex; justify-content: space-between; width: 100%; margin-top: 15px; padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.1); gap: 8px;
 }
-body.theme-sunset-aurora.auroras-active .blob-1 { background-color: var(--sunset-orange); }
-body.theme-sunset-aurora.auroras-active .blob-2 { background-color: var(--sunset-rose); }
-body.theme-sunset-aurora.auroras-active .blob-3 { background-color: var(--sunset-orange); }
-
-body.theme-sunset-aurora .divDate,
-body.theme-sunset-aurora .meteo {
-  background-color: rgba(30, 15, 45, 0.55) !important;
-  border-radius: 14px !important;
-  border: 1px solid rgba(255, 126, 71, 0.25) !important;
-  box-shadow: 0 8px 32px rgba(18, 7, 29, 0.4) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-body.theme-sunset-aurora .horloge {
-  font-family: 'Outfit', sans-serif;
-  color: var(--sunset-orange) !important;
-  text-shadow: 0 0 10px rgba(255, 126, 71, 0.35) !important;
-  font-weight: 600;
-}
-body.theme-sunset-aurora .ladate span {
-  font-family: 'Outfit', sans-serif;
-  color: var(--sunset-rose) !important;
-  text-shadow: 0 0 8px rgba(255, 75, 114, 0.3) !important;
-  font-weight: 700;
-}
-body.theme-sunset-aurora #sortable .item {
-  border-radius: 12px !important;
-  border: 1px solid rgba(255, 75, 114, 0.15) !important;
-}
-body.theme-sunset-aurora #sortable .item:hover {
-  border-color: var(--sunset-orange) !important;
-  box-shadow: 0 12px 30px rgba(255, 126, 71, 0.2) !important;
-}
-
-
-/* =========================================================================
- * THEME 5: NORDIC FROST (Arctic Ice & Cold Ocean)
- * =========================================================================
- */
-body.theme-nordic-frost {
-  --ice-blue: #93c5fd;
-  --frost-white: #e2e8f0;
-  background-color: #050b14 !important;
-  font-family: 'Inter', sans-serif !important;
-  color: #cbd5e1 !important;
-}
-body.theme-nordic-frost.auroras-active .blob-1 { background-color: #60a5fa; }
-body.theme-nordic-frost.auroras-active .blob-2 { background-color: #38bdf8; }
-body.theme-nordic-frost.auroras-active .blob-3 { background-color: #93c5fd; }
-
-body.theme-nordic-frost .divDate,
-body.theme-nordic-frost .meteo {
-  background-color: rgba(10, 20, 35, 0.6) !important;
-  border-radius: 12px !important;
-  border: 1px solid rgba(147, 197, 253, 0.2) !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35) !important;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-}
-body.theme-nordic-frost .horloge {
-  font-family: 'Inter', sans-serif;
-  color: #fff !important;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
-  font-weight: 300;
-}
-body.theme-nordic-frost .ladate span {
-  font-family: 'Inter', sans-serif;
-  color: var(--ice-blue) !important;
-  font-weight: 600;
-  text-shadow: 0 0 6px rgba(147, 197, 253, 0.25) !important;
-}
-body.theme-nordic-frost #sortable .item {
-  border-radius: 12px !important;
-  border: 1px solid rgba(147, 197, 253, 0.12) !important;
-}
-body.theme-nordic-frost #sortable .item:hover {
-  border-color: #fff !important;
-  box-shadow: 0 12px 30px rgba(147, 197, 253, 0.15) !important;
-}
-
-
-/* =========================================================================
- * THEME 6: SOLARIZED AMBER (Cyber-Retro Terminal)
- * =========================================================================
- */
-body.theme-solarized-amber {
-  --terminal-amber: #f59e0b;
-  --warm-bronze: #854d0e;
-  background-color: #140e05 !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  color: #fed7aa !important;
-}
-body.theme-solarized-amber.auroras-active .blob-1 { background-color: #f59e0b; }
-body.theme-solarized-amber.auroras-active .blob-2 { background-color: #d97706; }
-body.theme-solarized-amber.auroras-active .blob-3 { background-color: #b45309; }
-
-body.theme-solarized-amber .divDate,
-body.theme-solarized-amber .meteo {
-  background-color: rgba(28, 20, 10, 0.7) !important;
-  border-radius: 6px !important;
-  border: 1px solid rgba(245, 158, 11, 0.25) !important;
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.05) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-body.theme-solarized-amber .horloge {
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--terminal-amber) !important;
-  text-shadow: 0 0 8px rgba(245, 158, 11, 0.45) !important;
-  font-weight: 700;
-}
-body.theme-solarized-amber .ladate span {
-  font-family: 'JetBrains Mono', monospace;
-  color: #fff !important;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3) !important;
-  font-weight: 700;
-}
-body.theme-solarized-amber #sortable .item {
-  border-radius: 6px !important;
-  border: 1px solid rgba(245, 158, 11, 0.15) !important;
-}
-body.theme-solarized-amber #sortable .item:hover {
-  border-color: var(--terminal-amber) !important;
-  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2) !important;
-}
-
-
-/* =========================================================================
- * THEME 7: MONOLITH DARK (Midnight Obsidian Matte)
- * =========================================================================
- */
-body.theme-monolith-dark {
-  background-color: #070708 !important;
-  font-family: 'Inter', sans-serif !important;
-  color: #88888b !important;
-}
-body.theme-monolith-dark.auroras-active .blob-1 { background-color: #27272a; }
-body.theme-monolith-dark.auroras-active .blob-2 { background-color: #3f3f46; }
-body.theme-monolith-dark.auroras-active .blob-3 { background-color: #1c1917; }
-
-body.theme-monolith-dark .divDate,
-body.theme-monolith-dark .meteo {
-  background-color: rgba(14, 14, 15, 0.75) !important;
-  border-radius: 10px !important;
-  border: 1px solid rgba(255, 255, 255, 0.05) !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
-  backdrop-filter: blur(35px);
-  -webkit-backdrop-filter: blur(35px);
-}
-body.theme-monolith-dark .horloge {
-  font-family: 'Inter', sans-serif;
-  color: #fff !important;
-  font-weight: 200;
-}
-body.theme-monolith-dark .ladate span {
-  font-family: 'Inter', sans-serif;
-  color: #fff !important;
-  font-weight: 600;
-}
-body.theme-monolith-dark #sortable .item {
-  border-radius: 10px !important;
-  border: 1px solid rgba(255, 255, 255, 0.04) !important;
-}
-body.theme-monolith-dark #sortable .item:hover {
-  border-color: rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.55) !important;
-}
-
-
-/* =========================================================================
- * THEME 8: DRACULA DARK (Vampire Neon Purple/Green)
- * =========================================================================
- */
-body.theme-dracula-dark {
-  --drac-green: #50fa7b;
-  --drac-purple: #bd93f9;
-  background-color: #171224 !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  color: #f8f8f2 !important;
-}
-body.theme-dracula-dark.auroras-active .blob-1 { background-color: var(--drac-purple); }
-body.theme-dracula-dark.auroras-active .blob-2 { background-color: var(--drac-green); }
-body.theme-dracula-dark.auroras-active .blob-3 { background-color: var(--drac-purple); }
-
-body.theme-dracula-dark .divDate,
-body.theme-dracula-dark .meteo {
-  background-color: rgba(28, 22, 43, 0.6) !important;
-  border-radius: 10px !important;
-  border: 1px solid rgba(189, 147, 249, 0.25) !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-body.theme-dracula-dark .horloge {
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--drac-green) !important;
-  text-shadow: 0 0 10px rgba(80, 250, 123, 0.35) !important;
-  font-weight: 700;
-}
-body.theme-dracula-dark .ladate span {
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--drac-purple) !important;
-  text-shadow: 0 0 8px rgba(189, 147, 249, 0.3) !important;
-  font-weight: 700;
-}
-body.theme-dracula-dark #sortable .item {
-  border-radius: 10px !important;
-  border: 1px solid rgba(189, 147, 249, 0.15) !important;
-}
-body.theme-dracula-dark #sortable .item:hover {
-  border-color: var(--drac-green) !important;
-  box-shadow: 0 10px 25px rgba(80, 250, 123, 0.2) !important;
-}
-
-
-/* =========================================================================
- * THEME 9: RETROWAVE 80S (Outrun Neon Synth)
- * =========================================================================
- */
-body.theme-retrowave-80s {
-  --retro-pink: #ff007f;
-  --retro-yellow: #fff200;
-  background-color: #0e041c !important;
-  font-family: 'Orbitron', sans-serif !important;
-  color: #fff !important;
-}
-body.theme-retrowave-80s.auroras-active .blob-1 { background-color: var(--retro-pink); }
-body.theme-retrowave-80s.auroras-active .blob-2 { background-color: var(--retro-yellow); }
-body.theme-retrowave-80s.auroras-active .blob-3 { background-color: var(--retro-pink); }
-
-body.theme-retrowave-80s .divDate,
-body.theme-retrowave-80s .meteo {
-  background-color: rgba(22, 6, 45, 0.65) !important;
-  border-radius: 8px !important;
-  border: 1px solid rgba(255, 0, 127, 0.3) !important;
-  box-shadow: 0 0 15px rgba(255, 0, 127, 0.15) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-body.theme-retrowave-80s .horloge {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--retro-yellow) !important;
-  text-shadow: 0 0 12px rgba(255, 242, 0, 0.5) !important;
-  font-weight: 800;
-}
-body.theme-retrowave-80s .ladate span {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--retro-pink) !important;
-  text-shadow: 0 0 10px rgba(255, 0, 127, 0.45) !important;
-  font-weight: 700;
-}
-body.theme-retrowave-80s #sortable .item {
-  border-radius: 8px !important;
-  border: 1px solid rgba(255, 0, 127, 0.2) !important;
-}
-body.theme-retrowave-80s #sortable .item:hover {
-  border-color: var(--retro-yellow) !important;
-  box-shadow: 0 10px 25px rgba(255, 242, 0, 0.25) !important;
-}
-
-
-/* =========================================================================
- * THEME 10: SAKURA BLOSSOM (Japanese Zen Pink)
- * =========================================================================
- */
-body.theme-sakura-blossom {
-  --sakura-pink: #fda4af;
-  --sakura-gold: #f59e0b;
-  background-color: #170d12 !important;
-  font-family: 'Quicksand', sans-serif !important;
-  color: #ffe4e6 !important;
-}
-body.theme-sakura-blossom.auroras-active .blob-1 { background-color: var(--sakura-pink); }
-body.theme-sakura-blossom.auroras-active .blob-2 { background-color: #fecdd3; }
-body.theme-sakura-blossom.auroras-active .blob-3 { background-color: var(--sakura-gold); }
-
-body.theme-sakura-blossom .divDate,
-body.theme-sakura-blossom .meteo {
-  background-color: rgba(35, 17, 24, 0.55) !important;
-  border-radius: 16px !important;
-  border: 1px solid rgba(253, 164, 175, 0.25) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-body.theme-sakura-blossom .horloge {
-  font-family: 'Quicksand', sans-serif;
-  color: var(--sakura-pink) !important;
-  text-shadow: 0 0 12px rgba(253, 164, 175, 0.4) !important;
-  font-weight: 700;
-}
-body.theme-sakura-blossom .ladate span {
-  font-family: 'Quicksand', sans-serif;
-  color: var(--sakura-gold) !important;
-  text-shadow: 0 0 8px rgba(245, 158, 11, 0.25) !important;
-  font-weight: 700;
-}
-body.theme-sakura-blossom #sortable .item {
-  border-radius: 14px !important;
-  border: 1px solid rgba(253, 164, 175, 0.15) !important;
-}
-body.theme-sakura-blossom #sortable .item:hover {
-  border-color: var(--sakura-pink) !important;
-  box-shadow: 0 10px 25px rgba(253, 164, 175, 0.18) !important;
-}
-
+.forecast-day { display: flex; flex-direction: column; align-items: center; font-size: 0.7em; opacity: 0.8; }
 
 /* =========================================================================
  * REDESIGNED GENERAL WIDGETS (BIG DATE AND CLOCK)
@@ -690,7 +450,6 @@ body.theme-sakura-blossom #sortable .item:hover {
   margin: 40px 50px;
   gap: 30px;
 }
-
 .divDate, .meteo {
   padding: 24px 36px !important;
   display: flex !important;
@@ -698,776 +457,112 @@ body.theme-sakura-blossom #sortable .item:hover {
   position: relative;
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
-.divDate:hover, .meteo:hover {
-  transform: translateY(-2px);
-}
-
-.horloge, .ladate {
-  display: inline-block;
-  margin-right: 20px;
-  color: #fff !important;
-}
-
-/* BIG REDESIGNED CLOCK */
-.horloge {
-  font-size: 5.4em !important;
-  font-weight: 200 !important;
-  letter-spacing: -2px;
-  line-height: 1;
-}
-
-.ladate {
-  font-size: 0.95em !important;
-  line-height: 1.6;
-  letter-spacing: 1.5px;
-}
-
-.ladate span {
-  display: block;
-  font-size: 1.45em;
-  letter-spacing: 1px;
-  margin-bottom: 3px;
-  font-weight: 700;
-}
-
-.meteo {
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 280px;
-}
-
-.ville-temp-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
-}
-
-.temperature {
-  font-size: 3.4em !important;
-  font-weight: 300 !important;
-  color: #fff !important;
-}
-
-.ville {
-  font-size: 1.25em !important;
-  font-weight: 700 !important;
-  color: #fff !important;
-}
-
-.description {
-  font-size: 0.9em !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-
+.divDate:hover, .meteo:hover { transform: translateY(-2px); }
+.horloge, .ladate { display: inline-block; margin-right: 20px; color: #fff !important; }
+.horloge { font-size: 5.4em !important; font-weight: 200 !important; letter-spacing: -2px; line-height: 1; }
+.ladate { font-size: 0.95em !important; line-height: 1.6; letter-spacing: 1.5px; }
+.ladate span { display: block; font-size: 1.45em; letter-spacing: 1px; margin-bottom: 3px; font-weight: 700; }
+.meteo { flex-direction: column; align-items: flex-start; min-width: 280px; }
+.ville-temp-container { display: flex; justify-content: space-between; width: 100%; align-items: center; }
+.temperature { font-size: 3.4em !important; font-weight: 300 !important; color: #fff !important; }
+.ville { font-size: 1.25em !important; font-weight: 700 !important; color: #fff !important; }
+.description { font-size: 0.9em !important; color: rgba(255, 255, 255, 0.6) !important; }
 
 /* =========================================================================
  * REDESIGNED SEARCH & FILTER SYSTEM
  * =========================================================================
  */
 #search input {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 8px !important;
-  color: #fff !important;
-  padding: 10px 18px !important;
-  backdrop-filter: blur(16px) !important;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  background: rgba(255, 255, 255, 0.05) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important; color: #fff !important; padding: 10px 18px !important;
+  backdrop-filter: blur(16px) !important; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
 }
-
 #search input:focus {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15), 
-              inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-  outline: none !important;
+  background: rgba(255, 255, 255, 0.08) !important; border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.3) !important; outline: none !important;
 }
-
-.search-highlight {
-  box-shadow: 0 0 15px rgba(255,255,255,0.3), inset 0 1px 2px rgba(255,255,255,0.4) !important;
-  transform: scale(1.03) !important;
-}
-
+.search-highlight { box-shadow: 0 0 15px rgba(255,255,255,0.3), inset 0 1px 2px rgba(255,255,255,0.4) !important; transform: scale(1.03) !important; }
 
 /* =========================================================================
  * REDESIGNED TOGGLE-HIDDEN THEME SELECTOR DIAL
  * =========================================================================
  */
-
-/* Theme Toggle Button (FAB) */
 .theme-trigger-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 80px; /* Positions perfectly adjacent to gear icon */
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(20, 20, 25, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100000;
-  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  outline: none !important;
+  position: fixed; bottom: 24px; right: 80px; width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(20, 20, 25, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100000;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); outline: none !important;
 }
+.theme-trigger-btn:hover { transform: scale(1.08) rotate(45deg); border-color: rgba(255, 255, 255, 0.35); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); }
+.theme-trigger-btn svg { width: 22px; height: 22px; fill: #fff; transition: fill 0.3s ease; }
 
-.theme-trigger-btn:hover {
-  transform: scale(1.08) rotate(45deg);
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-}
-
-.theme-trigger-btn svg {
-  width: 22px;
-  height: 22px;
-  fill: #fff;
-  transition: fill 0.3s ease;
-}
-
-/* Hidden Switcher Panel */
 .theme-selection-panel {
-  position: fixed;
-  bottom: 84px;
-  right: 80px;
-  background: rgba(18, 18, 22, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  padding: 16px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
-  z-index: 99999;
-  width: 260px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transform: scale(0.9) translateY(20px);
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: fixed; bottom: 84px; right: 80px; background: rgba(18, 18, 22, 0.95);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px; padding: 16px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+  z-index: 99999; width: 280px; max-height: 80vh; overflow-y: auto; display: flex;
+  flex-direction: column; gap: 8px; transform: scale(0.9) translateY(20px);
+  opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
-/* Expand class when triggered */
-.theme-selection-panel.open {
-  transform: scale(1) translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
+.theme-selection-panel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: auto; }
 
 .panel-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85em;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 8px;
-  padding-left: 6px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 6px;
+  font-family: 'Inter', sans-serif; font-size: 0.85em; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: rgba(255, 255, 255, 0.4); margin-bottom: 8px; padding-left: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 6px;
 }
+.panel-section { display: flex; align-items: center; justify-content: space-between; padding: 8px 6px; border-top: 1px dashed rgba(255, 255, 255, 0.08); margin-top: 4px; }
+.panel-subtitle { font-family: 'Inter', sans-serif; font-size: 0.8em; font-weight: 600; color: rgba(255, 255, 255, 0.7); }
 
-/* Aurora Toggle Switch Styles inside Switcher Panel */
-.panel-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 6px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.08);
-  margin-top: 4px;
-}
-
-.panel-subtitle {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8em;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.switch-container {
-  position: relative;
-  display: inline-block;
-  width: 38px;
-  height: 20px;
-}
-
-.switch-container input {
-  opacity: 0; width: 0; height: 0;
-}
-
-.slider-switch {
-  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(255, 255, 255, 0.15);
-  transition: .3s; border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.slider-switch:before {
-  position: absolute; content: ""; height: 12px; width: 12px; left: 3px; bottom: 3px;
-  background-color: white; transition: .3s; border-radius: 50%;
-}
-
-input:checked + .slider-switch {
-  background-color: #10b981;
-}
-
-input:checked + .slider-switch:before {
-  transform: translateX(18px);
-}
+.switch-container { position: relative; display: inline-block; width: 38px; height: 20px; }
+.switch-container input { opacity: 0; width: 0; height: 0; }
+.slider-switch { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.15); transition: .3s; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1); }
+.slider-switch:before { position: absolute; content: ""; height: 12px; width: 12px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+input:checked + .slider-switch { background-color: #10b981; }
+input:checked + .slider-switch:before { transform: translateX(18px); }
 
 .theme-option-btn {
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  color: rgba(255, 255, 255, 0.65);
-  cursor: pointer;
-  font-size: 0.85em;
-  font-weight: 500;
-  padding: 8px 12px;
-  text-align: left;
-  transition: all 0.25s ease;
-  font-family: 'Inter', sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  outline: none !important;
+  background: transparent; border: 1px solid transparent; border-radius: 10px; color: rgba(255, 255, 255, 0.65);
+  cursor: pointer; font-size: 0.85em; font-weight: 500; padding: 8px 12px; text-align: left;
+  transition: all 0.25s ease; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 10px; outline: none !important;
 }
-
-.theme-option-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.08);
-  transform: translateX(4px);
-}
-
-.theme-option-btn.active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  font-weight: 600;
-}
-
-/* Active Theme highlights in option list */
-body.theme-cyber-premium .theme-option-btn.active { border-color: rgba(0, 242, 255, 0.4); color: var(--neon-cyan); }
-body.theme-cyber-organic .theme-option-btn.active { border-color: rgba(16, 185, 129, 0.4); color: var(--emerald-biolum); }
-body.theme-sunset-aurora .theme-option-btn.active { border-color: rgba(255, 126, 71, 0.4); color: var(--sunset-orange); }
-body.theme-nordic-frost .theme-option-btn.active { border-color: rgba(147, 197, 253, 0.4); color: var(--ice-blue); }
-body.theme-solarized-amber .theme-option-btn.active { border-color: rgba(245, 158, 11, 0.4); color: var(--terminal-amber); }
-body.theme-dracula-dark .theme-option-btn.active { border-color: rgba(189, 147, 249, 0.4); color: var(--drac-purple); }
-body.theme-retrowave-80s .theme-option-btn.active { border-color: rgba(255, 0, 127, 0.4); color: var(--retro-pink); }
-body.theme-sakura-blossom .theme-option-btn.active { border-color: rgba(253, 164, 175, 0.4); color: var(--sakura-pink); }
-body.theme-cyberpunk-yellow .theme-option-btn.active { border-color: rgba(252, 238, 10, 0.4); color: #fcee0a; }
-body.theme-cosmic-nebula .theme-option-btn.active { border-color: rgba(255, 215, 0, 0.4); color: #ffd700; }
-body.theme-glassmorphic-light .theme-option-btn.active { border-color: rgba(2, 132, 199, 0.4); color: #0284c7; }
-body.theme-matrix-rain .theme-option-btn.active { border-color: rgba(0, 255, 65, 0.4); color: #00ff41; }
-body.theme-toxic-hazard .theme-option-btn.active { border-color: rgba(57, 255, 20, 0.4); color: #39ff14; }
+.theme-option-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.08); transform: translateX(4px); }
+.theme-option-btn.active { color: #fff; background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.2); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1); font-weight: 600; }
 
 /* =========================================================================
  * CONTAINER LAYER STACK OVERRIDES (solving display-behind-background issues)
  * =========================================================================
  */
-#ambient-particles {
-  z-index: 1 !important;
-}
-
-body.auroras-active .aurora-blob {
-  z-index: 1 !important;
-}
-
-#sortable, 
-.headerInfos, 
-#search {
-  position: relative !important;
-}
-
-#sortable, 
-.headerInfos, 
-#search {
-  z-index: 5 !important;
-}
-
-/* Card Layer Stack Overrides */
-#sortable .item {
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-#sortable .item::after {
-  z-index: 1 !important;
-}
-
-
-#sortable .item a {
-  position: relative !important;
-  z-index: 3 !important; /* text/icon content on top of everything! */
-}
+#ambient-particles { z-index: 1 !important; }
+body.auroras-active .aurora-blob { z-index: 1 !important; }
+#sortable, .headerInfos, #search { position: relative !important; z-index: 5 !important; }
+#sortable .item { position: relative !important; z-index: 1 !important; }
+#sortable .item::after { z-index: 1 !important; }
+#sortable .item a { position: relative !important; z-index: 3 !important; }
 
 /* =========================================================================
  * FEATURE 12: SMART AUTO-SIZING & DYNAMIC WIDGET COMPACTNESS
  * =========================================================================
  */
+body.dynamic-sizing-active .container, body.dynamic-sizing-active #tiles { max-width: 95vw !important; width: 100% !important; }
+body.dynamic-sizing-active #sortable { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; gap: var(--widget-gap, 4px) !important; padding: 20px 40px !important; width: 100% !important; max-width: 95vw !important; margin: 0 auto !important; }
+body.dynamic-sizing-active #sortable .item { width: fit-content !important; height: auto !important; flex: 0 1 auto !important; min-width: 90px !important; max-width: 160px !important; padding: 12px 14px !important; display: inline-flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease, box-shadow 0.3s ease, min-width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), max-width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), padding 0.4s ease !important; }
+body.dynamic-sizing-active #sortable .item a { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; text-align: center !important; gap: 8px !important; width: 100% !important; height: 100% !important; padding: 0 !important; margin: 0 !important; text-decoration: none !important; }
+body.dynamic-sizing-active #sortable .item img { object-fit: contain !important; flex-shrink: 0 !important; }
+body.dynamic-sizing-active #sortable .item .title, body.dynamic-sizing-active #sortable .item a span { font-family: inherit !important; font-size: 0.82em !important; font-weight: 600 !important; letter-spacing: 0.5px !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; margin-top: 4px !important; padding: 0 !important; color: inherit !important; width: 100% !important; text-align: center !important; }
+body.dynamic-sizing-active #sortable .item:not(:has(.widget)):not(:has(.link-stats)):not(:has([class*="-stats"])):not(:has(.details)):not(:has([class*="-details"])) .title, body.dynamic-sizing-active #sortable .item:not(:has(.widget)):not(:has(.link-stats)):not(:has([class*="-stats"])):not(:has(.details)):not(:has([class*="-details"])) a span { max-width: 120px !important; }
+body.dynamic-sizing-active #sortable .item .latency-dot { margin-left: 6px !important; margin-right: 0 !important; display: inline-block !important; }
+body.dynamic-sizing-active #sortable .item .widget, body.dynamic-sizing-active #sortable .item .link-stats, body.dynamic-sizing-active #sortable .item [class*="-stats"], body.dynamic-sizing-active #sortable .item .details, body.dynamic-sizing-active #sortable .item [class*="-details"] { display: block !important; width: 100% !important; margin-top: 10px !important; padding-top: 10px !important; border-top: 1px solid rgba(255, 255, 255, 0.08) !important; font-size: 0.8em !important; line-height: 1.4 !important; opacity: 0.85 !important; text-align: center !important; }
+body.dynamic-sizing-active #sortable .item .widget span, body.dynamic-sizing-active #sortable .item .link-stats span, body.dynamic-sizing-active #sortable .item .details span { display: inline-block !important; font-weight: 500 !important; }
+body.dynamic-sizing-active #sortable .item:has(.widget), body.dynamic-sizing-active #sortable .item:has(.link-stats), body.dynamic-sizing-active #sortable .item:has([class*="-stats"]), body.dynamic-sizing-active #sortable .item:has(.details), body.dynamic-sizing-active #sortable .item:has([class*="-details"]) { min-width: 240px !important; max-width: 380px !important; }
 
-/* Container and overall layout adjustments */
-body.dynamic-sizing-active .container,
-body.dynamic-sizing-active #tiles {
-  max-width: 95vw !important; /* Expand parent layout wrapper to use all horizontal viewport space */
-  width: 100% !important;
-}
-
-body.dynamic-sizing-active #sortable {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: var(--widget-gap, 4px) !important; /* defaults to compact gap */
-  padding: 20px 40px !important;
-  width: 100% !important;
-  max-width: 95vw !important; /* Expand dashboard grid to use all available space */
-  margin: 0 auto !important;
-}
-
-/* Individual compact item sizing and layout rules */
-body.dynamic-sizing-active #sortable .item {
-  width: fit-content !important; /* Size dynamically to used text and icon space */
-  height: auto !important;
-  flex: 0 1 auto !important;
-  min-width: 90px !important; /* compact simple widget base width */
-  max-width: 160px !important; /* narrow boundary for high density grid packing */
-  padding: 12px 14px !important; /* premium side padding */
-  display: inline-flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
-              border-color 0.3s ease,
-              box-shadow 0.3s ease,
-              min-width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-              max-width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-              padding 0.4s ease !important;
-}
-
-/* Standard anchor link adjustments (retaining vertical structure) */
-body.dynamic-sizing-active #sortable .item a {
-  display: flex !important;
-  flex-direction: column !important; /* keep standard vertical column layout! */
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  gap: 8px !important;
-  width: 100% !important;
-  height: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  text-decoration: none !important;
-}
-
-/* Make card icons standard and centered in compact view */
-body.dynamic-sizing-active #sortable .item img {
-  object-fit: contain !important;
-  flex-shrink: 0 !important;
-}
-
-/* Set up the App Title style to be clean and inline */
-body.dynamic-sizing-active #sortable .item .title,
-body.dynamic-sizing-active #sortable .item a span {
-  font-family: inherit !important;
-  font-size: 0.82em !important; /* micro font sizing for compact look */
-  font-weight: 600 !important;
-  letter-spacing: 0.5px !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  margin-top: 4px !important;
-  padding: 0 !important;
-  color: inherit !important;
-  width: 100% !important;
-  text-align: center !important;
-}
-
-/* Limit text width to show ellipsis ONLY for simple compact cards */
-body.dynamic-sizing-active #sortable .item:not(:has(.widget)):not(:has(.link-stats)):not(:has([class*="-stats"])):not(:has(.details)):not(:has([class*="-details"])) .title,
-body.dynamic-sizing-active #sortable .item:not(:has(.widget)):not(:has(.link-stats)):not(:has([class*="-stats"])):not(:has(.details)):not(:has([class*="-details"])) a span {
-  max-width: 120px !important; /* expanded text limit to fit title space without early clipping */
-}
-
-/* Ensure online/offline latency dots are beautifully aligned */
-body.dynamic-sizing-active #sortable .item .latency-dot {
-  margin-left: 6px !important;
-  margin-right: 0 !important;
-  display: inline-block !important;
-}
-
-/* Detailed widget output formatting (Enhanced Apps) */
-body.dynamic-sizing-active #sortable .item .widget,
-body.dynamic-sizing-active #sortable .item .link-stats,
-body.dynamic-sizing-active #sortable .item [class*="-stats"],
-body.dynamic-sizing-active #sortable .item .details,
-body.dynamic-sizing-active #sortable .item [class*="-details"] {
-  display: block !important;
-  width: 100% !important;
-  margin-top: 10px !important;
-  padding-top: 10px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  font-size: 0.8em !important;
-  line-height: 1.4 !important;
-  opacity: 0.85 !important;
-  text-align: center !important;
-}
-
-/* Customize details typography for better readability */
-body.dynamic-sizing-active #sortable .item .widget span,
-body.dynamic-sizing-active #sortable .item .link-stats span,
-body.dynamic-sizing-active #sortable .item .details span {
-  display: inline-block !important;
-  font-weight: 500 !important;
-}
-
-/* Metrics card horizontal expansion using CSS :has() */
-body.dynamic-sizing-active #sortable .item:has(.widget),
-body.dynamic-sizing-active #sortable .item:has(.link-stats),
-body.dynamic-sizing-active #sortable .item:has([class*="-stats"]),
-body.dynamic-sizing-active #sortable .item:has(.details),
-body.dynamic-sizing-active #sortable .item:has([class*="-details"]) {
-  min-width: 240px !important;
-  max-width: 380px !important;
-}
-
-/* --- Feature 11: Delicately Drifting Particles Background --- */
-#ambient-particles {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-  opacity: 0.8 !important;
-  transition: opacity 0.8s ease-in-out !important;
-}
-
-/* --- Feature 23: Search Placement Positions --- */
-body.search-hidden #search {
-  opacity: 0 !important;
-  pointer-events: none !important;
-  transform: translateY(-20px) scale(0.95) !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
-}
-
-#search {
-  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
-}
-
-body.search-compact #search {
-  position: absolute !important;
-  top: 16px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 10000 !important;
-  margin: 0 !important;
-  width: 280px !important;
-}
-
-body.search-compact #search input {
-  padding: 6px 14px !important;
-  font-size: 0.85em !important;
-  border-radius: 20px !important;
-}
-
-body.search-compact .headerInfos {
-  margin-top: 60px !important;
-}
-
-/* --- Feature 30: Widget Spacing Variable Mapping --- */
-#sortable {
-  gap: var(--widget-gap, 16px) !important;
-}
-
-/* =========================================================================
- * EXTENDED THEME GALLERY (Themes 11 - 15)
- * =========================================================================
- */
-
-/* THEME 11: CYBERPUNK 2077 */
-body.theme-cyberpunk-yellow {
-  background-color: #0c0d10 !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  color: #fcee0a !important;
-}
-body.theme-cyberpunk-yellow.auroras-active .blob-1 { background-color: #fcee0a; }
-body.theme-cyberpunk-yellow.auroras-active .blob-2 { background-color: #00f0ff; }
-body.theme-cyberpunk-yellow.auroras-active .blob-3 { background-color: #fcee0a; }
-
-body.theme-cyberpunk-yellow .divDate,
-body.theme-cyberpunk-yellow .meteo {
-  background-color: rgba(12, 13, 16, 0.8) !important;
-  border-radius: 2px !important;
-  border: 1px solid rgba(252, 238, 10, 0.4) !important;
-  box-shadow: 0 0 15px rgba(252, 238, 10, 0.15) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-body.theme-cyberpunk-yellow .divDate::before,
-body.theme-cyberpunk-yellow .meteo::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, #fcee0a, #00f0ff);
-}
-body.theme-cyberpunk-yellow .horloge {
-  font-family: 'Orbitron', sans-serif;
-  color: #fcee0a !important;
-  text-shadow: 0 0 10px rgba(252, 238, 10, 0.6) !important;
-  animation: cyber-glitch 4s infinite alternate;
-}
-body.theme-cyberpunk-yellow .ladate span {
-  font-family: 'Orbitron', sans-serif;
-  color: #00f0ff !important;
-  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4) !important;
-}
-body.theme-cyberpunk-yellow #sortable .item {
-  border-radius: 2px !important;
-  border: 1px solid rgba(252, 238, 10, 0.25) !important;
-  background: rgba(20, 22, 26, 0.85) !important;
-}
-body.theme-cyberpunk-yellow #sortable .item:hover {
-  border-color: #00f0ff !important;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3) !important;
-}
-body.theme-cyberpunk-yellow #search input {
-  background: rgba(20, 22, 26, 0.7) !important;
-  border: 1px solid rgba(252, 238, 10, 0.3) !important;
-  color: #fcee0a !important;
-}
-@keyframes cyber-glitch {
-  0%, 95%, 100% { text-shadow: 0 0 10px rgba(252, 238, 10, 0.6); transform: skew(0); }
-  96% { text-shadow: -2px 0 red, 2px 0 blue; transform: skew(-1.5deg); }
-  98% { text-shadow: 2px 0 red, -2px 0 blue; transform: skew(1.5deg); }
-}
-
-/* THEME 12: COSMIC NEBULA */
-body.theme-cosmic-nebula {
-  background-color: #060214 !important;
-  font-family: 'Outfit', sans-serif !important;
-  color: #e0d5fa !important;
-}
-body.theme-cosmic-nebula.auroras-active .blob-1 { background-color: #ff007f; }
-body.theme-cosmic-nebula.auroras-active .blob-2 { background-color: #ffd700; }
-body.theme-cosmic-nebula.auroras-active .blob-3 { background-color: #7b2cbf; }
-
-body.theme-cosmic-nebula .divDate,
-body.theme-cosmic-nebula .meteo {
-  background-color: rgba(14, 6, 32, 0.65) !important;
-  border-radius: 20px !important;
-  border: 1px solid rgba(255, 215, 0, 0.25) !important;
-  box-shadow: 0 10px 30px rgba(123, 44, 191, 0.3) !important;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-}
-body.theme-cosmic-nebula .horloge {
-  font-family: 'Orbitron', sans-serif;
-  color: #ffd700 !important;
-  text-shadow: 0 0 12px rgba(255, 215, 0, 0.5) !important;
-}
-body.theme-cosmic-nebula .ladate span {
-  font-family: 'Outfit', sans-serif;
-  color: #ff007f !important;
-  text-shadow: 0 0 10px rgba(255, 0, 127, 0.4) !important;
-}
-body.theme-cosmic-nebula #sortable .item {
-  border-radius: 16px !important;
-  border: 1px solid rgba(255, 0, 127, 0.2) !important;
-  background: rgba(18, 8, 38, 0.75) !important;
-}
-body.theme-cosmic-nebula #sortable .item:hover {
-  border-color: #ffd700 !important;
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.35), 0 10px 30px rgba(0, 0, 0, 0.4) !important;
-}
-
-/* THEME 13: FROSTED CRYSTAL LIGHT */
-body.theme-glassmorphic-light {
-  background-color: #e2e8f0 !important;
-  font-family: 'Outfit', sans-serif !important;
-  color: #1e293b !important;
-}
-body.theme-glassmorphic-light.auroras-active .blob-1 { background-color: #38bdf8; }
-body.theme-glassmorphic-light.auroras-active .blob-2 { background-color: #f472b6; }
-body.theme-glassmorphic-light.auroras-active .blob-3 { background-color: #38bdf8; }
-
-body.theme-glassmorphic-light .divDate,
-body.theme-glassmorphic-light .meteo {
-  background-color: rgba(255, 255, 255, 0.45) !important;
-  border-radius: 16px !important;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.08) !important;
-  backdrop-filter: blur(35px);
-  -webkit-backdrop-filter: blur(35px);
-}
-body.theme-glassmorphic-light .horloge {
-  color: #0f172a !important;
-  font-weight: 300;
-  text-shadow: none !important;
-}
-body.theme-glassmorphic-light .ladate span {
-  color: #0284c7 !important;
-  font-weight: 700;
-  text-shadow: none !important;
-}
-body.theme-glassmorphic-light #sortable .item {
-  border-radius: 14px !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
-  background: rgba(255, 255, 255, 0.4) !important;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-}
-body.theme-glassmorphic-light #sortable .item::after {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.05) 100%) !important;
-}
-body.theme-glassmorphic-light #sortable .item:hover {
-  border-color: rgba(255, 255, 255, 0.9) !important;
-  background: rgba(255, 255, 255, 0.55) !important;
-  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.12) !important;
-  color: #0284c7 !important;
-}
-body.theme-glassmorphic-light #search input {
-  background: rgba(255, 255, 255, 0.5) !important;
-  border: 1px solid rgba(255, 255, 255, 0.7) !important;
-  color: #1e293b !important;
-}
-
-/* THEME 14: MATRIX RAIN */
-body.theme-matrix-rain {
-  background-color: #020502 !important;
-  font-family: 'JetBrains Mono', monospace !important;
-  color: #00ff41 !important;
-}
-body.theme-matrix-rain.auroras-active .blob-1 { background-color: #00ff41; }
-body.theme-matrix-rain.auroras-active .blob-2 { background-color: #005a14; }
-body.theme-matrix-rain.auroras-active .blob-3 { background-color: #00ff41; }
-
-body.theme-matrix-rain .divDate,
-body.theme-matrix-rain .meteo {
-  background-color: rgba(2, 5, 2, 0.85) !important;
-  border-radius: 4px !important;
-  border: 1px solid rgba(0, 255, 65, 0.35) !important;
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.15) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-body.theme-matrix-rain .horloge {
-  font-family: 'JetBrains Mono', monospace;
-  color: #00ff41 !important;
-  text-shadow: 0 0 10px rgba(0, 255, 65, 0.7) !important;
-  animation: matrix-pulse 6s infinite ease-in-out;
-}
-body.theme-matrix-rain .ladate span {
-  font-family: 'JetBrains Mono', monospace;
-  color: #008f11 !important;
-}
-body.theme-matrix-rain #sortable .item {
-  border-radius: 4px !important;
-  border: 1px solid rgba(0, 255, 65, 0.2) !important;
-  background: rgba(3, 10, 3, 0.9) !important;
-}
-body.theme-matrix-rain #sortable .item:hover {
-  border-color: #00ff41 !important;
-  box-shadow: 0 0 18px rgba(0, 255, 65, 0.3) !important;
-}
-body.theme-matrix-rain #search input {
-  background: rgba(3, 10, 3, 0.8) !important;
-  border: 1px solid rgba(0, 255, 65, 0.3) !important;
-  color: #00ff41 !important;
-}
-@keyframes matrix-pulse {
-  0%, 100% { opacity: 0.9; }
-  50% { opacity: 1; text-shadow: 0 0 16px rgba(0, 255, 65, 0.9); }
-}
-
-/* THEME 15: TOXIC HAZARD */
-body.theme-toxic-hazard {
-  background-color: #0d0f0c !important;
-  font-family: 'Outfit', sans-serif !important;
-  color: #d1ffd6 !important;
-}
-body.theme-toxic-hazard.auroras-active .blob-1 { background-color: #39ff14; }
-body.theme-toxic-hazard.auroras-active .blob-2 { background-color: #ff5f1f; }
-body.theme-toxic-hazard.auroras-active .blob-3 { background-color: #39ff14; }
-
-body.theme-toxic-hazard .divDate,
-body.theme-toxic-hazard .meteo {
-  background-color: rgba(15, 20, 15, 0.8) !important;
-  border-radius: 8px !important;
-  border: 2px solid rgba(57, 255, 20, 0.3) !important;
-  box-shadow: 0 0 20px rgba(57, 255, 20, 0.1) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-body.theme-toxic-hazard .horloge {
-  font-family: 'Orbitron', sans-serif;
-  color: #39ff14 !important;
-  text-shadow: 0 0 12px rgba(57, 255, 20, 0.6) !important;
-}
-body.theme-toxic-hazard .ladate span {
-  font-family: 'Orbitron', sans-serif;
-  color: #ff5f1f !important;
-  text-shadow: 0 0 10px rgba(255, 95, 31, 0.5) !important;
-}
-body.theme-toxic-hazard #sortable .item {
-  border-radius: 8px !important;
-  border: 1px solid rgba(57, 255, 20, 0.25) !important;
-  background: rgba(18, 24, 18, 0.8) !important;
-}
-body.theme-toxic-hazard #sortable .item:hover {
-  border-color: #ff5f1f !important;
-  box-shadow: 0 0 25px rgba(57, 255, 20, 0.3), 0 0 10px rgba(255, 95, 31, 0.2) !important;
-  animation: toxic-pulse 1.5s infinite alternate;
-}
-body.theme-toxic-hazard #search input {
-  background: rgba(18, 24, 18, 0.8) !important;
-  border: 1px solid rgba(57, 255, 20, 0.3) !important;
-  color: #d1ffd6 !important;
-}
-@keyframes toxic-pulse {
-  to { box-shadow: 0 0 35px rgba(57, 255, 20, 0.45), 0 0 15px rgba(255, 95, 31, 0.3); }
-}
-
-/* =========================================================================
- * SPLIT CLOCK & DATE STANDALONE PANEL CONFIGURATIONS
- * =========================================================================
- */
-.divClock .horloge,
-.divDateOnly .ladate {
-  margin-right: 0 !important;
-}
-
-.divClock,
-.divDateOnly {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
-  flex: 0 1 auto !important; /* dynamic resizing to used text space */
-  width: fit-content !important;
-}
-
-.divClock .horloge {
-  font-size: 4.8em !important;
-  letter-spacing: -1.5px !important;
-  line-height: 1 !important;
-}
-
-/* Scrollbars */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+#ambient-particles { position: fixed !important; top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important; pointer-events: none !important; z-index: 1 !important; opacity: 0.8 !important; transition: opacity 0.8s ease-in-out !important; }
+body.search-hidden #search { opacity: 0 !important; pointer-events: none !important; transform: translateY(-20px) scale(0.95) !important; height: 0 !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important; }
+#search { transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important; }
+body.search-compact #search { position: absolute !important; top: 16px !important; left: 50% !important; transform: translateX(-50%) !important; z-index: 10000 !important; margin: 0 !important; width: 280px !important; }
+body.search-compact #search input { padding: 6px 14px !important; font-size: 0.85em !important; border-radius: 20px !important; }
+body.search-compact .headerInfos { margin-top: 60px !important; }
+#sortable { gap: var(--widget-gap, 16px) !important; }
 

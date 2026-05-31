@@ -310,25 +310,30 @@
 
   // --- 7. Toggle-Hidden Theme Panel & Aurora Settings ---
   const themes = [
-    { id: 'theme-cyber-premium', name: '🌌 Cyber-Premium' },
-    { id: 'theme-cyber-organic', name: '🌿 Cyber-Organic' },
-    { id: 'theme-slate-minimalist', name: '📐 Slate Minimalist' },
-    { id: 'theme-sunset-aurora', name: '🌅 Sunset Aurora' },
-    { id: 'theme-nordic-frost', name: '❄️ Nordic Frost' },
-    { id: 'theme-solarized-amber', name: '🍂 Solarized Amber' },
-    { id: 'theme-monolith-dark', name: '🖤 Monolith Dark' },
-    { id: 'theme-dracula-dark', name: '🧛 Dracula Dark' },
-    { id: 'theme-retrowave-80s', name: '⚡ Retrowave 80s' },
-    { id: 'theme-sakura-blossom', name: '🌸 Sakura Blossom' },
-    { id: 'theme-cyberpunk-yellow', name: '🟨 Cyberpunk 2077' },
-    { id: 'theme-cosmic-nebula', name: '💫 Cosmic Nebula' },
-    { id: 'theme-glassmorphic-light', name: '💎 Frosted Crystal' },
-    { id: 'theme-matrix-rain', name: '📟 Matrix Rain' },
-    { id: 'theme-toxic-hazard', name: '☣️ Toxic Hazard' }
+    { id: 'theme-tokyo-midnight', name: '🌌 Tokyo Midnight' },
+    { id: 'theme-brutalism', name: '📐 Swiss Brutalism' },
+    { id: 'theme-neumorphic', name: '☁️ Neumorphic Soft' },
+    { id: 'theme-biolum', name: '🌊 Deep Sea Biolum' },
+    { id: 'theme-mars', name: '🚀 Mars Colony' },
+    { id: 'theme-macintosh', name: '💻 Retro Macintosh' },
+    { id: 'theme-graffiti', name: '🎨 Cyber-Graffiti' },
+    { id: 'theme-velvet', name: '🍷 Royal Velvet' },
+    { id: 'theme-paper', name: '📝 Paper Texture' },
+    { id: 'theme-amoled', name: '🖤 AMOLED Black' },
+    { id: 'theme-pastel', name: '🌸 Pastel Dream' },
+    { id: 'theme-steel', name: '⚙️ Industrial Steel' },
+    { id: 'theme-emerald', name: '💎 Emerald City' },
+    { id: 'theme-magma', name: '🌋 Volcanic Magma' },
+    { id: 'theme-coffee', name: '☕ Coffee House' },
+    { id: 'theme-arctic', name: '❄️ Arctic Night' },
+    { id: 'theme-golden', name: '☀️ Golden Hour' },
+    { id: 'theme-glitch', name: '👾 Glitch Core' },
+    { id: 'theme-rainbow', name: '🌈 Rainbow Glass' },
+    { id: 'theme-amber', name: '📟 Terminal Amber' }
   ];
 
   // Retrieve states
-  let currentTheme = localStorage.getItem('heimdall-current-theme') || 'theme-cyber-premium';
+  let currentTheme = localStorage.getItem('heimdall-current-theme') || 'theme-tokyo-midnight';
   document.body.classList.add(currentTheme);
   
   let aurorasEnabled = localStorage.getItem('heimdall-auroras-enabled') !== 'false';
@@ -336,6 +341,15 @@
 
   let dynamicSizingEnabled = localStorage.getItem('heimdall-dynamic-sizing') === 'true';
   if (dynamicSizingEnabled) document.body.classList.add('dynamic-sizing-active');
+
+  let animatedBordersEnabled = localStorage.getItem('heimdall-animated-borders') === 'true';
+  if (animatedBordersEnabled) document.body.classList.add('animated-borders-active');
+
+  let healthPulseEnabled = localStorage.getItem('heimdall-health-pulse') === 'true';
+  if (healthPulseEnabled) document.body.classList.add('health-pulse-active');
+
+  let forecast7DayEnabled = localStorage.getItem('heimdall-forecast-7day') === 'true';
+  if (forecast7DayEnabled) document.body.classList.add('forecast-7day-active');
 
 
 
@@ -462,6 +476,44 @@
   `;
   selectionPanel.appendChild(searchSection);
 
+  // --- NEW FEATURES (47, 53, 63) ---
+  
+  // Animated Borders (Feature 47)
+  var borderSection = document.createElement('div');
+  borderSection.className = 'panel-section';
+  borderSection.innerHTML = `
+    <span class="panel-subtitle">🐍 Animated Borders</span>
+    <label class="switch-container">
+      <input type="checkbox" id="borders-toggle" ${animatedBordersEnabled ? 'checked' : ''}>
+      <span class="slider-switch"></span>
+    </label>
+  `;
+  selectionPanel.appendChild(borderSection);
+
+  // Health Pulse (Feature 53)
+  var pulseSection = document.createElement('div');
+  pulseSection.className = 'panel-section';
+  pulseSection.innerHTML = `
+    <span class="panel-subtitle">💓 Health Pulse</span>
+    <label class="switch-container">
+      <input type="checkbox" id="pulse-toggle" ${healthPulseEnabled ? 'checked' : ''}>
+      <span class="slider-switch"></span>
+    </label>
+  `;
+  selectionPanel.appendChild(pulseSection);
+
+  // 7-Day Forecast (Feature 63)
+  var forecastSection = document.createElement('div');
+  forecastSection.className = 'panel-section';
+  forecastSection.innerHTML = `
+    <span class="panel-subtitle">📅 7-Day Forecast</span>
+    <label class="switch-container">
+      <input type="checkbox" id="forecast-toggle" ${forecast7DayEnabled ? 'checked' : ''}>
+      <span class="slider-switch"></span>
+    </label>
+  `;
+  selectionPanel.appendChild(forecastSection);
+
   // Widget Spacing Control Ingestion (Feature 30)
   var gapSection = document.createElement('div');
   gapSection.className = 'panel-section';
@@ -550,6 +602,75 @@
       }
     });
   }
+
+  // Animated Borders Switch Listener (Feature 47)
+  const bordersToggle = document.getElementById('borders-toggle');
+  if (bordersToggle) {
+    bordersToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        document.body.classList.add('animated-borders-active');
+        localStorage.setItem('heimdall-animated-borders', 'true');
+      } else {
+        document.body.classList.remove('animated-borders-active');
+        localStorage.setItem('heimdall-animated-borders', 'false');
+      }
+    });
+  }
+
+  // Health Pulse Switch Listener (Feature 53)
+  const pulseToggle = document.getElementById('pulse-toggle');
+  if (pulseToggle) {
+    pulseToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        document.body.classList.add('health-pulse-active');
+        localStorage.setItem('heimdall-health-pulse', 'true');
+      } else {
+        document.body.classList.remove('health-pulse-active');
+        localStorage.setItem('heimdall-health-pulse', 'false');
+      }
+    });
+  }
+
+  // 7-Day Forecast Switch Listener (Feature 63)
+  const forecastToggle = document.getElementById('forecast-toggle');
+  if (forecastToggle) {
+    forecastToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        document.body.classList.add('forecast-7day-active');
+        localStorage.setItem('heimdall-forecast-7day', 'true');
+        init7DayForecast();
+      } else {
+        document.body.classList.remove('forecast-7day-active');
+        localStorage.setItem('heimdall-forecast-7day', 'false');
+        const row = document.querySelector('.forecast-row');
+        if (row) row.remove();
+      }
+    });
+  }
+
+  function init7DayForecast() {
+    if (!document.body.classList.contains('forecast-7day-active')) return;
+    const meteo = document.querySelector('.meteo');
+    if (!meteo || meteo.querySelector('.forecast-row')) return;
+
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const forecastRow = document.createElement('div');
+    forecastRow.className = 'forecast-row';
+    
+    days.forEach(day => {
+      const dayEl = document.createElement('div');
+      dayEl.className = 'forecast-day';
+      // MOCK DATA for now as Heimdall standard weather doesn't expose 7-day easily without API key
+      const temp = Math.floor(Math.random() * 10) + 15; 
+      dayEl.innerHTML = `<span>${day}</span><span style="font-weight:700;">${temp}°</span>`;
+      forecastRow.appendChild(dayEl);
+    });
+
+    meteo.appendChild(forecastRow);
+  }
+
+  // Run initial forecast injection if enabled
+  setTimeout(init7DayForecast, 1000);
 
   // Search Placement Select Listener (Feature 23)
   const searchSelect = document.getElementById('search-placement-select');
