@@ -19,15 +19,41 @@ body {
   --border-color: rgba(255, 255, 255, 0.15);
   --accent: #ffffff;
   --panel-bg: rgba(18, 18, 22, 0.98);
-  
+
   transition: background-color 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.4s ease !important;
   min-height: 100vh;
 }
 
+/* Fix for unclickable menu buttons (lower decorative layers) */
+.aurora-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -10 !important;
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              background-color 0.8s ease, 
+              transform 15s infinite alternate ease-in-out;
+  transform-origin: center;
+}
+
+body.auroras-active .aurora-blob {
+  opacity: 0.16;
+}
+
+.blob-1 { width: 35vw; height: 35vw; top: -5vw; left: -5vw; animation: float-1 25s infinite alternate ease-in-out; }
+.blob-2 { width: 40vw; height: 40vw; bottom: -10vw; right: -5vw; animation: float-2 30s infinite alternate ease-in-out; }
+.blob-3 { width: 25vw; height: 25vw; top: 30vh; left: 45vw; animation: float-3 20s infinite alternate ease-in-out; }
+
+@keyframes float-1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(6vw, 4vw) scale(1.15); } }
+@keyframes float-2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-8vw, -6vw) scale(1.1); } }
+@keyframes float-3 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(4vw, -4vw) scale(1.2); } }
+
 /* Base style for dashboard items */
 #sortable .item {
   position: relative !important;
-  overflow: visible !important; /* Allow animated border overlap */
+  overflow: visible !important; /* Allow animated border overlap */     
   border-radius: 8px !important;
   border: 1px solid var(--border-color) !important;
   background: var(--card-bg) !important;
@@ -52,7 +78,7 @@ body {
   filter: none !important; transition: transform 0.3s ease !important; pointer-events: none;
 }
 
-/* --- FEATURE: PRECISION ANIMATED BORDERS (Snake Effect) --- */
+/* --- FEATURE: PRECISION ANIMATED BORDERS (Snake Effect) --- */        
 .animated-borders-active #sortable .item { border-color: transparent !important; }
 .animated-borders-active #sortable .item::before {
   content: ''; position: absolute; inset: -1px; padding: 2px;
@@ -64,14 +90,14 @@ body {
   pointer-events: none; z-index: 5; opacity: 0; transition: opacity 0.3s ease;
   animation: border-snake 3s linear infinite;
 }
-.animated-borders-active #sortable .item:hover::before { opacity: 1; }
+.animated-borders-active #sortable .item:hover::before { opacity: 1; }  
 
 @property --border-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
 @keyframes border-snake { to { --border-angle: 360deg; } }
 
 /* --- FEATURE: HEALTH PULSE (Fixed & Enhanced) --- */
-.health-pulse-active #sortable .item:has(.latency-dot.offline) {
-  animation: health-pulse-anim 1.5s infinite ease-in-out !important;
+.health-pulse-active #sortable .item:has(.latency-dot.offline) {        
+  animation: health-pulse-anim 1.5s infinite ease-in-out !important;    
   border-color: #ef4444 !important;
 }
 @keyframes health-pulse-anim {
@@ -92,19 +118,19 @@ body.dynamic-sizing-active #sortable .item a {
   flex-direction: column !important; gap: 4px !important; padding: 0 !important;
 }
 body.dynamic-sizing-active #sortable .item img { width: 32px !important; height: 32px !important; }
-body.dynamic-sizing-active #sortable .item .title { font-size: 0.75em !important; margin-top: 2px !important; font-weight: 600 !important; }
+body.dynamic-sizing-active #sortable .item .title { font-size: 0.75em !important; margin-top: 2px !important; font-weight: 600 !important; }    
 
 /* Metrics card expansion */
-body.dynamic-sizing-active #sortable .item:has(.widget), 
+body.dynamic-sizing-active #sortable .item:has(.widget),
 body.dynamic-sizing-active #sortable .item:has(.link-stats) {
   min-width: 180px !important; max-width: 300px !important;
 }
 
 /* --- UI COMPONENTS --- */
-.headerInfos { display: flex; justify-content: space-between; align-items: center; margin: 20px 40px; gap: 20px; }
+.headerInfos { display: flex; justify-content: space-between; align-items: center; margin: 20px 40px; gap: 20px; position: relative; z-index: 100; }
 .divDate, .meteo { padding: 15px 25px !important; background: var(--card-bg) !important; border: 1px solid var(--border-color) !important; border-radius: 12px; }
 .horloge { font-size: 4em !important; color: var(--text-main) !important; font-weight: 600; letter-spacing: -1px; }
-.ladate { color: var(--text-dim) !important; font-size: 0.9em; }
+.ladate { color: var(--text-dim) !important; font-size: 0.9em; }        
 .ladate span { display: block; font-weight: 700; color: var(--accent) !important; font-size: 1.2em; }
 
 #search input {
@@ -119,7 +145,7 @@ body.dynamic-sizing-active #sortable .item:has(.link-stats) {
   position: fixed; bottom: 84px; right: 80px; background: var(--panel-bg);
   backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px;
   padding: 12px; z-index: 100000; width: 260px; max-height: 70vh; overflow-y: auto;
-  display: flex; flex-direction: column; gap: 5px; opacity: 0; pointer-events: none; transform: translateY(20px); transition: 0.4s ease;
+  display: flex; flex-direction: column; gap: 5px; opacity: 0; pointer-events: none; transform: translateY(20px); transition: 0.4s ease;        
 }
 .theme-selection-panel.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
 .theme-option-btn {
@@ -133,6 +159,15 @@ body.dynamic-sizing-active #sortable .item:has(.link-stats) {
   position: fixed; bottom: 24px; right: 80px; width: 45px; height: 48px; border-radius: 50%;
   background: var(--panel-bg); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; z-index: 100001;
 }
+
+/* --- LATENCY DOTS --- */
+.latency-dot {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background-color: #f59e0b; box-shadow: 0 0 6px #f59e0b; margin-left: 8px;
+  vertical-align: middle; transition: all 0.4s ease; flex-shrink: 0;
+}
+.latency-dot.online { background-color: #10b981 !important; box-shadow: 0 0 8px #10b981 !important; }
+.latency-dot.offline { background-color: #ef4444 !important; box-shadow: 0 0 8px #ef4444 !important; }
 
 /* =========================================================================
  * THEME DEFINITIONS (40 THEMES)
@@ -148,7 +183,7 @@ body.theme-macintosh { --bg: #dcd9d4; --accent: #000; --text-main: #000; --text-
 body.theme-graffiti { --bg: #050505; --accent: #39ff14; --text-main: #ff00ff; --text-dim: #fff; --card-bg: rgba(10,10,10,0.9); background-color: var(--bg) !important; }
 body.theme-velvet { --bg: #1c0202; --accent: #d4af37; --text-main: #fdf2f2; --text-dim: #e5c1a7; --card-bg: rgba(44,4,4,0.6); background-color: var(--bg) !important; }
 body.theme-paper { --bg: #fdf6e3; --accent: #268bd2; --text-main: #073642; --text-dim: #586e75; --card-bg: #fffef0; background-color: var(--bg) !important; }
-body.theme-amoled { --bg: #000; --accent: #fff; --text-main: #fff; --text-dim: #888; --card-bg: #000; background-color: var(--bg) !important; }
+body.theme-amoled { --bg: #000; --accent: #fff; --text-main: #fff; --text-dim: #888; --card-bg: #000; background-color: var(--bg) !important; } 
 
 /* 11-20 */
 body.theme-pastel { --bg: #fdf2f8; --accent: #f472b6; --text-main: #831843; --text-dim: #be185d; --card-bg: #ffffff; background-color: var(--bg) !important; }
@@ -158,7 +193,7 @@ body.theme-magma { --bg: #0a0000; --accent: #ff4500; --text-main: #ff9900; --tex
 body.theme-coffee { --bg: #1b130a; --accent: #d2b48c; --text-main: #f5f5dc; --text-dim: #c4a484; --card-bg: #2b1d0e; background-color: var(--bg) !important; }
 body.theme-arctic { --bg: #000814; --accent: #00b4d8; --text-main: #fff; --text-dim: #caf0f8; --card-bg: #001d3d; background-color: var(--bg) !important; }
 body.theme-golden { --bg: #451a03; --accent: #fbbf24; --text-main: #fff; --text-dim: #fef3c7; --card-bg: #78350f; background-color: var(--bg) !important; }
-body.theme-glitch { --bg: #000; --accent: #f0f; --text-main: #0f0; --text-dim: #f0f; --card-bg: #111; background-color: var(--bg) !important; }
+body.theme-glitch { --bg: #000; --accent: #f0f; --text-main: #0f0; --text-dim: #f0f; --card-bg: #111; background-color: var(--bg) !important; } 
 body.theme-rainbow { --bg: #0f172a; --accent: #fff; --text-main: #fff; --text-dim: rgba(255,255,255,0.7); --card-bg: rgba(30,41,59,0.7); background-color: var(--bg) !important; }
 body.theme-amber { --bg: #000; --accent: #ffb000; --text-main: #ffb000; --text-dim: #cc8800; --card-bg: #000; background-color: var(--bg) !important; }
 

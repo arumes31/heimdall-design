@@ -96,6 +96,7 @@
   // --- 3. Header ---
   var headerInfos = document.createElement('div');
   headerInfos.classList.add('headerInfos');
+  headerInfos.style.zIndex = '100'; // Added z-index for clickability
   insertAfter(sortableElement, headerInfos);
 
   var divClock = createAndInsertDiv('divDate', headerInfos);
