@@ -124,17 +124,41 @@
   function initLatencyPingMonitors() {
     document.querySelectorAll('#sortable .item').forEach(card => {
       const link = card.querySelector('a');
-      if (link && link.href && link.href.startsWith('http') && !card.querySelector('.latency-dot')) {
-        const dot = document.createElement('span');
-        dot.className = 'latency-dot';
-        card.querySelector('.title')?.appendChild(dot);
-        fetch(link.href, { mode: 'no-cors', cache: 'no-store' })
-          .then(() => dot.classList.add('online'))
-          .catch(() => dot.classList.add('offline'));
+      if (link && link.href && link.href.startsWith('http')) {
+        let dot = card.querySelector('.latency-dot');
+        if (!dot) {
+          dot = document.createElement('span');
+          dot.className = 'latency-dot';
+          card.querySelector('.title')?.appendChild(dot);
+        }
+
+        // Timeout controller for long-pending fetches
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+        fetch(link.href, { 
+          mode: 'no-cors', 
+          cache: 'no-store',
+          signal: controller.signal 
+        })
+        .then(() => {
+          clearTimeout(timeoutId);
+          dot.classList.remove('offline');
+          dot.classList.add('online');
+          dot.title = "Service Reachable";
+        })
+        .catch(() => {
+          clearTimeout(timeoutId);
+          dot.classList.remove('online');
+          dot.classList.add('offline');
+          dot.title = "Service Offline or Unreachable";
+        });
       }
     });
   }
-  setTimeout(initLatencyPingMonitors, 500);
+  // Run every 30 seconds for live health updates
+  initLatencyPingMonitors();
+  setInterval(initLatencyPingMonitors, 30000);
 
   // --- 5. Theme Engine ---
   const themes = [
@@ -177,7 +201,27 @@
     { id: 'theme-lavender', name: '🪻 Lavender' },
     { id: 'theme-blood-moon', name: '🌙 Blood Moon' },
     { id: 'theme-void', name: '🕳️ The Void' },
-    { id: 'theme-cyberpunk-red', name: '🥊 Cyber Red' }
+    { id: 'theme-cyberpunk-red', name: '🥊 Cyber Red' },
+    { id: 'theme-cyber-orange', name: '🟠 Cyber Orange' },
+    { id: 'theme-dracula-soft', name: '🧛 Dracula Soft' },
+    { id: 'theme-nord-deep', name: '🌊 Nord Deep' },
+    { id: 'theme-solar-light', name: '☀️ Solar Light' },
+    { id: 'theme-midnight-purple', name: '🔮 Midnight Purple' },
+    { id: 'theme-retro-future', name: '🚀 Retro Future' },
+    { id: 'theme-grayscale', name: '⚪ Grayscale' },
+    { id: 'theme-ocean-breeze', name: '🌬️ Ocean Breeze' },
+    { id: 'theme-forest-mist', name: '🌫️ Forest Mist' },
+    { id: 'theme-desert-sand', name: '🏜️ Desert Sand' },
+    { id: 'theme-ghost-oled', name: '👻 Ghost OLED' },
+    { id: 'theme-neon-pulse', name: '💓 Neon Pulse' },
+    { id: 'theme-royal-blue', name: '👑 Royal Blue' },
+    { id: 'theme-copper-pipe', name: '🔧 Copper Pipe' },
+    { id: 'theme-sakura-night', name: '🌙 Sakura Night' },
+    { id: 'theme-mint-glass', name: '🍃 Mint Glass' },
+    { id: 'theme-velvet-gold', name: '🏆 Velvet & Gold' },
+    { id: 'theme-slate-ice', name: '🧊 Slate Ice' },
+    { id: 'theme-matrix-gold', name: '🪙 Matrix Gold' },
+    { id: 'theme-toxic-red', name: '☢️ Toxic Red' }
   ];
 
   let currentTheme = localStorage.getItem('heimdall-current-theme') || 'theme-tokyo-midnight';
