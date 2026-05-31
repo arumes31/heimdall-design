@@ -121,6 +121,34 @@
     }
   }
 
+  // --- 1.2 SVG Inlining Engine [Feature 35] ---
+  function inlineSvgIcons() {
+    const images = document.querySelectorAll('#sortable .item img[src$=".svg"]');
+    images.forEach(img => {
+      fetch(img.src)
+        .then(response => response.text())
+        .then(data => {
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(data, 'image/svg+xml');
+          const svg = xmlDoc.querySelector('svg');
+          if (svg) {
+            if (img.id) svg.id = img.id;
+            if (img.className) svg.classList.add(...img.className.split(' '));
+            
+            // Standardize sizing to prevent layout shifts
+            svg.setAttribute('width', '64');
+            svg.setAttribute('height', '64');
+            if (!svg.getAttribute('viewBox') && svg.getAttribute('height') && svg.getAttribute('width')) {
+              svg.setAttribute('viewBox', `0 0 ${svg.getAttribute('width')} ${svg.getAttribute('height')}`);
+            }
+
+            img.parentNode.replaceChild(svg, img);
+          }
+        })
+        .catch(err => console.log("SVG Inline Error:", err));
+    });
+  }
+
   // Clear existing modifications on re-load to prevent duplicate injections
   const existingHeader = document.querySelector('.headerInfos');
   if (existingHeader) existingHeader.remove();
@@ -316,6 +344,12 @@
     setTimeout(initParticles, 150);
   }
 
+  let animatedIconsEnabled = localStorage.getItem('heimdall-animated-icons') !== 'false';
+  if (animatedIconsEnabled) {
+    document.body.classList.add('animated-icons-active');
+    setTimeout(inlineSvgIcons, 800);
+  }
+
   let searchPlacement = localStorage.getItem('heimdall-search-placement') || 'default';
   document.body.classList.add(`search-${searchPlacement}`);
 
@@ -397,6 +431,18 @@
     </label>
   `;
   selectionPanel.appendChild(particlesSection);
+
+  // Animated Icons Control Ingestion (Feature 35)
+  var iconsSection = document.createElement('div');
+  iconsSection.className = 'panel-section';
+  iconsSection.innerHTML = `
+    <span class="panel-subtitle">✨ Animated Icons</span>
+    <label class="switch-container">
+      <input type="checkbox" id="icons-toggle" ${animatedIconsEnabled ? 'checked' : ''}>
+      <span class="slider-switch"></span>
+    </label>
+  `;
+  selectionPanel.appendChild(iconsSection);
 
   // Search Placement Control Ingestion (Feature 23)
   var searchSection = document.createElement('div');
@@ -486,6 +532,21 @@
       } else {
         destroyParticles();
         localStorage.setItem('heimdall-particles', 'false');
+      }
+    });
+  }
+
+  // Icons Switch Listener (Feature 35)
+  const iconsToggle = document.getElementById('icons-toggle');
+  if (iconsToggle) {
+    iconsToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        document.body.classList.add('animated-icons-active');
+        inlineSvgIcons();
+        localStorage.setItem('heimdall-animated-icons', 'true');
+      } else {
+        document.body.classList.remove('animated-icons-active');
+        localStorage.setItem('heimdall-animated-icons', 'false');
       }
     });
   }

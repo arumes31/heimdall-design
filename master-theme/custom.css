@@ -61,12 +61,59 @@ body {
 }
 
 /* Preserve original icon colors and add micro-hover action */
-#sortable .item img {
+#sortable .item img,
+#sortable .item svg {
   filter: none !important; /* Keeps icon colors completely intact */
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.25) !important;
+  pointer-events: none;
 }
-#sortable .item:hover img {
+
+#sortable .item:hover img,
+#sortable .item:hover svg {
   transform: translateY(-2px) scale(1.08) !important;
+}
+
+/* =========================================================================
+ * FEATURE 35: ANIMATED SVG ICON ENGINE
+ * =========================================================================
+ */
+.animated-icons-active #sortable .item:hover svg {
+  animation: svg-float 2s ease-in-out infinite alternate !important;
+}
+
+/* Smart internal animations (targets common SVG path IDs/classes) */
+.animated-icons-active svg .spin, 
+.animated-icons-active svg [id*="gear"], 
+.animated-icons-active svg [class*="gear"],
+.animated-icons-active svg [id*="fan"],
+.animated-icons-active svg [class*="fan"] {
+  transform-origin: center;
+  animation: svg-spin 4s linear infinite;
+}
+
+.animated-icons-active svg .pulse,
+.animated-icons-active svg [id*="heart"],
+.animated-icons-active svg [class*="heart"],
+.animated-icons-active svg [id*="pulse"],
+.animated-icons-active svg [class*="pulse"] {
+  transform-origin: center;
+  animation: svg-pulse 2s ease-in-out infinite;
+}
+
+@keyframes svg-float {
+  from { transform: translateY(-2px) scale(1.08); }
+  to { transform: translateY(-8px) scale(1.12); }
+}
+
+@keyframes svg-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes svg-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 
