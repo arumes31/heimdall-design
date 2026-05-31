@@ -397,7 +397,9 @@
     optBtn.innerHTML = `<span>${t.name}</span>`;
 
     optBtn.addEventListener('click', () => {
-      selectionPanel.querySelector('.theme-option-btn.active').classList.remove('active');
+      const activeBtn = selectionPanel.querySelector('.theme-option-btn.active');
+      if (activeBtn) activeBtn.classList.remove('active');
+      
       optBtn.classList.add('active');
       document.body.classList.remove(...themes.map(x => x.id));
       document.body.classList.add(t.id);
