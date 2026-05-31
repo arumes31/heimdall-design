@@ -2,8 +2,12 @@
  * =========================================================================
  * 🎨 HEIMDALL UNIVERSAL MASTER THEME (Redesigned Gallery - 10 Premium Themes)
  * =========================================================================
- * A high-end redesign featuring ten toggleable styles, dynamic sheens,
- * search filters, and an elegant toggle-hidden theme selector panel.
+ * Redesigned visual dashboard architecture featuring:
+ * 1. Big Date and Clock header panels.
+ * 2. Card Focus Dimmer (Hover Backdrop) [Feature 4]
+ * 3. Dynamic Background Aurora Glows (Configurable Switch) [Feature 11]
+ * 4. Glassmorphic Ripple Particle Click Effects [Feature 17]
+ * 5. Self-Host Latency Ping Monitors [Feature 23]
  * 
  * *PRESERVES ALL NATIVE CARD COLORS AND FULL-COLOR ICONS*
  */
@@ -25,7 +29,10 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.16) !important;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.22), 
               0 8px 24px rgba(0, 0, 0, 0.2) !important;
-  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease !important;
 }
 
 /* Semi-transparent 3D Glass Gloss Sheen Layer */
@@ -47,10 +54,11 @@ body {
 
 /* Hover Zoom & Elevation */
 #sortable .item:hover {
-  transform: translateY(-5px) scale(1.025) !important;
+  transform: translateY(-6px) scale(1.03) !important;
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 
-              0 15px 35px rgba(0, 0, 0, 0.35) !important;
+              0 18px 40px rgba(0, 0, 0, 0.4) !important;
   border-color: rgba(255, 255, 255, 0.4) !important;
+  z-index: 8 !important;
 }
 
 /* Preserve original icon colors and add micro-hover action */
@@ -60,6 +68,111 @@ body {
 }
 #sortable .item:hover img {
   transform: translateY(-2px) scale(1.08) !important;
+}
+
+
+/* =========================================================================
+ * FEATURE 4: CARD FOCUS DIMMER (HOVER BACKDROP)
+ * =========================================================================
+ */
+#sortable:hover .item:not(:hover) {
+  opacity: 0.22 !important;
+  filter: blur(2px) saturate(85%) !important;
+  transform: scale(0.95) !important;
+}
+
+
+/* =========================================================================
+ * FEATURE 11: DYNAMIC BACKGROUND AURORA GLOWS (AMBIENT WIDGET)
+ * =========================================================================
+ */
+.aurora-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -2;
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              background-color 0.8s ease, 
+              transform 15s infinite alternate ease-in-out;
+  transform-origin: center;
+}
+
+body.auroras-active .aurora-blob {
+  opacity: 0.16;
+}
+
+.blob-1 { width: 35vw; height: 35vw; top: -5vw; left: -5vw; animation: float-1 25s infinite alternate ease-in-out; }
+.blob-2 { width: 40vw; height: 40vw; bottom: -10vw; right: -5vw; animation: float-2 30s infinite alternate ease-in-out; }
+.blob-3 { width: 25vw; height: 25vw; top: 30vh; left: 45vw; animation: float-3 20s infinite alternate ease-in-out; }
+
+@keyframes float-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(6vw, 4vw) scale(1.15); }
+}
+@keyframes float-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-8vw, -6vw) scale(1.1); }
+}
+@keyframes float-3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(4vw, -4vw) scale(1.2); }
+}
+
+
+/* =========================================================================
+ * FEATURE 17: GLASSMORPHIC RIPPLE PARTICLE CLICK EFFECT
+ * =========================================================================
+ */
+.glass-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+  transform: scale(0);
+  animation: glass-ripple-anim 0.65s cubic-bezier(0.1, 0.8, 0.2, 1);
+  z-index: 5;
+}
+@keyframes glass-ripple-anim {
+  to {
+    transform: scale(5);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================================
+ * FEATURE 23: SELF-HOST PING MONITOR LATENCY DOTS
+ * =========================================================================
+ */
+.latency-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #f59e0b; /* Yellow checking default */
+  box-shadow: 0 0 6px #f59e0b;
+  margin-left: 8px;
+  vertical-align: middle;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  flex-shrink: 0;
+}
+.latency-dot.online {
+  background-color: #10b981 !important; /* Green Online */
+  box-shadow: 0 0 8px #10b981 !important;
+}
+.latency-dot.offline {
+  background-color: #ef4444 !important; /* Red Offline */
+  box-shadow: 0 0 8px #ef4444 !important;
+}
+
+/* Adjust Heimdall title positioning if it has latency dots */
+#sortable .item a {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
 }
 
 
@@ -74,6 +187,10 @@ body.theme-cyber-premium {
   font-family: 'JetBrains Mono', monospace !important;
   color: #efdcfb !important;
 }
+body.theme-cyber-premium.auroras-active .blob-1 { background-color: var(--neon-cyan); }
+body.theme-cyber-premium.auroras-active .blob-2 { background-color: var(--neon-magenta); }
+body.theme-cyber-premium.auroras-active .blob-3 { background-color: var(--neon-cyan); }
+
 body.theme-cyber-premium .divDate,
 body.theme-cyber-premium .meteo {
   background-color: rgba(25, 14, 36, 0.65) !important;
@@ -91,7 +208,7 @@ body.theme-cyber-premium .meteo::before {
 body.theme-cyber-premium .horloge {
   font-family: 'Orbitron', sans-serif;
   color: var(--neon-cyan) !important;
-  text-shadow: 0 0 10px rgba(0, 242, 255, 0.4), 0 0 2px var(--neon-cyan) !important;
+  text-shadow: 0 0 12px rgba(0, 242, 255, 0.5), 0 0 2px var(--neon-cyan) !important;
 }
 body.theme-cyber-premium .ladate span {
   font-family: 'Orbitron', sans-serif;
@@ -119,6 +236,10 @@ body.theme-cyber-organic {
   font-family: 'Quicksand', sans-serif !important;
   color: #d4e4fa !important;
 }
+body.theme-cyber-organic.auroras-active .blob-1 { background-color: var(--emerald-biolum); }
+body.theme-cyber-organic.auroras-active .blob-2 { background-color: var(--cyan-hologram); }
+body.theme-cyber-organic.auroras-active .blob-3 { background-color: var(--emerald-biolum); }
+
 body.theme-cyber-organic .divDate,
 body.theme-cyber-organic .meteo {
   background-color: rgba(12, 33, 49, 0.55) !important;
@@ -157,6 +278,10 @@ body.theme-slate-minimalist {
   font-family: 'Inter', sans-serif !important;
   color: rgba(255, 255, 255, 0.6) !important;
 }
+body.theme-slate-minimalist.auroras-active .blob-1 { background-color: #475569; }
+body.theme-slate-minimalist.auroras-active .blob-2 { background-color: #334155; }
+body.theme-slate-minimalist.auroras-active .blob-3 { background-color: #1e293b; }
+
 body.theme-slate-minimalist .divDate,
 body.theme-slate-minimalist .meteo {
   background-color: rgba(22, 22, 26, 0.55) !important;
@@ -197,6 +322,10 @@ body.theme-sunset-aurora {
   font-family: 'Outfit', sans-serif !important;
   color: #fce7f3 !important;
 }
+body.theme-sunset-aurora.auroras-active .blob-1 { background-color: var(--sunset-orange); }
+body.theme-sunset-aurora.auroras-active .blob-2 { background-color: var(--sunset-rose); }
+body.theme-sunset-aurora.auroras-active .blob-3 { background-color: var(--sunset-orange); }
+
 body.theme-sunset-aurora .divDate,
 body.theme-sunset-aurora .meteo {
   background-color: rgba(30, 15, 45, 0.55) !important;
@@ -239,6 +368,10 @@ body.theme-nordic-frost {
   font-family: 'Inter', sans-serif !important;
   color: #cbd5e1 !important;
 }
+body.theme-nordic-frost.auroras-active .blob-1 { background-color: #60a5fa; }
+body.theme-nordic-frost.auroras-active .blob-2 { background-color: #38bdf8; }
+body.theme-nordic-frost.auroras-active .blob-3 { background-color: #93c5fd; }
+
 body.theme-nordic-frost .divDate,
 body.theme-nordic-frost .meteo {
   background-color: rgba(10, 20, 35, 0.6) !important;
@@ -281,6 +414,10 @@ body.theme-solarized-amber {
   font-family: 'JetBrains Mono', monospace !important;
   color: #fed7aa !important;
 }
+body.theme-solarized-amber.auroras-active .blob-1 { background-color: #f59e0b; }
+body.theme-solarized-amber.auroras-active .blob-2 { background-color: #d97706; }
+body.theme-solarized-amber.auroras-active .blob-3 { background-color: #b45309; }
+
 body.theme-solarized-amber .divDate,
 body.theme-solarized-amber .meteo {
   background-color: rgba(28, 20, 10, 0.7) !important;
@@ -321,6 +458,10 @@ body.theme-monolith-dark {
   font-family: 'Inter', sans-serif !important;
   color: #88888b !important;
 }
+body.theme-monolith-dark.auroras-active .blob-1 { background-color: #27272a; }
+body.theme-monolith-dark.auroras-active .blob-2 { background-color: #3f3f46; }
+body.theme-monolith-dark.auroras-active .blob-3 { background-color: #1c1917; }
+
 body.theme-monolith-dark .divDate,
 body.theme-monolith-dark .meteo {
   background-color: rgba(14, 14, 15, 0.75) !important;
@@ -361,6 +502,10 @@ body.theme-dracula-dark {
   font-family: 'JetBrains Mono', monospace !important;
   color: #f8f8f2 !important;
 }
+body.theme-dracula-dark.auroras-active .blob-1 { background-color: var(--drac-purple); }
+body.theme-dracula-dark.auroras-active .blob-2 { background-color: var(--drac-green); }
+body.theme-dracula-dark.auroras-active .blob-3 { background-color: var(--drac-purple); }
+
 body.theme-dracula-dark .divDate,
 body.theme-dracula-dark .meteo {
   background-color: rgba(28, 22, 43, 0.6) !important;
@@ -403,6 +548,10 @@ body.theme-retrowave-80s {
   font-family: 'Orbitron', sans-serif !important;
   color: #fff !important;
 }
+body.theme-retrowave-80s.auroras-active .blob-1 { background-color: var(--retro-pink); }
+body.theme-retrowave-80s.auroras-active .blob-2 { background-color: var(--retro-yellow); }
+body.theme-retrowave-80s.auroras-active .blob-3 { background-color: var(--retro-pink); }
+
 body.theme-retrowave-80s .divDate,
 body.theme-retrowave-80s .meteo {
   background-color: rgba(22, 6, 45, 0.65) !important;
@@ -445,6 +594,10 @@ body.theme-sakura-blossom {
   font-family: 'Quicksand', sans-serif !important;
   color: #ffe4e6 !important;
 }
+body.theme-sakura-blossom.auroras-active .blob-1 { background-color: var(--sakura-pink); }
+body.theme-sakura-blossom.auroras-active .blob-2 { background-color: #fecdd3; }
+body.theme-sakura-blossom.auroras-active .blob-3 { background-color: var(--sakura-gold); }
+
 body.theme-sakura-blossom .divDate,
 body.theme-sakura-blossom .meteo {
   background-color: rgba(35, 17, 24, 0.55) !important;
@@ -477,19 +630,19 @@ body.theme-sakura-blossom #sortable .item:hover {
 
 
 /* =========================================================================
- * REDESIGNED GENERAL WIDGETS
+ * REDESIGNED GENERAL WIDGETS (BIG DATE AND CLOCK)
  * =========================================================================
  */
 .headerInfos {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 30px 45px;
-  gap: 25px;
+  margin: 40px 50px;
+  gap: 30px;
 }
 
 .divDate, .meteo {
-  padding: 20px 28px !important;
+  padding: 24px 36px !important;
   display: flex !important;
   align-items: center;
   position: relative;
@@ -502,32 +655,36 @@ body.theme-sakura-blossom #sortable .item:hover {
 
 .horloge, .ladate {
   display: inline-block;
-  margin-right: 15px;
+  margin-right: 20px;
   color: #fff !important;
 }
 
+/* BIG REDESIGNED CLOCK */
 .horloge {
-  font-size: 3.4em !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.5px;
+  font-size: 5.4em !important;
+  font-weight: 200 !important;
+  letter-spacing: -2px;
+  line-height: 1;
 }
 
 .ladate {
-  font-size: 0.9em !important;
-  line-height: 1.5;
+  font-size: 0.95em !important;
+  line-height: 1.6;
+  letter-spacing: 1.5px;
 }
 
 .ladate span {
   display: block;
-  font-size: 1.3em;
-  letter-spacing: 0.5px;
-  margin-bottom: 2px;
+  font-size: 1.45em;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+  font-weight: 700;
 }
 
 .meteo {
   flex-direction: column;
   align-items: flex-start;
-  min-width: 260px;
+  min-width: 280px;
 }
 
 .ville-temp-container {
@@ -538,19 +695,19 @@ body.theme-sakura-blossom #sortable .item:hover {
 }
 
 .temperature {
-  font-size: 3em !important;
-  font-weight: 700 !important;
+  font-size: 3.4em !important;
+  font-weight: 300 !important;
   color: #fff !important;
 }
 
 .ville {
-  font-size: 1.15em !important;
+  font-size: 1.25em !important;
   font-weight: 700 !important;
   color: #fff !important;
 }
 
 .description {
-  font-size: 0.85em !important;
+  font-size: 0.9em !important;
   color: rgba(255, 255, 255, 0.6) !important;
 }
 
@@ -643,7 +800,7 @@ body.theme-sakura-blossom #sortable .item:hover {
   padding: 16px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
   z-index: 99999;
-  width: 250px;
+  width: 260px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -671,6 +828,54 @@ body.theme-sakura-blossom #sortable .item:hover {
   padding-left: 6px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: 6px;
+}
+
+/* Aurora Toggle Switch Styles inside Switcher Panel */
+.panel-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 6px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  margin-top: 4px;
+}
+
+.panel-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.switch-container {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+}
+
+.switch-container input {
+  opacity: 0; width: 0; height: 0;
+}
+
+.slider-switch {
+  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: .3s; border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.slider-switch:before {
+  position: absolute; content: ""; height: 12px; width: 12px; left: 3px; bottom: 3px;
+  background-color: white; transition: .3s; border-radius: 50%;
+}
+
+input:checked + .slider-switch {
+  background-color: #10b981;
+}
+
+input:checked + .slider-switch:before {
+  transform: translateX(18px);
 }
 
 .theme-option-btn {

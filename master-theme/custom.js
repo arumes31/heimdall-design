@@ -1,8 +1,13 @@
 // =========================================================================
 // 🎨 HEIMDALL UNIVERSAL MASTER ENGINE (custom.js)
 // =========================================================================
-// Features 10 togglable premium designs, dynamic greeting readouts, real-time 
-// instant search, and a floating selector dial hidden behind a micro-interactive toggle.
+// Redesigned dashboard framework featuring:
+// 1. Big Date and Clock digital panels.
+// 2. Card Focus Dimmer (Hover Backdrop) [Feature 4 - CSS Driven]
+// 3. Dynamic Background Aurora Glows (Togglable) [Feature 11]
+// 4. Glassmorphic Ripple Particle Click Effects [Feature 17]
+// 5. Self-Host Latency Ping Monitors [Feature 23]
+// 6. Floating theme selector panel hidden behind micro-interactive toggle.
 
 (function() {
   const sortableElement = document.querySelector('.appheader');
@@ -29,13 +34,25 @@
   if (existingSwitcher) existingSwitcher.remove();
   const existingTrigger = document.querySelector('.theme-trigger-btn');
   if (existingTrigger) existingTrigger.remove();
+  document.querySelectorAll('.aurora-blob').forEach(x => x.remove());
 
-  // --- 2. Injected Structure Setup ---
+  // --- 2. Aurora Background Blob Injections [Feature 11] ---
+  const blob1 = document.createElement('div');
+  blob1.className = 'aurora-blob blob-1';
+  const blob2 = document.createElement('div');
+  blob2.className = 'aurora-blob blob-2';
+  const blob3 = document.createElement('div');
+  blob3.className = 'aurora-blob blob-3';
+  document.body.appendChild(blob1);
+  document.body.appendChild(blob2);
+  document.body.appendChild(blob3);
+
+  // --- 3. Injected Header Setup (Big Clock) ---
   var headerInfos = document.createElement('div');
   headerInfos.classList.add('headerInfos');
   insertAfter(sortableElement, headerInfos);
 
-  // Date & Clock Widget Shell
+  // Big Date & Clock Widget
   var divDate = createAndInsertDiv('divDate', headerInfos);
   var timeDiv = createAndInsertDiv('horloge', divDate);
   var dateDiv = createAndInsertDiv('ladate', divDate);
@@ -48,7 +65,7 @@
     }
   }, 100);
 
-  // --- 3. Dynamic Clock & Time-of-Day Greeting ---
+  // --- 4. Clock Sync & Dynamic Welcomes ---
   function updateClock() {
     const maintenant = new Date();
     
@@ -88,7 +105,76 @@
   updateClock();
   setInterval(updateClock, 1000);
 
-  // --- 4. Interactive Floating Toggle-Hidden Theme Switcher ---
+  // --- 5. Glassmorphic Click Ripples [Feature 17] ---
+  document.addEventListener('click', function(e) {
+    const card = e.target.closest('#sortable .item');
+    if (!card) return;
+
+    // Clear existing ripples inside this card
+    card.querySelectorAll('.glass-ripple').forEach(r => r.remove());
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const ripple = document.createElement('span');
+    ripple.classList.add('glass-ripple');
+    
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = size + 'px';
+    ripple.style.height = size + 'px';
+    ripple.style.left = (x - size / 2) + 'px';
+    ripple.style.top = (y - size / 2) + 'px';
+
+    card.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 700);
+  });
+
+  // --- 6. Self-Host Latency Ping Monitors [Feature 23] ---
+  function initLatencyPingMonitors() {
+    const cards = document.querySelectorAll('#sortable .item');
+    cards.forEach(card => {
+      const link = card.querySelector('a');
+      if (link && link.href && link.href.startsWith('http') && !card.querySelector('.latency-dot')) {
+        
+        // Find suitable placement inside card title tag
+        const titleContainer = card.querySelector('.title') || link;
+        
+        // Create checking status dot
+        const dot = document.createElement('span');
+        dot.className = 'latency-dot';
+        dot.title = "Pinging local node...";
+        titleContainer.appendChild(dot);
+
+        // Client-side async latency verification (CORS-tolerant)
+        const start = performance.now();
+        fetch(link.href, { 
+          mode: 'no-cors', 
+          cache: 'no-store', 
+          credentials: 'omit',
+          referrerPolicy: 'no-referrer'
+        })
+        .then(() => {
+          const latency = Math.round(performance.now() - start);
+          dot.classList.add('online');
+          dot.title = `Online // Latency: ${latency}ms`;
+        })
+        .catch(() => {
+          // If connection refused/timeout, display offline alert
+          dot.classList.add('offline');
+          dot.title = "Offline or Port Blocked";
+        });
+      }
+    });
+  }
+
+  // Scan and test connectivity 500ms after load complete
+  setTimeout(initLatencyPingMonitors, 500);
+
+  // --- 7. Toggle-Hidden Theme Panel & Aurora Settings ---
   const themes = [
     { id: 'theme-cyber-premium', name: '🌌 Cyber-Premium' },
     { id: 'theme-cyber-organic', name: '🌿 Cyber-Organic' },
@@ -102,13 +188,16 @@
     { id: 'theme-sakura-blossom', name: '🌸 Sakura Blossom' }
   ];
 
-  // Retrieve saved theme or default to Cyber-Premium
+  // Retrieve states
   let currentTheme = localStorage.getItem('heimdall-current-theme') || 'theme-cyber-premium';
   document.body.classList.add(currentTheme);
+  
+  let aurorasEnabled = localStorage.getItem('heimdall-auroras-enabled') !== 'false'; // Default true
+  if (aurorasEnabled) document.body.classList.add('auroras-active');
 
-  // A. Create Trigger Button (FAB)
+  // A. Create Trigger FAB Button
   var triggerBtn = document.createElement('button');
-  triggerBtn.classList.add('theme-trigger-btn');
+  triggerBtn.className = 'theme-trigger-btn';
   triggerBtn.title = "Customize Dashboard Theme";
   triggerBtn.innerHTML = `
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -116,31 +205,27 @@
     </svg>
   `;
 
-  // B. Create Selection Panel
+  // B. Create Panel Container
   var selectionPanel = document.createElement('div');
-  selectionPanel.classList.add('theme-selection-panel');
+  selectionPanel.className = 'theme-selection-panel';
 
   var panelTitle = document.createElement('div');
-  panelTitle.classList.add('panel-title');
+  panelTitle.className = 'panel-title';
   panelTitle.textContent = "Dashboard Style";
   selectionPanel.appendChild(panelTitle);
 
+  // Ingest Theme option items
   themes.forEach(t => {
     var optBtn = document.createElement('button');
-    optBtn.classList.add('theme-option-btn');
+    optBtn.className = 'theme-option-btn';
     if (t.id === currentTheme) optBtn.classList.add('active');
     optBtn.innerHTML = `<span>${t.name}</span>`;
 
     optBtn.addEventListener('click', () => {
-      // Toggle active visual class on buttons
       selectionPanel.querySelector('.theme-option-btn.active').classList.remove('active');
       optBtn.classList.add('active');
-
-      // Swap body classes
       document.body.classList.remove(...themes.map(x => x.id));
       document.body.classList.add(t.id);
-
-      // Save preference
       localStorage.setItem('heimdall-current-theme', t.id);
       currentTheme = t.id;
     });
@@ -148,13 +233,24 @@
     selectionPanel.appendChild(optBtn);
   });
 
-  // Toggle Panel Open/Close Click Handler
+  // C. Ingest togglable Aurora Controls [Feature 11 - Configurable]
+  var section = document.createElement('div');
+  section.className = 'panel-section';
+  section.innerHTML = `
+    <span class="panel-subtitle">Ambient Auroras</span>
+    <label class="switch-container">
+      <input type="checkbox" id="aurora-toggle" ${aurorasEnabled ? 'checked' : ''}>
+      <span class="slider-switch"></span>
+    </label>
+  `;
+  selectionPanel.appendChild(section);
+
+  // Toggle Panel Open/Close Handlers
   triggerBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     selectionPanel.classList.toggle('open');
   });
 
-  // Close Panel when clicking anywhere outside
   document.addEventListener('click', (e) => {
     if (!selectionPanel.contains(e.target) && e.target !== triggerBtn && !triggerBtn.contains(e.target)) {
       selectionPanel.classList.remove('open');
@@ -164,7 +260,21 @@
   document.body.appendChild(triggerBtn);
   document.body.appendChild(selectionPanel);
 
-  // --- 5. Real-Time Client-Side Quick Search & Card Filter ---
+  // Aurora Dynamic State switch listeners
+  const auroraToggle = document.getElementById('aurora-toggle');
+  if (auroraToggle) {
+    auroraToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        document.body.classList.add('auroras-active');
+        localStorage.setItem('heimdall-auroras-enabled', 'true');
+      } else {
+        document.body.classList.remove('auroras-active');
+        localStorage.setItem('heimdall-auroras-enabled', 'false');
+      }
+    });
+  }
+
+  // --- 8. Real-Time Client-Side Quick Search & Card Filter ---
   const searchInput = document.querySelector('#search input') || document.querySelector('input[type="search"]');
   if (searchInput) {
     searchInput.addEventListener('input', function(e) {
@@ -172,27 +282,22 @@
       const cards = document.querySelectorAll('#sortable .item');
 
       cards.forEach(card => {
-        // Retrieve title/name from card
         const cardTitleEl = card.querySelector('a') || card.querySelector('.title') || card;
         const titleText = cardTitleEl.textContent.toLowerCase();
 
         if (query === '') {
-          // Reset cards to default state
           card.classList.remove('item-dimmed');
           card.classList.remove('search-highlight');
         } else if (titleText.includes(query)) {
-          // Highlight match
           card.classList.remove('item-dimmed');
           card.classList.add('search-highlight');
         } else {
-          // Dim out non-match
           card.classList.add('item-dimmed');
           card.classList.remove('search-highlight');
         }
       });
     });
 
-    // Reset when search input is cleared
     searchInput.addEventListener('search', function() {
       const cards = document.querySelectorAll('#sortable .item');
       cards.forEach(card => {
@@ -202,5 +307,6 @@
     });
   }
 
-  console.log("Heimdall Master Engine fully active. 10 Premium Themes loaded.");
+  console.log("Heimdall Master Engine fully active. Features [4, 11, 17, 23] and Big Clock successfully initialized.");
 })();
+// End Universal Master Engine
