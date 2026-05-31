@@ -957,9 +957,6 @@ body.auroras-active .aurora-blob {
   z-index: 1 !important;
 }
 
-body.laser-outlines-active #sortable .item::before {
-  z-index: 2 !important; /* outline on top of background and sheen */
-}
 
 #sortable .item a {
   position: relative !important;
@@ -979,7 +976,7 @@ body.dynamic-sizing-active #sortable {
   gap: var(--widget-gap, 4px) !important; /* defaults to compact gap */
   padding: 20px 40px !important;
   width: 100% !important;
-  max-width: 1600px !important;
+  max-width: 1800px !important; /* Allow more widgets per row (up to 10-12) */
   margin: 0 auto !important;
 }
 
@@ -988,8 +985,8 @@ body.dynamic-sizing-active #sortable .item {
   width: auto !important;
   height: auto !important;
   flex: 0 1 auto !important;
-  min-width: 110px !important; /* narrow widget width */
-  max-width: 280px !important;
+  min-width: 105px !important; /* compact simple widget width */
+  max-width: 135px !important; /* narrow boundary for high density grid packing */
   padding: 12px 10px !important;
   display: inline-flex !important;
   flex-direction: column !important;
@@ -999,6 +996,7 @@ body.dynamic-sizing-active #sortable .item {
               border-color 0.3s ease,
               box-shadow 0.3s ease,
               min-width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              max-width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
               padding 0.4s ease !important;
 }
 
@@ -1027,7 +1025,7 @@ body.dynamic-sizing-active #sortable .item img {
 body.dynamic-sizing-active #sortable .item .title,
 body.dynamic-sizing-active #sortable .item a span {
   font-family: inherit !important;
-  font-size: 0.9em !important;
+  font-size: 0.82em !important; /* micro font sizing for compact look */
   font-weight: 600 !important;
   letter-spacing: 0.5px !important;
   white-space: nowrap !important;
@@ -1036,6 +1034,14 @@ body.dynamic-sizing-active #sortable .item a span {
   margin-top: 4px !important;
   padding: 0 !important;
   color: inherit !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+/* Limit text width to show ellipsis ONLY for simple compact cards */
+body.dynamic-sizing-active #sortable .item:not(:has(.widget)):not(:has(.link-stats)):not(:has([class*="-stats"])):not(:has(.details)):not(:has([class*="-details"])) .title,
+body.dynamic-sizing-active #sortable .item:not(:has(.widget)):not(:has(.link-stats)):not(:has([class*="-stats"])):not(:has(.details)):not(:has([class*="-details"])) a span {
+  max-width: 95px !important;
 }
 
 /* Ensure online/offline latency dots are beautifully aligned */
@@ -1070,37 +1076,14 @@ body.dynamic-sizing-active #sortable .item .details span {
   font-weight: 500 !important;
 }
 
-/* --- Feature 8: Glowing Neon Laser Outlines --- */
-@keyframes rotate-laser {
-  100% { transform: rotate(360deg); }
-}
-
-body.laser-outlines-active #sortable .item {
-  border-color: transparent !important;
-}
-
-body.laser-outlines-active #sortable .item::before {
-  content: '';
-  position: absolute;
-  top: -1.5px; left: -1.5px; right: -1.5px; bottom: -1.5px;
-  background: conic-gradient(from 0deg, transparent 65%, var(--neon-cyan, #00f2ff) 85%, var(--neon-magenta, #ff00e5) 100%);
-  border-radius: inherit;
-  z-index: 2 !important;
-  opacity: 0;
-  transition: opacity 0.4s ease !important;
-  pointer-events: none;
-}
-
-body.laser-outlines-active #sortable .item:hover::before {
-  opacity: 1;
-  animation: rotate-laser 2.4s linear infinite;
-}
-
-body.laser-outlines-active #sortable .item::before {
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+/* Metrics card horizontal expansion using CSS :has() */
+body.dynamic-sizing-active #sortable .item:has(.widget),
+body.dynamic-sizing-active #sortable .item:has(.link-stats),
+body.dynamic-sizing-active #sortable .item:has([class*="-stats"]),
+body.dynamic-sizing-active #sortable .item:has(.details),
+body.dynamic-sizing-active #sortable .item:has([class*="-details"]) {
+  min-width: 240px !important;
+  max-width: 380px !important;
 }
 
 /* --- Feature 11: Delicately Drifting Particles Background --- */

@@ -302,8 +302,7 @@
   let dynamicSizingEnabled = localStorage.getItem('heimdall-dynamic-sizing') === 'true';
   if (dynamicSizingEnabled) document.body.classList.add('dynamic-sizing-active');
 
-  let laserOutlinesEnabled = localStorage.getItem('heimdall-laser-outlines') === 'true';
-  if (laserOutlinesEnabled) document.body.classList.add('laser-outlines-active');
+
 
   let particlesEnabled = localStorage.getItem('heimdall-particles') === 'true';
   if (particlesEnabled) {
@@ -378,17 +377,7 @@
   `;
   selectionPanel.appendChild(dynamicSizingSection);
 
-  // Laser Outlines Control Ingestion (Feature 8)
-  var laserSection = document.createElement('div');
-  laserSection.className = 'panel-section';
-  laserSection.innerHTML = `
-    <span class="panel-subtitle">✨ Laser Outlines</span>
-    <label class="switch-container">
-      <input type="checkbox" id="laser-toggle" ${laserOutlinesEnabled ? 'checked' : ''}>
-      <span class="slider-switch"></span>
-    </label>
-  `;
-  selectionPanel.appendChild(laserSection);
+
 
   // Ambient Particles Control Ingestion (Feature 11)
   var particlesSection = document.createElement('div');
@@ -478,19 +467,7 @@
     });
   }
 
-  // Laser Outlines Switch Listener (Feature 8)
-  const laserToggle = document.getElementById('laser-toggle');
-  if (laserToggle) {
-    laserToggle.addEventListener('change', (e) => {
-      if (e.target.checked) {
-        document.body.classList.add('laser-outlines-active');
-        localStorage.setItem('heimdall-laser-outlines', 'true');
-      } else {
-        document.body.classList.remove('laser-outlines-active');
-        localStorage.setItem('heimdall-laser-outlines', 'false');
-      }
-    });
-  }
+
 
   // Particles Switch Listener (Feature 11)
   const particlesToggle = document.getElementById('particles-toggle');
