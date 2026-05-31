@@ -120,7 +120,7 @@
   }
   updateClock(); setInterval(updateClock, 1000);
 
-  // --- 4. Latency Monitors ---
+  // --- 4. Latency Monitors (Multi-Probe Engine) ---
   function initLatencyPingMonitors() {
     document.querySelectorAll('#sortable .item').forEach(card => {
       const link = card.querySelector('a');
@@ -132,33 +132,42 @@
           card.querySelector('.title')?.appendChild(dot);
         }
 
-        // Timeout controller for long-pending fetches
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        const timeoutId = setTimeout(() => controller.abort(), 4000);
 
-        fetch(link.href, { 
-          mode: 'no-cors', 
-          cache: 'no-store',
-          signal: controller.signal 
-        })
-        .then(() => {
+        const setStatus = (status) => {
           clearTimeout(timeoutId);
-          dot.classList.remove('offline');
-          dot.classList.add('online');
-          dot.title = "Service Reachable";
-        })
+          dot.classList.remove('online', 'offline');
+          dot.classList.add(status);
+          dot.title = status === 'online' ? "Service Reachable" : "Service Offline or Restricted";
+        };
+
+        const probe = (url) => fetch(url, { mode: 'no-cors', cache: 'no-store', signal: controller.signal, referrerPolicy: 'no-referrer' });
+
+        // Phase 1: Direct Deep Link Fetch
+        probe(link.href)
+        .then(() => setStatus('online'))
         .catch(() => {
-          clearTimeout(timeoutId);
-          dot.classList.remove('online');
-          dot.classList.add('offline');
-          dot.title = "Service Offline or Unreachable";
+          // Phase 2: Fallback to Root Favicon (Often lacks strict CORP/CORS)
+          try {
+            const origin = new URL(link.href).origin;
+            probe(origin + '/favicon.ico')
+            .then(() => setStatus('online'))
+            .catch(() => {
+              // Phase 3: Legacy Image Probe (Most permissive cross-origin method)
+              const img = new Image();
+              img.onload = () => setStatus('online');
+              img.onerror = () => setStatus('offline');
+              img.src = origin + '/favicon.ico?v=' + Date.now();
+            });
+          } catch(e) { setStatus('offline'); }
         });
       }
     });
   }
-  // Run every 30 seconds for live health updates
+  // Run every 60 seconds for live health updates
   initLatencyPingMonitors();
-  setInterval(initLatencyPingMonitors, 30000);
+  setInterval(initLatencyPingMonitors, 60000);
 
   // --- 5. Theme Engine ---
   const themes = [
