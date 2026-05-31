@@ -918,8 +918,113 @@ body.theme-dracula-dark .theme-option-btn.active { border-color: rgba(189, 147, 
 body.theme-retrowave-80s .theme-option-btn.active { border-color: rgba(255, 0, 127, 0.4); color: var(--retro-pink); }
 body.theme-sakura-blossom .theme-option-btn.active { border-color: rgba(253, 164, 175, 0.4); color: var(--sakura-pink); }
 
+/* =========================================================================
+ * FEATURE 12: SMART AUTO-SIZING & DYNAMIC WIDGET COMPACTNESS
+ * =========================================================================
+ */
+
+/* Container and overall layout adjustments */
+body.dynamic-sizing-active #sortable {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  padding: 20px 40px !important;
+  width: 100% !important;
+  max-width: 1600px !important;
+  margin: 0 auto !important;
+}
+
+/* Individual compact item sizing and layout rules */
+body.dynamic-sizing-active #sortable .item {
+  width: auto !important;
+  height: auto !important;
+  flex: 0 1 auto !important;
+  min-width: 155px !important;
+  max-width: 380px !important;
+  min-height: 54px !important;
+  padding: 8px 18px !important;
+  display: inline-flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              min-width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              padding 0.4s ease !important;
+}
+
+/* Standard anchor link adjustments */
+body.dynamic-sizing-active #sortable .item a {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-decoration: none !important;
+}
+
+/* Make card icons slightly smaller and perfectly side-by-side with text */
+body.dynamic-sizing-active #sortable .item img {
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+}
+
+/* Set up the App Title style to be clean and inline */
+body.dynamic-sizing-active #sortable .item .title,
+body.dynamic-sizing-active #sortable .item a span {
+  font-family: inherit !important;
+  font-size: 0.9em !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+}
+
+/* Ensure online/offline latency dots are beautifully aligned */
+body.dynamic-sizing-active #sortable .item .latency-dot {
+  margin-left: auto !important;
+  margin-right: 2px !important;
+}
+
+/* Detailed widget output formatting (Enhanced Apps) */
+body.dynamic-sizing-active #sortable .item .widget,
+body.dynamic-sizing-active #sortable .item .link-stats,
+body.dynamic-sizing-active #sortable .item [class*="-stats"],
+body.dynamic-sizing-active #sortable .item .details,
+body.dynamic-sizing-active #sortable .item [class*="-details"] {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 8px !important;
+  padding-top: 8px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  font-size: 0.8em !important;
+  line-height: 1.4 !important;
+  opacity: 0.85 !important;
+}
+
+/* Customize details typography for better readability */
+body.dynamic-sizing-active #sortable .item .widget span,
+body.dynamic-sizing-active #sortable .item .link-stats span,
+body.dynamic-sizing-active #sortable .item .details span {
+  display: inline-block !important;
+  font-weight: 500 !important;
+}
+
 /* Scrollbars */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+

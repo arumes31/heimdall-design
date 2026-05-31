@@ -91,7 +91,8 @@
     
     const hrs = String(maintenant.getHours()).padStart(2, '0');
     const mins = String(maintenant.getMinutes()).padStart(2, '0');
-    const heureFormatted = `${hrs}:${mins}`;
+    const secs = String(maintenant.getSeconds()).padStart(2, '0');
+    const heureFormatted = `${hrs}:${mins}:${secs}`;
 
     dateDiv.innerHTML = '';
 
@@ -193,6 +194,9 @@
   let aurorasEnabled = localStorage.getItem('heimdall-auroras-enabled') !== 'false';
   if (aurorasEnabled) document.body.classList.add('auroras-active');
 
+  let dynamicSizingEnabled = localStorage.getItem('heimdall-dynamic-sizing') === 'true';
+  if (dynamicSizingEnabled) document.body.classList.add('dynamic-sizing-active');
+
   // A. Create Trigger FAB Button
   var triggerBtn = document.createElement('button');
   triggerBtn.className = 'theme-trigger-btn';
@@ -243,6 +247,18 @@
   `;
   selectionPanel.appendChild(section);
 
+  // Smart Auto-Sizing Control Ingestion
+  var dynamicSizingSection = document.createElement('div');
+  dynamicSizingSection.className = 'panel-section';
+  dynamicSizingSection.innerHTML = `
+    <span class="panel-subtitle">Smart Auto-Sizing</span>
+    <label class="switch-container">
+      <input type="checkbox" id="dynamic-sizing-toggle" ${dynamicSizingEnabled ? 'checked' : ''}>
+      <span class="slider-switch"></span>
+    </label>
+  `;
+  selectionPanel.appendChild(dynamicSizingSection);
+
   // Toggle Panel Open/Close Handlers
   triggerBtn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -268,6 +284,20 @@
       } else {
         document.body.classList.remove('auroras-active');
         localStorage.setItem('heimdall-auroras-enabled', 'false');
+      }
+    });
+  }
+
+  // Dynamic Sizing State switch listeners
+  const dynamicSizingToggle = document.getElementById('dynamic-sizing-toggle');
+  if (dynamicSizingToggle) {
+    dynamicSizingToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        document.body.classList.add('dynamic-sizing-active');
+        localStorage.setItem('heimdall-dynamic-sizing', 'true');
+      } else {
+        document.body.classList.remove('dynamic-sizing-active');
+        localStorage.setItem('heimdall-dynamic-sizing', 'false');
       }
     });
   }
