@@ -3,11 +3,12 @@
 // =========================================================================
 // Redesigned dashboard framework featuring:
 // 1. Big Date and Clock digital panels.
-// 2. Card Focus Dimmer (Hover Backdrop) [Feature 4 - CSS Driven]
-// 3. Dynamic Background Aurora Glows (Togglable) [Feature 11]
-// 4. Glassmorphic Ripple Particle Click Effects [Feature 17]
-// 5. Self-Host Latency Ping Monitors [Feature 23]
-// 6. Floating theme selector panel hidden behind micro-interactive toggle.
+// 2. Dynamic Background Aurora Glows (Togglable) [Feature 11]
+// 3. Glassmorphic Ripple Particle Click Effects [Feature 17]
+// 4. Self-Host Latency Ping Monitors [Feature 23]
+// 5. Floating theme selector panel hidden behind micro-interactive toggle.
+//
+// *NO WIDGET TRANSPARENCY/HIDING HOVER OR SEARCH EFFECTS*
 
 (function() {
   const sortableElement = document.querySelector('.appheader');
@@ -57,7 +58,7 @@
   var timeDiv = createAndInsertDiv('horloge', divDate);
   var dateDiv = createAndInsertDiv('ladate', divDate);
 
-  // Dynamic Weather Widget Alignment
+  // Weather Widget Alignment
   setTimeout(function() {
     const existingMeteo = document.querySelector('.meteo');
     if (existingMeteo && existingMeteo.parentNode !== headerInfos) {
@@ -140,10 +141,8 @@
       const link = card.querySelector('a');
       if (link && link.href && link.href.startsWith('http') && !card.querySelector('.latency-dot')) {
         
-        // Find suitable placement inside card title tag
         const titleContainer = card.querySelector('.title') || link;
         
-        // Create checking status dot
         const dot = document.createElement('span');
         dot.className = 'latency-dot';
         dot.title = "Pinging local node...";
@@ -163,7 +162,6 @@
           dot.title = `Online // Latency: ${latency}ms`;
         })
         .catch(() => {
-          // If connection refused/timeout, display offline alert
           dot.classList.add('offline');
           dot.title = "Offline or Port Blocked";
         });
@@ -192,7 +190,7 @@
   let currentTheme = localStorage.getItem('heimdall-current-theme') || 'theme-cyber-premium';
   document.body.classList.add(currentTheme);
   
-  let aurorasEnabled = localStorage.getItem('heimdall-auroras-enabled') !== 'false'; // Default true
+  let aurorasEnabled = localStorage.getItem('heimdall-auroras-enabled') !== 'false';
   if (aurorasEnabled) document.body.classList.add('auroras-active');
 
   // A. Create Trigger FAB Button
@@ -274,7 +272,7 @@
     });
   }
 
-  // --- 8. Real-Time Client-Side Quick Search & Card Filter ---
+  // --- 8. Real-Time Client-Side Quick Search & Card Filter (No Dimming) ---
   const searchInput = document.querySelector('#search input') || document.querySelector('input[type="search"]');
   if (searchInput) {
     searchInput.addEventListener('input', function(e) {
@@ -286,27 +284,25 @@
         const titleText = cardTitleEl.textContent.toLowerCase();
 
         if (query === '') {
-          card.classList.remove('item-dimmed');
           card.classList.remove('search-highlight');
         } else if (titleText.includes(query)) {
-          card.classList.remove('item-dimmed');
+          // Highlight match (adds white stroke/glow)
           card.classList.add('search-highlight');
         } else {
-          card.classList.add('item-dimmed');
+          // Removes highlights but DOES NOT hide or dim the widget
           card.classList.remove('search-highlight');
         }
       });
     });
 
+    // Reset when search input is cleared
     searchInput.addEventListener('search', function() {
       const cards = document.querySelectorAll('#sortable .item');
       cards.forEach(card => {
-        card.classList.remove('item-dimmed');
         card.classList.remove('search-highlight');
       });
     });
   }
 
-  console.log("Heimdall Master Engine fully active. Features [4, 11, 17, 23] and Big Clock successfully initialized.");
+  console.log("Heimdall Master Engine fully active. Enjoy your clean redesigned dashboard.");
 })();
-// End Universal Master Engine
