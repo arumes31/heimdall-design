@@ -1,65 +1,46 @@
-# 🎨 Heimdall Dashboard - Premium Theme Gallery
+# 🎨 Heimdall Dashboard - Premium Redesigned Theme Gallery
 
-Transform your Heimdall dashboard into a state-of-the-art interface! Below are **three premium designs** designed using design tokens from the **Stitch Design System** (Cyber-Premium & Patchli Fleet.OS) and modernized with advanced, responsive dashboard widgets and features.
-
-> [!IMPORTANT]
-> **Widget & Icon Colors Kept Intact!** All themes now preserve your configured custom dashboard card background colors and fully colored app icons, enhancing them with a premium 3D glass gloss sheen and hover animations.
+Transform your Heimdall dashboard into a state-of-the-art interface! This version introduces a clean, premium dashboard redesign containing **10 highly-polished built-in themes** toggleable instantly on-the-fly, while completely preserving your custom application card background colors and fully colored app icons.
 
 ---
 
-## 🌟 Major Advanced Features Injected
+## 🌟 Advanced Injected Features
 
-Every theme (and the **Universal Master Theme**) now features these custom injections:
-1.  **📊 Animated System Metrics Widget**: Adds an animated widget displaying real-time fluctuating gauges for CPU Load, RAM Utilization, and WAN Latency to make your lab dashboard feel alive.
-2.  **🔍 Instant Client-Side Card Search (Filter)**: Typing in the search bar instantly dims and filters non-matching application cards in real-time, making navigation incredibly fast.
-3.  **👋 Dynamic Greetings Header**: Reads the current hour and dynamically welcomes you (e.g. *Good Morning, Admin // Sunday, May 31*) coupled with system diagnostic status reads.
-4.  **🎛️ Floating Theme Switcher Widget (Master Exclusive)**: Select the **Universal Master Theme** to get a gorgeous floating toggle in the bottom right that switches between all three layouts instantly with memory persistence!
+1.  **🎛️ Toggle-Hidden Floating Theme Panel**: A circular floating paint palette button (`🎨`) sits in the bottom right corner (aligned nicely next to your settings gear). Clicking it slides up a gorgeous vertical glassmorphic switcher panel listing the 10 custom layouts. Clicking anywhere outside closes it dynamically!
+2.  **🔍 Instant Real-Time Search Filter**: Typing in the search bar instantly dims and filters non-matching application cards on-the-fly, making dashboard navigation incredibly lightning fast.
+3.  **👋 Dynamic greetings Header**: Reads the current hour and dynamically welcomes you (e.g. *Good Morning, Admin // Sunday, May 31*) accompanied by premium digital clock formatting.
+4.  **🍃 Zero CPU & RAM Overhead**: Fully removed all performance metrics gauges, ensuring absolute speed, low latency, and zero system load.
 
 ---
 
-## 🚀 How to Apply Any Theme
+## 🚀 How to Apply the Universal Master Theme (Recommended)
 
-Applying these styles to your Heimdall dashboard is incredibly easy:
+Applying these styles to your Heimdall dashboard is extremely easy:
 
 1. Open your **Heimdall Dashboard**.
 2. Click the **Settings** icon in the bottom right corner (the gear icon ⚙️).
 3. Scroll to the **Advanced** section.
-4. Copy and paste the contents of `custom.css` into the **Custom CSS** field.
-5. Copy and paste the contents of `custom.js` into the **Custom JavaScript** field.
+4. Copy and paste the contents of **[custom.css](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/master-theme/custom.css)** into the **Custom CSS** field.
+5. Copy and paste the contents of **[custom.js](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/master-theme/custom.js)** into the **Custom JavaScript** field.
 6. Click **Save**!
 
 ---
 
-## 🔮 The Universal Master Theme (Recommended)
-This combines **all three layouts** into a single master sheet with an interactive floating theme pill at the bottom right.
+## 🎨 The 10 Injected Themes
 
-*   📂 **Files**:
-    *   [Master CSS (`master-theme/custom.css`)](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/master-theme/custom.css)
-    *   [Master JS (`master-theme/custom.js`)](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/master-theme/custom.js)
+When using the Master Theme, you can switch between these 10 distinct, beautiful profiles dynamically:
 
----
-
-## 🌌 Theme 1: Cyber-Premium Command Center
-> **Style Profile**: Glassmorphism, Electric Cyan & Vibrant Magenta Highlights, Glowing Accents, Monospaced Data Readouts.
-
-*   📂 **Files**:
-    *   [CSS File (theme1-cyber-premium/custom.css)](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/theme1-cyber-premium/custom.css)
-    *   [JS File (theme1-cyber-premium/custom.js)](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/theme1-cyber-premium/custom.js)
-
----
-
-## 🌿 Theme 2: Cyber-Organic Hologram
-> **Style Profile**: Smooth Curves, Emerald Teal & Soft Holographic Cyan, Micro-Pulsing Bioluminescent Nodes.
-
-*   📂 **Files**:
-    *   [CSS File (theme2-cyber-organic/custom.css)](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/theme2-cyber-organic/custom.css)
-    *   [JS File (theme2-cyber-organic/custom.js)](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/theme2-cyber-organic/custom.js)
+1.  **🌌 Cyber-Premium**: Dark violet glassmorphism backdrop with glowing electric cyan & magenta neon outlines.
+2.  **🌿 Cyber-Organic**: Forest navy glass layers with warm bioluminescent emerald green & holographic cyan.
+3.  **📐 Slate Minimalist**: High-end matte charcoal/slate with clean white outlines and lightweight elegant typography.
+4.  **🌅 Sunset Aurora**: Warm twilight violet with glowing sunset orange & rose gold gradients.
+5.  **❄️ Nordic Frost**: Arctic ice deep blue paired with crystal-sharp, ice-blue glowing sheens.
+6.  **🍂 Solarized Amber**: Cyber-retro terminal style featuring golden glowing highlights.
+7.  **🖤 Monolith Dark**: Matte titanium obsidian jet black with fine titanium gray outlines and high-contrast text.
+8.  **🧛 Dracula Dark**: Rich royal purple/indigo base with glowing vampire-green accents.
+9.  **⚡ Retrowave 80s**: Synthwave grid sunset aesthetic with hot neon pink and electric yellow neon glows.
+10. **🌸 Sakura Blossom**: Japanese Zen pink combined with glowing cherry blossom peach and gold accents.
 
 ---
 
-## 📐 Theme 3: Slate Minimalist
-> **Style Profile**: Editorial Modern, Slate/Charcoal Monochrome, Ultra-Thin Typography, Sleek Matte Overlays.
-
-*   📂 **Files**:
-    *   [CSS File (theme3-slate-minimalist/custom.css)](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/theme3-slate-minimalist/custom.css)
-    *   [JS File (theme3-slate-minimalist/custom.js)](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/theme3-slate-minimalist/custom.js)
+*All resources have been successfully committed to the **`v2_test`** branch.* Enjoy your new dashboard!
