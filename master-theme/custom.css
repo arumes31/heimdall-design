@@ -1406,6 +1406,30 @@ body.theme-toxic-hazard #search input {
   to { box-shadow: 0 0 35px rgba(57, 255, 20, 0.45), 0 0 15px rgba(255, 95, 31, 0.3); }
 }
 
+/* =========================================================================
+ * SPLIT CLOCK & DATE STANDALONE PANEL CONFIGURATIONS
+ * =========================================================================
+ */
+.divClock .horloge,
+.divDateOnly .ladate {
+  margin-right: 0 !important;
+}
+
+.divClock,
+.divDateOnly {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  flex: 1 1 auto !important;
+}
+
+.divClock .horloge {
+  font-size: 4.8em !important;
+  letter-spacing: -1.5px !important;
+  line-height: 1 !important;
+}
+
 /* Scrollbars */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }

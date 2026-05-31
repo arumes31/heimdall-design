@@ -148,9 +148,14 @@
   headerInfos.classList.add('headerInfos');
   insertAfter(sortableElement, headerInfos);
 
-  // Big Date & Clock Widget
+  // Big Clock Widget (Card 1)
+  var divClock = createAndInsertDiv('divDate', headerInfos);
+  divClock.classList.add('divClock');
+  var timeDiv = createAndInsertDiv('horloge', divClock);
+
+  // Big Date & Greeting Widget (Card 2)
   var divDate = createAndInsertDiv('divDate', headerInfos);
-  var timeDiv = createAndInsertDiv('horloge', divDate);
+  divDate.classList.add('divDateOnly');
   var dateDiv = createAndInsertDiv('ladate', divDate);
 
   // Weather Widget Alignment
