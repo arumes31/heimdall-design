@@ -7,9 +7,12 @@ Transform your Heimdall dashboard into a state-of-the-art interface! This versio
 ## 🌟 Advanced Injected Features
 
 1.  **🎛️ Toggle-Hidden Floating Theme Panel**: A circular floating paint palette button (`🎨`) sits in the bottom right corner (aligned nicely next to your settings gear). Clicking it slides up a gorgeous vertical glassmorphic switcher panel listing the 10 custom layouts. Clicking anywhere outside closes it dynamically!
-2.  **🔍 Instant Real-Time Search Filter**: Typing in the search bar instantly dims and filters non-matching application cards on-the-fly, making dashboard navigation incredibly lightning fast.
-3.  **👋 Dynamic greetings Header**: Reads the current hour and dynamically welcomes you (e.g. *Good Morning, Admin // Sunday, May 31*) accompanied by premium digital clock formatting.
-4.  **🍃 Zero CPU & RAM Overhead**: Fully removed all performance metrics gauges, ensuring absolute speed, low latency, and zero system load.
+2.  **🔍 Instant Real-Time Search Highlight**: Typing in the search bar instantly highlights matching application cards with an elegant visual glow without hiding or dimming the rest of your cards.
+3.  **👋 Dynamic Greetings Header**: Reads the current hour and dynamically welcomes you (e.g. *Good Morning, Admin // Sunday, May 31*) accompanied by a **Big Redesigned Digital Clock**.
+4.  **🍃 Zero Performance Overhead**: Fully removed all performance metrics gauges, ensuring absolute speed, low latency, and zero system load.
+5.  **✨ Clean Layout (No External Arrows)**: Completely hides the standard Font Awesome `->|` external link and sign-in icons inside the tiles for a super-clean, clean visual interface.
+6.  **💎 Glassmorphic Ripple Particle Click Effects**: Clicking any card generates a circular water-like ripple element expanding outward from click coordinates for rich tactile response.
+7.  **📈 Self-Host Ping Latency Indicators**: Online/Offline status dot indicator next to card titles showing precise latency metrics in milliseconds inside tooltips.
 
 ---
 
