@@ -279,7 +279,12 @@
     { id: 'theme-monolith-dark', name: '🖤 Monolith Dark' },
     { id: 'theme-dracula-dark', name: '🧛 Dracula Dark' },
     { id: 'theme-retrowave-80s', name: '⚡ Retrowave 80s' },
-    { id: 'theme-sakura-blossom', name: '🌸 Sakura Blossom' }
+    { id: 'theme-sakura-blossom', name: '🌸 Sakura Blossom' },
+    { id: 'theme-cyberpunk-yellow', name: '🟨 Cyberpunk 2077' },
+    { id: 'theme-cosmic-nebula', name: '💫 Cosmic Nebula' },
+    { id: 'theme-glassmorphic-light', name: '💎 Frosted Crystal' },
+    { id: 'theme-matrix-rain', name: '📟 Matrix Rain' },
+    { id: 'theme-toxic-hazard', name: '☣️ Toxic Hazard' }
   ];
 
   // Retrieve states

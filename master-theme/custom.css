@@ -917,6 +917,11 @@ body.theme-solarized-amber .theme-option-btn.active { border-color: rgba(245, 15
 body.theme-dracula-dark .theme-option-btn.active { border-color: rgba(189, 147, 249, 0.4); color: var(--drac-purple); }
 body.theme-retrowave-80s .theme-option-btn.active { border-color: rgba(255, 0, 127, 0.4); color: var(--retro-pink); }
 body.theme-sakura-blossom .theme-option-btn.active { border-color: rgba(253, 164, 175, 0.4); color: var(--sakura-pink); }
+body.theme-cyberpunk-yellow .theme-option-btn.active { border-color: rgba(252, 238, 10, 0.4); color: #fcee0a; }
+body.theme-cosmic-nebula .theme-option-btn.active { border-color: rgba(255, 215, 0, 0.4); color: #ffd700; }
+body.theme-glassmorphic-light .theme-option-btn.active { border-color: rgba(2, 132, 199, 0.4); color: #0284c7; }
+body.theme-matrix-rain .theme-option-btn.active { border-color: rgba(0, 255, 65, 0.4); color: #00ff41; }
+body.theme-toxic-hazard .theme-option-btn.active { border-color: rgba(57, 255, 20, 0.4); color: #39ff14; }
 
 /* =========================================================================
  * FEATURE 12: SMART AUTO-SIZING & DYNAMIC WIDGET COMPACTNESS
@@ -1107,6 +1112,253 @@ body.search-compact .headerInfos {
 /* --- Feature 30: Widget Spacing Variable Mapping --- */
 #sortable {
   gap: var(--widget-gap, 16px) !important;
+}
+
+/* =========================================================================
+ * EXTENDED THEME GALLERY (Themes 11 - 15)
+ * =========================================================================
+ */
+
+/* THEME 11: CYBERPUNK 2077 */
+body.theme-cyberpunk-yellow {
+  background-color: #0c0d10 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  color: #fcee0a !important;
+}
+body.theme-cyberpunk-yellow.auroras-active .blob-1 { background-color: #fcee0a; }
+body.theme-cyberpunk-yellow.auroras-active .blob-2 { background-color: #00f0ff; }
+body.theme-cyberpunk-yellow.auroras-active .blob-3 { background-color: #fcee0a; }
+
+body.theme-cyberpunk-yellow .divDate,
+body.theme-cyberpunk-yellow .meteo {
+  background-color: rgba(12, 13, 16, 0.8) !important;
+  border-radius: 2px !important;
+  border: 1px solid rgba(252, 238, 10, 0.4) !important;
+  box-shadow: 0 0 15px rgba(252, 238, 10, 0.15) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+body.theme-cyberpunk-yellow .divDate::before,
+body.theme-cyberpunk-yellow .meteo::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #fcee0a, #00f0ff);
+}
+body.theme-cyberpunk-yellow .horloge {
+  font-family: 'Orbitron', sans-serif;
+  color: #fcee0a !important;
+  text-shadow: 0 0 10px rgba(252, 238, 10, 0.6) !important;
+  animation: cyber-glitch 4s infinite alternate;
+}
+body.theme-cyberpunk-yellow .ladate span {
+  font-family: 'Orbitron', sans-serif;
+  color: #00f0ff !important;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4) !important;
+}
+body.theme-cyberpunk-yellow #sortable .item {
+  border-radius: 2px !important;
+  border: 1px solid rgba(252, 238, 10, 0.25) !important;
+  background: rgba(20, 22, 26, 0.85) !important;
+}
+body.theme-cyberpunk-yellow #sortable .item:hover {
+  border-color: #00f0ff !important;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3) !important;
+}
+body.theme-cyberpunk-yellow #search input {
+  background: rgba(20, 22, 26, 0.7) !important;
+  border: 1px solid rgba(252, 238, 10, 0.3) !important;
+  color: #fcee0a !important;
+}
+@keyframes cyber-glitch {
+  0%, 95%, 100% { text-shadow: 0 0 10px rgba(252, 238, 10, 0.6); transform: skew(0); }
+  96% { text-shadow: -2px 0 red, 2px 0 blue; transform: skew(-1.5deg); }
+  98% { text-shadow: 2px 0 red, -2px 0 blue; transform: skew(1.5deg); }
+}
+
+/* THEME 12: COSMIC NEBULA */
+body.theme-cosmic-nebula {
+  background-color: #060214 !important;
+  font-family: 'Outfit', sans-serif !important;
+  color: #e0d5fa !important;
+}
+body.theme-cosmic-nebula.auroras-active .blob-1 { background-color: #ff007f; }
+body.theme-cosmic-nebula.auroras-active .blob-2 { background-color: #ffd700; }
+body.theme-cosmic-nebula.auroras-active .blob-3 { background-color: #7b2cbf; }
+
+body.theme-cosmic-nebula .divDate,
+body.theme-cosmic-nebula .meteo {
+  background-color: rgba(14, 6, 32, 0.65) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 215, 0, 0.25) !important;
+  box-shadow: 0 10px 30px rgba(123, 44, 191, 0.3) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+body.theme-cosmic-nebula .horloge {
+  font-family: 'Orbitron', sans-serif;
+  color: #ffd700 !important;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.5) !important;
+}
+body.theme-cosmic-nebula .ladate span {
+  font-family: 'Outfit', sans-serif;
+  color: #ff007f !important;
+  text-shadow: 0 0 10px rgba(255, 0, 127, 0.4) !important;
+}
+body.theme-cosmic-nebula #sortable .item {
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 0, 127, 0.2) !important;
+  background: rgba(18, 8, 38, 0.75) !important;
+}
+body.theme-cosmic-nebula #sortable .item:hover {
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.35), 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* THEME 13: FROSTED CRYSTAL LIGHT */
+body.theme-glassmorphic-light {
+  background-color: #e2e8f0 !important;
+  font-family: 'Outfit', sans-serif !important;
+  color: #1e293b !important;
+}
+body.theme-glassmorphic-light.auroras-active .blob-1 { background-color: #38bdf8; }
+body.theme-glassmorphic-light.auroras-active .blob-2 { background-color: #f472b6; }
+body.theme-glassmorphic-light.auroras-active .blob-3 { background-color: #38bdf8; }
+
+body.theme-glassmorphic-light .divDate,
+body.theme-glassmorphic-light .meteo {
+  background-color: rgba(255, 255, 255, 0.45) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.08) !important;
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+}
+body.theme-glassmorphic-light .horloge {
+  color: #0f172a !important;
+  font-weight: 300;
+  text-shadow: none !important;
+}
+body.theme-glassmorphic-light .ladate span {
+  color: #0284c7 !important;
+  font-weight: 700;
+  text-shadow: none !important;
+}
+body.theme-glassmorphic-light #sortable .item {
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+body.theme-glassmorphic-light #sortable .item::after {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.05) 100%) !important;
+}
+body.theme-glassmorphic-light #sortable .item:hover {
+  border-color: rgba(255, 255, 255, 0.9) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.12) !important;
+  color: #0284c7 !important;
+}
+body.theme-glassmorphic-light #search input {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  color: #1e293b !important;
+}
+
+/* THEME 14: MATRIX RAIN */
+body.theme-matrix-rain {
+  background-color: #020502 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  color: #00ff41 !important;
+}
+body.theme-matrix-rain.auroras-active .blob-1 { background-color: #00ff41; }
+body.theme-matrix-rain.auroras-active .blob-2 { background-color: #005a14; }
+body.theme-matrix-rain.auroras-active .blob-3 { background-color: #00ff41; }
+
+body.theme-matrix-rain .divDate,
+body.theme-matrix-rain .meteo {
+  background-color: rgba(2, 5, 2, 0.85) !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(0, 255, 65, 0.35) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.15) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+body.theme-matrix-rain .horloge {
+  font-family: 'JetBrains Mono', monospace;
+  color: #00ff41 !important;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.7) !important;
+  animation: matrix-pulse 6s infinite ease-in-out;
+}
+body.theme-matrix-rain .ladate span {
+  font-family: 'JetBrains Mono', monospace;
+  color: #008f11 !important;
+}
+body.theme-matrix-rain #sortable .item {
+  border-radius: 4px !important;
+  border: 1px solid rgba(0, 255, 65, 0.2) !important;
+  background: rgba(3, 10, 3, 0.9) !important;
+}
+body.theme-matrix-rain #sortable .item:hover {
+  border-color: #00ff41 !important;
+  box-shadow: 0 0 18px rgba(0, 255, 65, 0.3) !important;
+}
+body.theme-matrix-rain #search input {
+  background: rgba(3, 10, 3, 0.8) !important;
+  border: 1px solid rgba(0, 255, 65, 0.3) !important;
+  color: #00ff41 !important;
+}
+@keyframes matrix-pulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; text-shadow: 0 0 16px rgba(0, 255, 65, 0.9); }
+}
+
+/* THEME 15: TOXIC HAZARD */
+body.theme-toxic-hazard {
+  background-color: #0d0f0c !important;
+  font-family: 'Outfit', sans-serif !important;
+  color: #d1ffd6 !important;
+}
+body.theme-toxic-hazard.auroras-active .blob-1 { background-color: #39ff14; }
+body.theme-toxic-hazard.auroras-active .blob-2 { background-color: #ff5f1f; }
+body.theme-toxic-hazard.auroras-active .blob-3 { background-color: #39ff14; }
+
+body.theme-toxic-hazard .divDate,
+body.theme-toxic-hazard .meteo {
+  background-color: rgba(15, 20, 15, 0.8) !important;
+  border-radius: 8px !important;
+  border: 2px solid rgba(57, 255, 20, 0.3) !important;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.1) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+body.theme-toxic-hazard .horloge {
+  font-family: 'Orbitron', sans-serif;
+  color: #39ff14 !important;
+  text-shadow: 0 0 12px rgba(57, 255, 20, 0.6) !important;
+}
+body.theme-toxic-hazard .ladate span {
+  font-family: 'Orbitron', sans-serif;
+  color: #ff5f1f !important;
+  text-shadow: 0 0 10px rgba(255, 95, 31, 0.5) !important;
+}
+body.theme-toxic-hazard #sortable .item {
+  border-radius: 8px !important;
+  border: 1px solid rgba(57, 255, 20, 0.25) !important;
+  background: rgba(18, 24, 18, 0.8) !important;
+}
+body.theme-toxic-hazard #sortable .item:hover {
+  border-color: #ff5f1f !important;
+  box-shadow: 0 0 25px rgba(57, 255, 20, 0.3), 0 0 10px rgba(255, 95, 31, 0.2) !important;
+  animation: toxic-pulse 1.5s infinite alternate;
+}
+body.theme-toxic-hazard #search input {
+  background: rgba(18, 24, 18, 0.8) !important;
+  border: 1px solid rgba(57, 255, 20, 0.3) !important;
+  color: #d1ffd6 !important;
+}
+@keyframes toxic-pulse {
+  to { box-shadow: 0 0 35px rgba(57, 255, 20, 0.45), 0 0 15px rgba(255, 95, 31, 0.3); }
 }
 
 /* Scrollbars */
