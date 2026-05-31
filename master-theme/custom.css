@@ -969,6 +969,12 @@ body.auroras-active .aurora-blob {
  */
 
 /* Container and overall layout adjustments */
+body.dynamic-sizing-active .container,
+body.dynamic-sizing-active #tiles {
+  max-width: 95vw !important; /* Expand parent layout wrapper to use all horizontal viewport space */
+  width: 100% !important;
+}
+
 body.dynamic-sizing-active #sortable {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -976,7 +982,7 @@ body.dynamic-sizing-active #sortable {
   gap: var(--widget-gap, 4px) !important; /* defaults to compact gap */
   padding: 20px 40px !important;
   width: 100% !important;
-  max-width: 1800px !important; /* Allow more widgets per row (up to 10-12) */
+  max-width: 95vw !important; /* Expand dashboard grid to use all available space */
   margin: 0 auto !important;
 }
 
