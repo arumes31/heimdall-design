@@ -1,0 +1,233 @@
+/*
+ * Cyber-Organic Hologram (Theme 2 - Patchli Fleet.OS)
+ * A clean, bioluminescent design merging frosted glass layers with soft glowing 
+ * emerald and secondary cyan coordinates, completed with rounded geometric fonts.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Quicksand:wght@400;500;700&display=swap');
+
+/* --- Root & Core Variables --- */
+:root {
+  --emerald-biolum: #10b981;
+  --cyan-hologram: #06b6d4;
+  --dark-ocean: #051424;
+  --glass-layer: rgba(12, 33, 49, 0.55);
+  --glass-stroke: rgba(20, 184, 166, 0.25);
+  --font-organic: 'Quicksand', 'JetBrains Mono', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* --- Core Page Override --- */
+body {
+  background-color: var(--dark-ocean) !important;
+  font-family: var(--font-organic) !important;
+  color: #d4e4fa !important;
+}
+
+/* --- Header Info Widget Container --- */
+.headerInfos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 45px;
+  gap: 25px;
+}
+
+/* --- Bioluminescent Glass Panels --- */
+.divDate, .meteo {
+  background-color: var(--glass-layer) !important;
+  border-radius: 16px !important;
+  border: 1px solid var(--glass-stroke) !important;
+  box-shadow: 0 8px 32px rgba(1, 15, 31, 0.4), 
+              0 0 1px rgba(16, 185, 129, 0.2), 
+              inset 0 1px 2px rgba(255, 255, 255, 0.1) !important;
+  padding: 20px 28px !important;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  display: flex !important;
+  align-items: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.divDate:hover, .meteo:hover {
+  border-color: rgba(6, 182, 212, 0.5) !important;
+  box-shadow: 0 12px 40px rgba(16, 185, 129, 0.12),
+              0 0 15px rgba(6, 182, 212, 0.1),
+              inset 0 0 12px rgba(16, 185, 129, 0.08) !important;
+  transform: translateY(-2px);
+}
+
+/* Pulse animation representing organic heartbeat */
+.divDate::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--emerald-biolum);
+  box-shadow: 0 0 8px var(--emerald-biolum);
+  animation: biolum-pulse 3s infinite ease-in-out;
+}
+
+@keyframes biolum-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.9); box-shadow: 0 0 4px var(--emerald-biolum); }
+  50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px var(--emerald-biolum); }
+}
+
+/* --- Clock and Date Text Styling --- */
+.horloge, .ladate {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.horloge {
+  font-family: var(--font-organic);
+  font-size: 3.4em !important;
+  font-weight: 700 !important;
+  color: var(--emerald-biolum) !important;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.35) !important;
+}
+
+.ladate {
+  font-family: var(--font-mono);
+  font-size: 0.9em !important;
+  color: #94a3b8 !important;
+  line-height: 1.5;
+}
+
+.ladate span {
+  display: block;
+  font-family: var(--font-organic);
+  font-weight: 700;
+  font-size: 1.3em;
+  color: var(--cyan-hologram) !important;
+  text-shadow: 0 0 8px rgba(6, 182, 212, 0.3) !important;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+/* --- Weather Widget (.meteo) --- */
+.meteo {
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 260px;
+}
+
+.ville-temp-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.temperature {
+  font-family: var(--font-organic);
+  font-size: 3em !important;
+  font-weight: 700 !important;
+  color: var(--emerald-biolum) !important;
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+.ville {
+  font-family: var(--font-organic);
+  font-size: 1.15em !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+}
+
+.description {
+  font-family: var(--font-mono);
+  font-size: 0.85em !important;
+  color: #94a3b8 !important;
+  text-transform: capitalize;
+}
+
+.icon {
+  filter: drop-shadow(0 0 8px var(--cyan-hologram));
+}
+
+/* --- Dashboard Application Cards Override (.item) --- */
+#sortable .item {
+  backdrop-filter: blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+  background: rgba(12, 33, 49, 0.45) !important;
+  border: 1px solid rgba(20, 184, 166, 0.15) !important;
+  border-radius: 14px !important;
+  padding: 16px 20px !important;
+  margin: 12px !important;
+  box-shadow: 0 8px 24px rgba(1, 12, 25, 0.3) !important;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  position: relative;
+}
+
+/* Card Hover Animations */
+#sortable .item:hover {
+  transform: scale(1.04) !important;
+  border-color: rgba(6, 182, 212, 0.45) !important;
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.12),
+              0 0 15px rgba(6, 182, 212, 0.1),
+              inset 0 0 10px rgba(16, 185, 129, 0.05) !important;
+  background: rgba(12, 33, 49, 0.6) !important;
+}
+
+#sortable .item a {
+  font-family: var(--font-organic) !important;
+  font-weight: 600 !important;
+  color: #d4e4fa !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease;
+}
+
+#sortable .item:hover a {
+  color: #fff !important;
+}
+
+/* Soft pulse on hovered icons */
+#sortable .item img {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+#sortable .item:hover img {
+  transform: translateY(-2px) scale(1.06) !important;
+  filter: drop-shadow(0 0 8px var(--emerald-biolum)) !important;
+}
+
+/* --- Search Input Customize --- */
+#search input {
+  background: rgba(12, 33, 49, 0.5) !important;
+  border: 1px solid rgba(20, 184, 166, 0.2) !important;
+  border-radius: 12px !important;
+  color: #fff !important;
+  font-family: var(--font-organic) !important;
+  padding: 10px 18px !important;
+  backdrop-filter: blur(16px) !important;
+  transition: all 0.3s ease !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+#search input:focus {
+  border-color: var(--cyan-hologram) !important;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.25), 
+              inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  outline: none !important;
+}
+
+/* Scrollbar customization to fit theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dark-ocean);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.25);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan-hologram);
+  box-shadow: 0 0 8px var(--cyan-hologram);
+}
