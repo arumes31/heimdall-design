@@ -28,6 +28,99 @@
     return newDiv;
   }
 
+  // --- 1.1 HTML5 Background Canvas Particles System ---
+  let canvasElem = null;
+  let particleAnimationId = null;
+
+  function initParticles() {
+    // Prevent duplicate canvases
+    if (document.getElementById('ambient-particles')) return;
+    
+    canvasElem = document.createElement('canvas');
+    canvasElem.id = 'ambient-particles';
+    document.body.appendChild(canvasElem);
+
+    const ctx = canvasElem.getContext('2d');
+    let width = (canvasElem.width = window.innerWidth);
+    let height = (canvasElem.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      if (canvasElem) {
+        width = canvasElem.width = window.innerWidth;
+        height = canvasElem.height = window.innerHeight;
+      }
+    });
+
+    const particles = [];
+    const maxParticles = 45;
+
+    class Petal {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height - height;
+        this.r = Math.random() * 4 + 2;
+        this.vy = Math.random() * 1.2 + 0.4;
+        this.vx = Math.random() * 0.8 - 0.4;
+        this.opacity = Math.random() * 0.4 + 0.2;
+        this.angle = Math.random() * 360;
+        this.spin = Math.random() * 0.02 - 0.01;
+      }
+
+      draw() {
+        ctx.save();
+        ctx.beginPath();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle * Math.PI / 180);
+        // Semi-transparent sakura blossom color
+        ctx.fillStyle = `rgba(253, 164, 175, ${this.opacity})`;
+        ctx.ellipse(0, 0, this.r * 1.6, this.r, 0, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      update() {
+        this.y += this.vy;
+        this.x += this.vx + Math.sin(this.y / 25) * 0.15;
+        this.angle += this.spin * 180 / Math.PI;
+
+        if (this.y > height + 20 || this.x > width + 20 || this.x < -20) {
+          this.y = -20;
+          this.x = Math.random() * width;
+          this.vy = Math.random() * 1.2 + 0.4;
+          this.vx = Math.random() * 0.8 - 0.4;
+          this.opacity = Math.random() * 0.4 + 0.2;
+        }
+      }
+    }
+
+    for (let i = 0; i < maxParticles; i++) {
+      particles.push(new Petal());
+    }
+
+    function animate() {
+      if (!canvasElem) return;
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      particleAnimationId = requestAnimationFrame(animate);
+    }
+
+    animate();
+  }
+
+  function destroyParticles() {
+    if (particleAnimationId) {
+      cancelAnimationFrame(particleAnimationId);
+      particleAnimationId = null;
+    }
+    if (canvasElem) {
+      canvasElem.remove();
+      canvasElem = null;
+    }
+  }
+
   // Clear existing modifications on re-load to prevent duplicate injections
   const existingHeader = document.querySelector('.headerInfos');
   if (existingHeader) existingHeader.remove();
@@ -35,6 +128,8 @@
   if (existingSwitcher) existingSwitcher.remove();
   const existingTrigger = document.querySelector('.theme-trigger-btn');
   if (existingTrigger) existingTrigger.remove();
+  const existingCanvas = document.getElementById('ambient-particles');
+  if (existingCanvas) existingCanvas.remove();
   document.querySelectorAll('.aurora-blob').forEach(x => x.remove());
 
   // --- 2. Aurora Background Blob Injections [Feature 11] ---
@@ -197,6 +292,20 @@
   let dynamicSizingEnabled = localStorage.getItem('heimdall-dynamic-sizing') === 'true';
   if (dynamicSizingEnabled) document.body.classList.add('dynamic-sizing-active');
 
+  let laserOutlinesEnabled = localStorage.getItem('heimdall-laser-outlines') === 'true';
+  if (laserOutlinesEnabled) document.body.classList.add('laser-outlines-active');
+
+  let particlesEnabled = localStorage.getItem('heimdall-particles') === 'true';
+  if (particlesEnabled) {
+    setTimeout(initParticles, 150);
+  }
+
+  let searchPlacement = localStorage.getItem('heimdall-search-placement') || 'default';
+  document.body.classList.add(`search-${searchPlacement}`);
+
+  let widgetGap = localStorage.getItem('heimdall-widget-gap') || '16';
+  document.documentElement.style.setProperty('--widget-gap', `${widgetGap}px`);
+
   // A. Create Trigger FAB Button
   var triggerBtn = document.createElement('button');
   triggerBtn.className = 'theme-trigger-btn';
@@ -247,7 +356,7 @@
   `;
   selectionPanel.appendChild(section);
 
-  // Smart Auto-Sizing Control Ingestion
+  // Smart Auto-Sizing Control Ingestion (Feature 21)
   var dynamicSizingSection = document.createElement('div');
   dynamicSizingSection.className = 'panel-section';
   dynamicSizingSection.innerHTML = `
@@ -258,6 +367,63 @@
     </label>
   `;
   selectionPanel.appendChild(dynamicSizingSection);
+
+  // Laser Outlines Control Ingestion (Feature 8)
+  var laserSection = document.createElement('div');
+  laserSection.className = 'panel-section';
+  laserSection.innerHTML = `
+    <span class="panel-subtitle">✨ Laser Outlines</span>
+    <label class="switch-container">
+      <input type="checkbox" id="laser-toggle" ${laserOutlinesEnabled ? 'checked' : ''}>
+      <span class="slider-switch"></span>
+    </label>
+  `;
+  selectionPanel.appendChild(laserSection);
+
+  // Ambient Particles Control Ingestion (Feature 11)
+  var particlesSection = document.createElement('div');
+  particlesSection.className = 'panel-section';
+  particlesSection.innerHTML = `
+    <span class="panel-subtitle">🌸 Ambient Particles</span>
+    <label class="switch-container">
+      <input type="checkbox" id="particles-toggle" ${particlesEnabled ? 'checked' : ''}>
+      <span class="slider-switch"></span>
+    </label>
+  `;
+  selectionPanel.appendChild(particlesSection);
+
+  // Search Placement Control Ingestion (Feature 23)
+  var searchSection = document.createElement('div');
+  searchSection.className = 'panel-section';
+  searchSection.style.flexDirection = 'column';
+  searchSection.style.alignItems = 'stretch';
+  searchSection.style.gap = '6px';
+  searchSection.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span class="panel-subtitle">🔍 Search Placement</span>
+    </div>
+    <select id="search-placement-select" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:6px; color:#fff; padding:4px 8px; font-size:0.85em; outline:none; font-family:inherit; cursor:pointer;">
+      <option value="default" ${searchPlacement === 'default' ? 'selected' : ''}>Default</option>
+      <option value="compact" ${searchPlacement === 'compact' ? 'selected' : ''}>Compact Top</option>
+      <option value="hidden" ${searchPlacement === 'hidden' ? 'selected' : ''}>Hidden (Ctrl+F)</option>
+    </select>
+  `;
+  selectionPanel.appendChild(searchSection);
+
+  // Widget Spacing Control Ingestion (Feature 30)
+  var gapSection = document.createElement('div');
+  gapSection.className = 'panel-section';
+  gapSection.style.flexDirection = 'column';
+  gapSection.style.alignItems = 'stretch';
+  gapSection.style.gap = '6px';
+  gapSection.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span class="panel-subtitle">🌬️ Widget Gap</span>
+      <span id="gap-val-display" style="font-size:0.8em; color:rgba(255,255,255,0.5); font-weight:600;">${widgetGap}px</span>
+    </div>
+    <input type="range" id="widget-gap-slider" min="8" max="32" value="${widgetGap}" style="width:100%; height:4px; border-radius:2px; background:rgba(255,255,255,0.15); outline:none; cursor:pointer; accent-color:#10b981;">
+  `;
+  selectionPanel.appendChild(gapSection);
 
   // Toggle Panel Open/Close Handlers
   triggerBtn.addEventListener('click', (e) => {
@@ -301,6 +467,83 @@
       }
     });
   }
+
+  // Laser Outlines Switch Listener (Feature 8)
+  const laserToggle = document.getElementById('laser-toggle');
+  if (laserToggle) {
+    laserToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        document.body.classList.add('laser-outlines-active');
+        localStorage.setItem('heimdall-laser-outlines', 'true');
+      } else {
+        document.body.classList.remove('laser-outlines-active');
+        localStorage.setItem('heimdall-laser-outlines', 'false');
+      }
+    });
+  }
+
+  // Particles Switch Listener (Feature 11)
+  const particlesToggle = document.getElementById('particles-toggle');
+  if (particlesToggle) {
+    particlesToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        initParticles();
+        localStorage.setItem('heimdall-particles', 'true');
+      } else {
+        destroyParticles();
+        localStorage.setItem('heimdall-particles', 'false');
+      }
+    });
+  }
+
+  // Search Placement Select Listener (Feature 23)
+  const searchSelect = document.getElementById('search-placement-select');
+  if (searchSelect) {
+    searchSelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      document.body.classList.remove('search-default', 'search-compact', 'search-hidden');
+      document.body.classList.add(`search-${val}`);
+      localStorage.setItem('heimdall-search-placement', val);
+    });
+  }
+
+  // Widget Gap Range Slider Listener (Feature 30)
+  const gapSlider = document.getElementById('widget-gap-slider');
+  const gapValDisplay = document.getElementById('gap-val-display');
+  if (gapSlider && gapValDisplay) {
+    gapSlider.addEventListener('input', (e) => {
+      const val = e.target.value;
+      gapValDisplay.textContent = `${val}px`;
+      document.documentElement.style.setProperty('--widget-gap', `${val}px`);
+      localStorage.setItem('heimdall-widget-gap', val);
+    });
+  }
+
+  // Ctrl+F Keyboard Shortcut listener to reveal search when hidden (Feature 23)
+  window.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+      const currentPlacement = localStorage.getItem('heimdall-search-placement') || 'default';
+      if (currentPlacement === 'hidden') {
+        e.preventDefault();
+        const searchInputEl = document.querySelector('#search input') || document.querySelector('input[type="search"]');
+        if (searchInputEl) {
+          document.body.classList.remove('search-hidden');
+          document.body.classList.add('search-default'); // temporarily show it
+          searchInputEl.focus();
+          
+          // Re-hide search when input loses focus if it was hidden
+          searchInputEl.addEventListener('blur', function blurHandler() {
+            const freshPlacement = localStorage.getItem('heimdall-search-placement') || 'default';
+            if (freshPlacement === 'hidden') {
+              document.body.classList.remove('search-default');
+              document.body.classList.add('search-hidden');
+            }
+            searchInputEl.removeEventListener('blur', blurHandler);
+          });
+        }
+      }
+    }
+  });
 
   // --- 8. Real-Time Client-Side Quick Search & Card Filter (No Dimming) ---
   const searchInput = document.querySelector('#search input') || document.querySelector('input[type="search"]');
