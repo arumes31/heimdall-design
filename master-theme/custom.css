@@ -11,6 +11,36 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;600;800&family=Quicksand:wght@500;700&family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@500;700&family=Permanent+Marker&family=Patrick+Hand&family=VT323&display=swap');
 
+/* Global Text Color Overrides for perfect readability */
+#sortable .item .title,
+#sortable .item a,
+#sortable .item span,
+#sortable .item .widget,
+#sortable .item .details,
+.headerInfos,
+.horloge,
+.ladate,
+.ladate span,
+.meteo,
+.temperature,
+.ville,
+.description,
+#search input {
+  color: var(--text-main) !important;
+}
+
+#sortable .item .details span,
+#sortable .item .widget span,
+.description,
+.ladate {
+  color: var(--text-dim) !important;
+}
+
+#sortable .item:hover .title,
+#sortable .item:hover span {
+  color: var(--accent) !important;
+}
+
 /* --- MASTER CORE RESET & TRANSITIONS --- */
 body {
   --text-main: #ffffff;
