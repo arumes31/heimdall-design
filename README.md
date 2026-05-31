@@ -15,6 +15,7 @@ Transform your Heimdall dashboard into a state-of-the-art interface! This versio
 7.  **🌸 Ambient Particles & Auroras**: Togglable flowing background effects including drifting sakura petals and warm ambient color blobs tailored to each theme.
 8.  **📏 Smart Auto-Sizing**: Intelligently fits your layout in high-density grids. Simple cards remain ultra-compact allowing up to 10-12 widgets per row, while detailed/enhanced stats cards (e.g., Speedtest, Portainer) automatically expand horizontally to prevent text wrapping.
 9.  **🌬️ Widget Gap Slider**: Customize widget spacing dynamically from 1px up to 32px (defaults to 4px).
+10. **👆 Full-Card Interactivity**: Optimized click delegation ensures that clicking anywhere on an application card—including stats areas and widgets—triggers the app link, providing a seamless navigation experience.
 
 ---
 

@@ -212,6 +212,13 @@
     const card = e.target.closest('#sortable .item');
     if (!card) return;
 
+    // CARD CLICK DELEGATION: Trigger main link if clicking on sibling widget/stats area
+    const mainLink = card.querySelector('a');
+    const interactive = e.target.closest('a, button, input, select, textarea');
+    if (mainLink && !interactive) {
+      mainLink.click();
+    }
+
     // Clear existing ripples inside this card
     card.querySelectorAll('.glass-ripple').forEach(r => r.remove());
 
