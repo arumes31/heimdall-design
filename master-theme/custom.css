@@ -1,0 +1,370 @@
+/*
+ * =========================================================================
+ * 🎨 HEIMDALL UNIVERSAL MASTER THEME
+ * =========================================================================
+ * Features three toggleable premium design styles that preserve your configured
+ * custom widget/card colors and icon colors, adding professional 3D glass sheens,
+ * micro-animations, quick search filters, and animated system metrics.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;600;800&family=Quicksand:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* --- MASTER CORE OVERRIDES --- */
+body {
+  transition: background-color 0.5s ease, color 0.3s ease !important;
+}
+
+/* Base style for dashboard items (.item) to preserve user colors and icons */
+#sortable .item {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 
+              0 6px 20px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* Semi-transparent 3D Glass Gloss Sheen Layer */
+#sortable .item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+              rgba(255, 255, 255, 0.16) 0%, 
+              rgba(255, 255, 255, 0.0) 50%, 
+              rgba(0, 0, 0, 0.18) 100%) !important;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* Hover Zoom & Elevation */
+#sortable .item:hover {
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35), 
+              0 12px 30px rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Preserve original icon colors and add micro-hover action */
+#sortable .item img {
+  filter: none !important; /* Keeps icon colors completely intact */
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.25) !important;
+}
+#sortable .item:hover img {
+  transform: translateY(-2px) scale(1.06) !important;
+}
+
+/* --- THEME 1: CYBER-PREMIUM CLASS OVERRIDES --- */
+body.theme-cyber-premium {
+  --neon-cyan: #00f2ff;
+  --neon-magenta: #ff00e5;
+  --glass-bg: rgba(25, 14, 36, 0.65);
+  background-color: #190e24 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  color: #efdcfb !important;
+}
+
+body.theme-cyber-premium .divDate,
+body.theme-cyber-premium .meteo,
+body.theme-cyber-premium .divMetrics {
+  background-color: var(--glass-bg) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0, 242, 255, 0.2) !important;
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.08), 
+              inset 0 0 12px rgba(255, 0, 229, 0.05) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  position: relative;
+}
+
+/* Tech top-border lighting accent */
+body.theme-cyber-premium .divDate::before,
+body.theme-cyber-premium .meteo::before,
+body.theme-cyber-premium .divMetrics::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+}
+
+body.theme-cyber-premium .horloge {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--neon-cyan) !important;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.4), 0 0 2px var(--neon-cyan) !important;
+  font-weight: 800;
+}
+
+body.theme-cyber-premium .ladate span {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--neon-magenta) !important;
+  text-shadow: 0 0 8px rgba(255, 0, 229, 0.4) !important;
+  font-weight: 700;
+}
+
+body.theme-cyber-premium #sortable .item {
+  border-radius: 6px !important;
+  border: 1px solid rgba(0, 242, 255, 0.15) !important;
+}
+
+body.theme-cyber-premium #sortable .item:hover {
+  border-color: var(--neon-magenta) !important;
+  box-shadow: 0 10px 25px rgba(255, 0, 229, 0.25), 
+              0 0 10px rgba(0, 242, 255, 0.15) !important;
+}
+
+/* --- THEME 2: CYBER-ORGANIC CLASS OVERRIDES --- */
+body.theme-cyber-organic {
+  --emerald-biolum: #10b981;
+  --cyan-hologram: #06b6d4;
+  --glass-layer: rgba(12, 33, 49, 0.55);
+  background-color: #051424 !important;
+  font-family: 'Quicksand', sans-serif !important;
+  color: #d4e4fa !important;
+}
+
+body.theme-cyber-organic .divDate,
+body.theme-cyber-organic .meteo,
+body.theme-cyber-organic .divMetrics {
+  background-color: var(--glass-layer) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(20, 184, 166, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(1, 15, 31, 0.4), 
+              inset 0 1px 2px rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+
+body.theme-cyber-organic .horloge {
+  font-family: 'Quicksand', sans-serif;
+  color: var(--emerald-biolum) !important;
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.35) !important;
+  font-weight: 700;
+}
+
+body.theme-cyber-organic .ladate span {
+  font-family: 'Quicksand', sans-serif;
+  color: var(--cyan-hologram) !important;
+  text-shadow: 0 0 8px rgba(6, 182, 212, 0.3) !important;
+  font-weight: 700;
+}
+
+body.theme-cyber-organic #sortable .item {
+  border-radius: 16px !important;
+  border: 1px solid rgba(20, 184, 166, 0.2) !important;
+}
+
+body.theme-cyber-organic #sortable .item:hover {
+  border-color: var(--cyan-hologram) !important;
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15),
+              inset 0 0 12px rgba(6, 182, 212, 0.08) !important;
+}
+
+/* --- THEME 3: SLATE MINIMALIST CLASS OVERRIDES --- */
+body.theme-slate-minimalist {
+  --matte-bg: rgba(22, 22, 26, 0.55);
+  background-color: #121214 !important;
+  font-family: 'Inter', sans-serif !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+body.theme-slate-minimalist .divDate,
+body.theme-slate-minimalist .meteo,
+body.theme-slate-minimalist .divMetrics {
+  background-color: var(--matte-bg) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0px rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+body.theme-slate-minimalist .horloge {
+  font-family: 'Outfit', sans-serif;
+  color: #fff !important;
+  font-weight: 200;
+}
+
+body.theme-slate-minimalist .ladate span {
+  font-family: 'Outfit', sans-serif;
+  color: #fff !important;
+  font-weight: 500;
+}
+
+body.theme-slate-minimalist #sortable .item {
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body.theme-slate-minimalist #sortable .item:hover {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4) !important;
+}
+
+
+/* =========================================================================
+ * SYSTEM METRICS WIDGET STYLINGS (.divMetrics)
+ * =========================================================================
+ */
+.divMetrics {
+  order: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px !important;
+  min-width: 220px;
+  box-sizing: border-box;
+}
+
+.metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.metric-label {
+  font-size: 0.75em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.metric-track {
+  width: 90px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-left: 10px;
+  position: relative;
+}
+
+.metric-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s ease-in-out;
+}
+
+/* Theme color links for bar graphs */
+body.theme-cyber-premium .metric-bar {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+  box-shadow: 0 0 6px var(--neon-cyan);
+}
+body.theme-cyber-organic .metric-bar {
+  background: var(--emerald-biolum);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+body.theme-slate-minimalist .metric-bar {
+  background: #ffffff;
+}
+
+.metric-value {
+  font-size: 0.8em;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: #fff;
+  width: 45px;
+  text-align: right;
+}
+
+
+/* =========================================================================
+ * FLOATING THEME SELECTOR DIAL
+ * =========================================================================
+ */
+.theme-selector-pill {
+  position: fixed;
+  bottom: 24px;
+  right: 80px; /* Aligned nicely next to Heimdall settings gear icon */
+  background: rgba(20, 20, 25, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: 6px 12px;
+  display: flex;
+  gap: 6px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+  transition: all 0.3s ease;
+}
+
+.theme-selector-pill:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.theme-btn {
+  background: transparent;
+  border: none;
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  outline: none !important;
+}
+
+.theme-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-btn.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Theme-specific styles inside switcher active state */
+body.theme-cyber-premium .theme-btn.active {
+  background: rgba(0, 242, 255, 0.2);
+  color: var(--neon-cyan);
+  border: 1px solid rgba(0, 242, 255, 0.3);
+}
+
+body.theme-cyber-organic .theme-btn.active {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--emerald-biolum);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+
+/* =========================================================================
+ * SEARCH BAR & REAL-TIME FILTER SYSTEM
+ * =========================================================================
+ */
+.search-highlight {
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.4), inset 0 1px 2px rgba(255,255,255,0.4) !important;
+  transform: scale(1.03) !important;
+  z-index: 10 !important;
+}
+
+/* Softly dim out non-matching cards during active searches */
+.item-dimmed {
+  opacity: 0.15 !important;
+  transform: scale(0.92) !important;
+  pointer-events: none;
+}
+
+/* Custom placeholder styles to fit tech themes */
+::placeholder {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
