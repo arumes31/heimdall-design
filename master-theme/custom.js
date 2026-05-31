@@ -1,8 +1,12 @@
 // =========================================================================
-// 🎨 HEIMDALL MASTER ENGINE v2.5 (custom.js)
+// 🎨 HEIMDALL MASTER ENGINE v2.6 (custom.js)
 // =========================================================================
 
 (function() {
+  // --- Feature 94: Skeleton Loading UI ---
+  document.body.classList.add('skeleton-loading');
+  window.addEventListener('load', () => setTimeout(() => document.body.classList.remove('skeleton-loading'), 600));
+
   const sortableElement = document.querySelector('.appheader');
   if (!sortableElement) return;
 
@@ -120,7 +124,7 @@
   }
   updateClock(); setInterval(updateClock, 1000);
 
-  // --- 4. Latency Monitors ---
+  // --- 4. Latency Monitors (Multi-Probe Engine) ---
   function initLatencyPingMonitors() {
     document.querySelectorAll('#sortable .item').forEach(card => {
       const link = card.querySelector('a');
@@ -132,33 +136,42 @@
           card.querySelector('.title')?.appendChild(dot);
         }
 
-        // Timeout controller for long-pending fetches
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        const timeoutId = setTimeout(() => controller.abort(), 4000);
 
-        fetch(link.href, { 
-          mode: 'no-cors', 
-          cache: 'no-store',
-          signal: controller.signal 
-        })
-        .then(() => {
+        const setStatus = (status) => {
           clearTimeout(timeoutId);
-          dot.classList.remove('offline');
-          dot.classList.add('online');
-          dot.title = "Service Reachable";
-        })
+          dot.classList.remove('online', 'offline');
+          dot.classList.add(status);
+          dot.title = status === 'online' ? "Service Reachable" : "Service Offline or Restricted";
+        };
+
+        const probe = (url) => fetch(url, { mode: 'no-cors', cache: 'no-store', signal: controller.signal, referrerPolicy: 'no-referrer' });
+
+        // Phase 1: Direct Deep Link Fetch
+        probe(link.href)
+        .then(() => setStatus('online'))
         .catch(() => {
-          clearTimeout(timeoutId);
-          dot.classList.remove('online');
-          dot.classList.add('offline');
-          dot.title = "Service Offline or Unreachable";
+          // Phase 2: Fallback to Root Favicon (Often lacks strict CORP/CORS)
+          try {
+            const origin = new URL(link.href).origin;
+            probe(origin + '/favicon.ico')
+            .then(() => setStatus('online'))
+            .catch(() => {
+              // Phase 3: Legacy Image Probe (Most permissive cross-origin method)
+              const img = new Image();
+              img.onload = () => setStatus('online');
+              img.onerror = () => setStatus('offline');
+              img.src = origin + '/favicon.ico?v=' + Date.now();
+            });
+          } catch(e) { setStatus('offline'); }
         });
       }
     });
   }
-  // Run every 30 seconds for live health updates
+  // Run every 60 seconds for live health updates
   initLatencyPingMonitors();
-  setInterval(initLatencyPingMonitors, 30000);
+  setInterval(initLatencyPingMonitors, 60000);
 
   // --- 5. Theme Engine ---
   const themes = [
@@ -265,6 +278,13 @@
   addToggle('Animated Icons', 'animated-icons', true, (v) => v && inlineSvgIcons());
   addToggle('Animated Borders', 'animated-borders', false);
   addToggle('Health Pulse', 'health-pulse', true);
+  addToggle('Zen Mode (Icon Only)', 'zen-mode', false);
+
+  let autoRefreshTimer;
+  addToggle('Auto-Refresh (1h)', 'auto-refresh', false, (v) => {
+    clearTimeout(autoRefreshTimer);
+    if (v) autoRefreshTimer = setTimeout(() => location.reload(), 3600000);
+  });
 
   const trigger = document.createElement('button');
   trigger.className = 'theme-trigger-btn'; trigger.innerHTML = '🎨';
@@ -276,6 +296,52 @@
     if (!panel.contains(e.target) && e.target !== trigger) panel.classList.remove('open');
     const card = e.target.closest('#sortable .item');
     if (card && !e.target.closest('a, button, input')) card.querySelector('a')?.click();
+  });
+
+  // --- Feature 1: Spotlight Search (Cmd+K) ---
+  const spotlightOverlay = document.createElement('div');
+  spotlightOverlay.className = 'spotlight-overlay';
+  spotlightOverlay.innerHTML = `
+    <div class="spotlight-modal">
+      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" id="spotlight-input" placeholder="Search apps (Cmd+K)..." autocomplete="off" spellcheck="false">
+    </div>
+  `;
+  document.body.appendChild(spotlightOverlay);
+  const spotlightInput = document.getElementById('spotlight-input');
+
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      spotlightOverlay.classList.add('active');
+      spotlightInput.focus();
+    }
+    if (e.key === 'Escape' && spotlightOverlay.classList.contains('active')) {
+      spotlightOverlay.classList.remove('active');
+      spotlightInput.value = '';
+      spotlightInput.dispatchEvent(new Event('input')); // trigger filter reset
+    }
+  });
+
+  spotlightOverlay.addEventListener('click', (e) => {
+    if (e.target === spotlightOverlay) {
+      spotlightOverlay.classList.remove('active');
+    }
+  });
+
+  spotlightInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    document.querySelectorAll('#sortable .item').forEach(card => {
+      const titleEl = card.querySelector('a') || card.querySelector('.title') || card;
+      const title = titleEl.textContent.toLowerCase();
+      if (query === '') {
+        card.classList.remove('search-highlight');
+      } else if (title.includes(query)) {
+        card.classList.add('search-highlight');
+      } else {
+        card.classList.remove('search-highlight');
+      }
+    });
   });
 
   console.log("Heimdall Master Engine v2.5 Active.");
