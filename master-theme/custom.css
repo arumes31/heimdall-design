@@ -982,12 +982,12 @@ body.dynamic-sizing-active #sortable {
 
 /* Individual compact item sizing and layout rules */
 body.dynamic-sizing-active #sortable .item {
-  width: auto !important;
+  width: fit-content !important; /* Size dynamically to used text and icon space */
   height: auto !important;
   flex: 0 1 auto !important;
-  min-width: 105px !important; /* compact simple widget width */
-  max-width: 135px !important; /* narrow boundary for high density grid packing */
-  padding: 12px 10px !important;
+  min-width: 90px !important; /* compact simple widget base width */
+  max-width: 160px !important; /* narrow boundary for high density grid packing */
+  padding: 12px 14px !important; /* premium side padding */
   display: inline-flex !important;
   flex-direction: column !important;
   justify-content: center !important;
@@ -1041,7 +1041,7 @@ body.dynamic-sizing-active #sortable .item a span {
 /* Limit text width to show ellipsis ONLY for simple compact cards */
 body.dynamic-sizing-active #sortable .item:not(:has(.widget)):not(:has(.link-stats)):not(:has([class*="-stats"])):not(:has(.details)):not(:has([class*="-details"])) .title,
 body.dynamic-sizing-active #sortable .item:not(:has(.widget)):not(:has(.link-stats)):not(:has([class*="-stats"])):not(:has(.details)):not(:has([class*="-details"])) a span {
-  max-width: 95px !important;
+  max-width: 120px !important; /* expanded text limit to fit title space without early clipping */
 }
 
 /* Ensure online/offline latency dots are beautifully aligned */
@@ -1402,7 +1402,8 @@ body.theme-toxic-hazard #search input {
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-  flex: 1 1 auto !important;
+  flex: 0 1 auto !important; /* dynamic resizing to used text space */
+  width: fit-content !important;
 }
 
 .divClock .horloge {
