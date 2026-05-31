@@ -1,4 +1,32 @@
-# Project Memory
+# --- Project Specific Privacy ---
+GEMINI.md
 MEMORY.md
 .gemini/
 .gemini_security/
+
+# --- Node.js ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.eslintcache
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- IDEs/Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.sublime-project
+.sublime-workspace
+
+# --- Misc ---
+.env
+.env.local
+dist/
+build/
