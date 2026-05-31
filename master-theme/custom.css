@@ -924,6 +924,51 @@ body.theme-matrix-rain .theme-option-btn.active { border-color: rgba(0, 255, 65,
 body.theme-toxic-hazard .theme-option-btn.active { border-color: rgba(57, 255, 20, 0.4); color: #39ff14; }
 
 /* =========================================================================
+ * CONTAINER LAYER STACK OVERRIDES (solving display-behind-background issues)
+ * =========================================================================
+ */
+#ambient-particles {
+  z-index: 1 !important;
+}
+
+body.auroras-active .aurora-blob {
+  z-index: 1 !important;
+}
+
+#sortable, 
+.headerInfos, 
+#search,
+.theme-trigger-btn,
+.theme-selection-panel {
+  position: relative !important;
+}
+
+#sortable, 
+.headerInfos, 
+#search {
+  z-index: 5 !important;
+}
+
+/* Card Layer Stack Overrides */
+#sortable .item {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+#sortable .item::after {
+  z-index: 1 !important;
+}
+
+body.laser-outlines-active #sortable .item::before {
+  z-index: 2 !important; /* outline on top of background and sheen */
+}
+
+#sortable .item a {
+  position: relative !important;
+  z-index: 3 !important; /* text/icon content on top of everything! */
+}
+
+/* =========================================================================
  * FEATURE 12: SMART AUTO-SIZING & DYNAMIC WIDGET COMPACTNESS
  * =========================================================================
  */
@@ -933,7 +978,7 @@ body.dynamic-sizing-active #sortable {
   display: flex !important;
   flex-wrap: wrap !important;
   justify-content: center !important;
-  gap: var(--widget-gap, 16px) !important;
+  gap: var(--widget-gap, 4px) !important; /* defaults to compact gap */
   padding: 20px 40px !important;
   width: 100% !important;
   max-width: 1600px !important;
@@ -945,14 +990,13 @@ body.dynamic-sizing-active #sortable .item {
   width: auto !important;
   height: auto !important;
   flex: 0 1 auto !important;
-  min-width: 155px !important;
-  max-width: 380px !important;
-  min-height: 54px !important;
-  padding: 8px 18px !important;
+  min-width: 110px !important; /* narrow widget width */
+  max-width: 280px !important;
+  padding: 12px 10px !important;
   display: inline-flex !important;
   flex-direction: column !important;
   justify-content: center !important;
-  align-items: stretch !important;
+  align-items: center !important;
   transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
               border-color 0.3s ease,
               box-shadow 0.3s ease,
@@ -960,13 +1004,14 @@ body.dynamic-sizing-active #sortable .item {
               padding 0.4s ease !important;
 }
 
-/* Standard anchor link adjustments */
+/* Standard anchor link adjustments (retaining vertical structure) */
 body.dynamic-sizing-active #sortable .item a {
   display: flex !important;
-  flex-direction: row !important;
+  flex-direction: column !important; /* keep standard vertical column layout! */
   align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 12px !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 8px !important;
   width: 100% !important;
   height: 100% !important;
   padding: 0 !important;
@@ -974,10 +1019,8 @@ body.dynamic-sizing-active #sortable .item a {
   text-decoration: none !important;
 }
 
-/* Make card icons slightly smaller and perfectly side-by-side with text */
+/* Make card icons standard and centered in compact view */
 body.dynamic-sizing-active #sortable .item img {
-  width: 24px !important;
-  height: 24px !important;
   object-fit: contain !important;
   flex-shrink: 0 !important;
 }
@@ -992,15 +1035,16 @@ body.dynamic-sizing-active #sortable .item a span {
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
-  margin: 0 !important;
+  margin-top: 4px !important;
   padding: 0 !important;
   color: inherit !important;
 }
 
 /* Ensure online/offline latency dots are beautifully aligned */
 body.dynamic-sizing-active #sortable .item .latency-dot {
-  margin-left: auto !important;
-  margin-right: 2px !important;
+  margin-left: 6px !important;
+  margin-right: 0 !important;
+  display: inline-block !important;
 }
 
 /* Detailed widget output formatting (Enhanced Apps) */
@@ -1011,12 +1055,13 @@ body.dynamic-sizing-active #sortable .item .details,
 body.dynamic-sizing-active #sortable .item [class*="-details"] {
   display: block !important;
   width: 100% !important;
-  margin-top: 8px !important;
-  padding-top: 8px !important;
+  margin-top: 10px !important;
+  padding-top: 10px !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
   font-size: 0.8em !important;
   line-height: 1.4 !important;
   opacity: 0.85 !important;
+  text-align: center !important;
 }
 
 /* Customize details typography for better readability */
@@ -1042,7 +1087,7 @@ body.laser-outlines-active #sortable .item::before {
   top: -1.5px; left: -1.5px; right: -1.5px; bottom: -1.5px;
   background: conic-gradient(from 0deg, transparent 65%, var(--neon-cyan, #00f2ff) 85%, var(--neon-magenta, #ff00e5) 100%);
   border-radius: inherit;
-  z-index: 0;
+  z-index: 2 !important;
   opacity: 0;
   transition: opacity 0.4s ease !important;
   pointer-events: none;
@@ -1068,7 +1113,7 @@ body.laser-outlines-active #sortable .item::before {
   width: 100vw !important;
   height: 100vh !important;
   pointer-events: none !important;
-  z-index: -1 !important;
+  z-index: 1 !important;
   opacity: 0.8 !important;
   transition: opacity 0.8s ease-in-out !important;
 }

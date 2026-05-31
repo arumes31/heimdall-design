@@ -308,7 +308,7 @@
   let searchPlacement = localStorage.getItem('heimdall-search-placement') || 'default';
   document.body.classList.add(`search-${searchPlacement}`);
 
-  let widgetGap = localStorage.getItem('heimdall-widget-gap') || '16';
+  let widgetGap = localStorage.getItem('heimdall-widget-gap') || '4';
   document.documentElement.style.setProperty('--widget-gap', `${widgetGap}px`);
 
   // A. Create Trigger FAB Button
@@ -426,7 +426,7 @@
       <span class="panel-subtitle">🌬️ Widget Gap</span>
       <span id="gap-val-display" style="font-size:0.8em; color:rgba(255,255,255,0.5); font-weight:600;">${widgetGap}px</span>
     </div>
-    <input type="range" id="widget-gap-slider" min="8" max="32" value="${widgetGap}" style="width:100%; height:4px; border-radius:2px; background:rgba(255,255,255,0.15); outline:none; cursor:pointer; accent-color:#10b981;">
+    <input type="range" id="widget-gap-slider" min="1" max="32" value="${widgetGap}" style="width:100%; height:4px; border-radius:2px; background:rgba(255,255,255,0.15); outline:none; cursor:pointer; accent-color:#10b981;">
   `;
   selectionPanel.appendChild(gapSection);
 
