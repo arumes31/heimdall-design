@@ -937,9 +937,7 @@ body.auroras-active .aurora-blob {
 
 #sortable, 
 .headerInfos, 
-#search,
-.theme-trigger-btn,
-.theme-selection-panel {
+#search {
   position: relative !important;
 }
 
