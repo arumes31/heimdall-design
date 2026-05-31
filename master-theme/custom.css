@@ -1,6 +1,6 @@
 /*
  * =========================================================================
- * 🎨 HEIMDALL UNIVERSAL MASTER THEME (Redesigned Gallery - 10 Premium Themes)
+ * 🎨 HEIMDALL UNIVERSAL MASTER THEME (Redesigned Gallery - 20 Premium Themes)
  * =========================================================================
  * Redesigned visual dashboard architecture featuring:
  * 1. Big Date and Clock header panels.
@@ -12,10 +12,16 @@
  * *NO WIDGET TRANSPARENCY/HIDING HOVER OR SEARCH EFFECTS*
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Orbitron:wght@400;600;800&family=Quicksand:wght@400;500;700&family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Orbitron:wght@400;600;800&family=Quicksand:wght@400;500;700&family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@300;500;700&family=Permanent+Marker&family=Patrick+Hand&family=VT323&display=swap');
 
 /* --- MASTER CORE RESET & TRANSITIONS --- */
 body {
+  --text-main: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.6);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --border-color: rgba(255, 255, 255, 0.16);
+  --accent: #ffffff;
+  
   transition: background-color 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), 
               color 0.4s ease !important;
   min-height: 100vh;
@@ -26,8 +32,9 @@ body {
   position: relative !important;
   overflow: hidden !important;
   border-radius: 12px !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.22), 
+  border: 1px solid var(--border-color) !important;
+  background: var(--card-bg) !important;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 
               0 8px 24px rgba(0, 0, 0, 0.2) !important;
   transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
               border-color 0.3s ease,
@@ -225,170 +232,139 @@ body.auroras-active .aurora-blob {
   gap: 4px;
 }
 
+/* --- Feature 30: Widget Spacing Variable Mapping --- */
+#sortable {
+  gap: var(--widget-gap, 16px) !important;
+}
 
 /* =========================================================================
  * THEME 1: TOKYO MIDNIGHT (Deep Indigo Glass)
  * =========================================================================
  */
 body.theme-tokyo-midnight {
-  --bg: #0a0a12; --accent: #00ffff; --secondary: #bb9af7;
-  background-color: var(--bg) !important; color: #a9b1d6 !important; font-family: 'JetBrains Mono', monospace !important;
+  --bg: #0a0a12; --accent: #00ffff; --text-main: #efeff1; --text-dim: #a9b1d6; --card-bg: rgba(16, 16, 26, 0.7); --border-color: rgba(187, 154, 247, 0.3);
+  background-color: var(--bg) !important; color: var(--text-dim) !important; font-family: 'JetBrains Mono', monospace !important;
 }
 body.theme-tokyo-midnight.auroras-active .blob-1 { background-color: #7aa2f7; }
 body.theme-tokyo-midnight.auroras-active .blob-2 { background-color: #bb9af7; }
 body.theme-tokyo-midnight.auroras-active .blob-3 { background-color: #00ffff; }
-body.theme-tokyo-midnight .divDate, body.theme-tokyo-midnight .meteo {
-  background: rgba(16, 16, 26, 0.7) !important; border: 1px solid rgba(187, 154, 247, 0.3) !important;
-  box-shadow: 0 0 20px rgba(187, 154, 247, 0.1) !important; backdrop-filter: blur(20px);
-}
-body.theme-tokyo-midnight .horloge { color: var(--accent) !important; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5) !important; }
-body.theme-tokyo-midnight #sortable .item { border-radius: 8px; border: 1px solid rgba(122, 162, 247, 0.15); background: rgba(16, 16, 26, 0.8) !important; }
-body.theme-tokyo-midnight #sortable .item:hover { border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 255, 255, 0.2) !important; }
 
 /* THEME 2: SWISS BRUTALISM (Raw Gray & High Contrast) */
 body.theme-brutalism {
-  --bg: #e0e0e0; --accent: #000;
+  --bg: #e0e0e0; --accent: #000; --text-main: #000; --text-dim: #333; --card-bg: #fff; --border-color: #000;
   background-color: var(--bg) !important; color: #000 !important; font-family: 'Space Grotesk', sans-serif !important;
 }
-body.theme-brutalism .divDate, body.theme-brutalism .meteo, body.theme-brutalism #sortable .item {
-  background: #fff !important; border: 3px solid #000 !important; border-radius: 0 !important; box-shadow: 8px 8px 0 #000 !important;
-}
-body.theme-brutalism .horloge { font-weight: 900; color: #000 !important; }
-body.theme-brutalism #sortable .item:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0 #000 !important; }
+body.theme-brutalism .divDate, body.theme-brutalism .meteo, body.theme-brutalism #sortable .item { border-width: 3px !important; border-radius: 0 !important; box-shadow: 8px 8px 0 #000 !important; }
 
 /* THEME 3: NEUMORPHIC SOFT (Extruded 3D) */
 body.theme-neumorphic {
-  --bg: #e0e5ec;
+  --bg: #e0e5ec; --accent: #444; --text-main: #444; --text-dim: #666; --card-bg: #e0e5ec; --border-color: transparent;
   background-color: var(--bg) !important; color: #444 !important;
 }
 body.theme-neumorphic .divDate, body.theme-neumorphic .meteo, body.theme-neumorphic #sortable .item {
-  background: var(--bg) !important; border: none !important; border-radius: 20px !important;
   box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5) !important;
 }
-body.theme-neumorphic #sortable .item:hover { box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.1), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.7) !important; }
 
 /* THEME 4: DEEP SEA BIOLUM (Darkest Navy & Teal) */
 body.theme-biolum {
-  --bg: #010409; --accent: #00ffcc;
-  background-color: var(--bg) !important; color: #c9d1d9 !important;
+  --bg: #010409; --accent: #00ffcc; --text-main: #fff; --text-dim: #c9d1d9; --card-bg: rgba(13, 17, 23, 0.8); --border-color: rgba(0, 255, 204, 0.2);
+  background-color: var(--bg) !important; color: var(--text-dim) !important;
 }
 body.theme-biolum.auroras-active .blob-1 { background-color: #00ffcc; }
-body.theme-biolum #sortable .item { border: 1px solid rgba(0, 255, 204, 0.2); background: rgba(13, 17, 23, 0.8) !important; box-shadow: 0 0 15px rgba(0, 255, 204, 0.05); }
-body.theme-biolum .horloge { color: var(--accent) !important; text-shadow: 0 0 15px rgba(0, 255, 204, 0.8) !important; }
 
 /* THEME 5: MARS COLONY (Dusty Orange & Industrial) */
 body.theme-mars {
-  --bg: #1a0f0a; --accent: #ff4d00;
-  background-color: var(--bg) !important; color: #ffcc99 !important;
+  --bg: #1a0f0a; --accent: #ff4d00; --text-main: #ffcc99; --text-dim: #ff9966; --card-bg: rgba(43, 22, 12, 0.7); --border-color: rgba(255, 77, 0, 0.2);
+  background-color: var(--bg) !important; color: var(--text-main) !important;
 }
-body.theme-mars .divDate, body.theme-mars .meteo, body.theme-mars #sortable .item {
-  background: rgba(43, 22, 12, 0.7) !important; border: 1px solid #ff4d0033 !important; border-radius: 4px;
-}
-body.theme-mars .divDate::after { content: 'PROPERTY OF MARS SEC'; position: absolute; bottom: 4px; right: 8px; font-size: 0.5em; opacity: 0.3; }
 
 /* THEME 6: RETRO MACINTOSH (1984 Beige) */
 body.theme-macintosh {
-  --bg: #dcd9d4; --accent: #000;
+  --bg: #dcd9d4; --accent: #000; --text-main: #000; --text-dim: #444; --card-bg: #fff; --border-color: #000;
   background-color: var(--bg) !important; color: #000 !important; font-family: 'Courier New', Courier, monospace !important;
 }
-body.theme-macintosh .divDate, body.theme-macintosh .meteo, body.theme-macintosh #sortable .item {
-  background: #fff !important; border: 2px solid #000 !important; border-radius: 0 !important; box-shadow: 4px 4px 0 #888 !important;
-}
+body.theme-macintosh .divDate, body.theme-macintosh .meteo, body.theme-macintosh #sortable .item { border-radius: 0 !important; box-shadow: 4px 4px 0 #888 !important; }
 
 /* THEME 7: CYBER-GRAFFITI (Neon Spray Paint) */
 body.theme-graffiti {
-  --bg: #050505; --accent: #ff00ff;
+  --bg: #050505; --accent: #39ff14; --text-main: #ff00ff; --text-dim: #fff; --card-bg: rgba(10, 10, 10, 0.9); --border-color: #ff00ff;
   background-color: var(--bg) !important; color: #fff !important;
 }
-body.theme-graffiti #sortable .item { border: 2px solid #ff00ff; box-shadow: 0 0 10px #ff00ff, inset 0 0 10px #ff00ff !important; border-radius: 12px; }
-body.theme-graffiti .horloge { font-family: 'Permanent Marker', cursive; color: #39ff14 !important; }
+body.theme-graffiti .horloge { font-family: 'Permanent Marker', cursive; }
 
 /* THEME 8: ROYAL VELVET (Deep Burgundy & Gold) */
 body.theme-velvet {
-  --bg: #1c0202; --accent: #d4af37;
+  --bg: #1c0202; --accent: #d4af37; --text-main: #fdf2f2; --text-dim: #e5c1a7; --card-bg: rgba(44, 4, 4, 0.6); --border-color: rgba(212, 175, 55, 0.4);
   background-color: var(--bg) !important; color: #fdf2f2 !important;
-}
-body.theme-velvet .divDate, body.theme-velvet .meteo, body.theme-velvet #sortable .item {
-  background: rgba(44, 4, 4, 0.6) !important; border: 1px solid #d4af3766 !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
 }
 
 /* THEME 9: PAPER TEXTURE (Notebook Style) */
 body.theme-paper {
-  --bg: #fdf6e3; --accent: #268bd2;
-  background-color: var(--bg) !important; color: #586e75 !important; font-family: 'Patrick Hand', cursive !important;
-}
-body.theme-paper .divDate, body.theme-paper .meteo, body.theme-paper #sortable .item {
-  background: #fffef0 !important; border: 1px solid #eee8d5 !important; border-radius: 2px; box-shadow: 2px 2px 5px rgba(0,0,0,0.05) !important;
+  --bg: #fdf6e3; --accent: #268bd2; --text-main: #073642; --text-dim: #586e75; --card-bg: #fffef0; --border-color: #eee8d5;
+  background-color: var(--bg) !important; color: var(--text-main) !important; font-family: 'Patrick Hand', cursive !important;
 }
 
 /* THEME 10: AMOLED PURE BLACK */
 body.theme-amoled {
-  --bg: #000000; --accent: #ffffff;
+  --bg: #000000; --accent: #ffffff; --text-main: #ffffff; --text-dim: #888; --card-bg: #000; --border-color: rgba(255,255,255,0.15);
   background-color: #000 !important; color: #fff !important;
-}
-body.theme-amoled .divDate, body.theme-amoled .meteo, body.theme-amoled #sortable .item {
-  background: #000 !important; border: 1px solid rgba(255,255,255,0.15) !important; border-radius: 0;
 }
 
 /* THEME 11: PASTEL DREAM (Soft Bubbly Glass) */
 body.theme-pastel {
-  --bg: #fdf2f8; --accent: #f472b6;
-  background-color: var(--bg) !important; color: #831843 !important;
+  --bg: #fdf2f8; --accent: #f472b6; --text-main: #831843; --text-dim: #be185d; --card-bg: rgba(255, 255, 255, 0.5); --border-color: #fff;
+  background-color: var(--bg) !important; color: var(--text-main) !important;
 }
-body.theme-pastel .divDate, body.theme-pastel .meteo, body.theme-pastel #sortable .item {
-  background: rgba(255, 255, 255, 0.4) !important; border: 2px solid #fff !important; border-radius: 25px !important; backdrop-filter: blur(10px);
-}
+body.theme-pastel .divDate, body.theme-pastel .meteo, body.theme-pastel #sortable .item { border-radius: 25px !important; backdrop-filter: blur(10px); }
 
 /* THEME 12: INDUSTRIAL STEEL (Brushed Metal) */
 body.theme-steel {
-  --bg: #2d3436; --accent: #ffa502;
+  --bg: #2d3436; --accent: #ffa502; --text-main: #fff; --text-dim: #dfe6e9; --card-bg: linear-gradient(135deg, #2d3436 0%, #636e72 100%); --border-color: #000;
   background-color: var(--bg) !important; color: #dfe6e9 !important;
-}
-body.theme-steel #sortable .item {
-  background: linear-gradient(135deg, #2d3436 0%, #636e72 100%) !important; border: 1px solid #000; box-shadow: inset 0 1px 1px #fff3 !important;
 }
 
 /* THEME 13: EMERALD CITY (Crystal Green) */
 body.theme-emerald {
-  --bg: #064e3b; --accent: #34d399;
+  --bg: #064e3b; --accent: #34d399; --text-main: #d1fae5; --text-dim: #6ee7b7; --card-bg: rgba(6, 78, 59, 0.8); --border-color: var(--accent);
   background-color: var(--bg) !important; color: #d1fae5 !important;
 }
-body.theme-emerald .divDate, body.theme-emerald .meteo { background: rgba(6, 78, 59, 0.8) !important; border: 1px solid var(--accent); }
 
 /* THEME 14: VOLCANIC MAGMA (Obsidian & Lava) */
 body.theme-magma {
-  --bg: #0f0000; --accent: #ff4500;
-  background-color: var(--bg) !important; color: #ff9900 !important;
+  --bg: #0f0000; --accent: #ff4500; --text-main: #ff9900; --text-dim: #cc3300; --card-bg: rgba(20, 0, 0, 0.8); --border-color: #ff450066;
+  background-color: var(--bg) !important; color: var(--text-main) !important;
 }
-body.theme-magma #sortable .item { border-color: #ff450033; box-shadow: 0 0 15px rgba(255, 69, 0, 0.1), inset 0 0 10px rgba(255, 69, 0, 0.1) !important; }
+body.theme-magma #sortable .item { box-shadow: 0 0 15px rgba(255, 69, 0, 0.1), inset 0 0 10px rgba(255, 69, 0, 0.1) !important; }
 
 /* THEME 15: COFFEE HOUSE (Espresso Tones) */
 body.theme-coffee {
-  --bg: #2b1d0e; --accent: #d2b48c;
+  --bg: #2b1d0e; --accent: #d2b48c; --text-main: #f5f5dc; --text-dim: #c4a484; --card-bg: rgba(43, 30, 15, 0.7); --border-color: #4b3621;
   background-color: var(--bg) !important; color: #f5f5dc !important;
 }
 
 /* THEME 16: ARCTIC NIGHT (Shimmering Ice) */
 body.theme-arctic {
-  --bg: #000814; --accent: #00b4d8;
+  --bg: #000814; --accent: #00b4d8; --text-main: #fff; --text-dim: #caf0f8; --card-bg: rgba(0, 20, 40, 0.6); --border-color: rgba(0, 180, 216, 0.3);
   background-color: var(--bg) !important; color: #caf0f8 !important;
 }
 
 /* THEME 17: GOLDEN HOUR (Warm Glow) */
 body.theme-golden {
-  --bg: #451a03; --accent: #fbbf24;
+  --bg: #451a03; --accent: #fbbf24; --text-main: #fff; --text-dim: #fef3c7; --card-bg: rgba(69, 26, 3, 0.7); --border-color: rgba(251, 191, 36, 0.3);
   background-color: var(--bg) !important; color: #fef3c7 !important;
 }
 
 /* THEME 18: GLITCH CORE (Cyber Static) */
 body.theme-glitch {
-  --bg: #111; --accent: #f0f;
+  --bg: #111; --accent: #f0f; --text-main: #0f0; --text-dim: #f0f; --card-bg: #000; --border-color: #0f0;
   background-color: #111 !important; color: #0f0 !important;
 }
 body.theme-glitch #sortable .item:hover { animation: glitch-shake 0.2s infinite; }
-@keyframes glitch-shake { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
 
 /* THEME 19: RAINBOW GLASS */
+body.theme-rainbow {
+  --bg: #0f172a; --accent: #fff; --text-main: #fff; --text-dim: rgba(255,255,255,0.7); --card-bg: rgba(255,255,255,0.05); --border-color: rgba(255,255,255,0.2);
+}
 body.theme-rainbow #sortable .item:nth-child(5n+1) { border-color: #ff0000 !important; }
 body.theme-rainbow #sortable .item:nth-child(5n+2) { border-color: #00ff00 !important; }
 body.theme-rainbow #sortable .item:nth-child(5n+3) { border-color: #0000ff !important; }
@@ -397,10 +373,10 @@ body.theme-rainbow #sortable .item:nth-child(5n+5) { border-color: #ff00ff !impo
 
 /* THEME 20: TERMINAL AMBER */
 body.theme-amber {
-  --bg: #000; --accent: #ffb000;
+  --bg: #000; --accent: #ffb000; --text-main: #ffb000; --text-dim: #cc8800; --card-bg: #000; --border-color: #ffb000;
   background-color: #000 !important; color: #ffb000 !important; font-family: 'VT323', monospace !important;
 }
-body.theme-amber .divDate, body.theme-amber .meteo, body.theme-amber #sortable .item { border: 1px solid var(--accent); border-radius: 0; box-shadow: none !important; }
+body.theme-amber .divDate, body.theme-amber .meteo, body.theme-amber #sortable .item { border-radius: 0; box-shadow: none !important; }
 
 /* =========================================================================
  * FEATURE 47: ANIMATED BORDERS (The Snake Effect)
@@ -458,15 +434,16 @@ body.theme-amber .divDate, body.theme-amber .meteo, body.theme-amber #sortable .
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .divDate:hover, .meteo:hover { transform: translateY(-2px); }
-.horloge, .ladate { display: inline-block; margin-right: 20px; color: #fff !important; }
+.horloge, .ladate { display: inline-block; margin-right: 20px; color: var(--text-main) !important; }
 .horloge { font-size: 5.4em !important; font-weight: 200 !important; letter-spacing: -2px; line-height: 1; }
-.ladate { font-size: 0.95em !important; line-height: 1.6; letter-spacing: 1.5px; }
-.ladate span { display: block; font-size: 1.45em; letter-spacing: 1px; margin-bottom: 3px; font-weight: 700; }
-.meteo { flex-direction: column; align-items: flex-start; min-width: 280px; }
+.ladate { font-size: 0.95em !important; line-height: 1.6; letter-spacing: 1.5px; color: var(--text-dim) !important; }
+.ladate span { display: block; font-size: 1.45em; letter-spacing: 1px; margin-bottom: 3px; font-weight: 700; color: var(--accent) !important; }
+.meteo { flex-direction: column; align-items: flex-start; min-width: 280px; background: var(--card-bg) !important; border: 1px solid var(--border-color) !important; border-radius: 12px; }
+.divDate { background: var(--card-bg) !important; border: 1px solid var(--border-color) !important; border-radius: 12px; }
 .ville-temp-container { display: flex; justify-content: space-between; width: 100%; align-items: center; }
-.temperature { font-size: 3.4em !important; font-weight: 300 !important; color: #fff !important; }
-.ville { font-size: 1.25em !important; font-weight: 700 !important; color: #fff !important; }
-.description { font-size: 0.9em !important; color: rgba(255, 255, 255, 0.6) !important; }
+.temperature { font-size: 3.4em !important; font-weight: 300 !important; color: var(--text-main) !important; }
+.ville { font-size: 1.25em !important; font-weight: 700 !important; color: var(--text-main) !important; }
+.description { font-size: 0.9em !important; color: var(--text-dim) !important; }
 
 /* =========================================================================
  * REDESIGNED SEARCH & FILTER SYSTEM
@@ -474,15 +451,15 @@ body.theme-amber .divDate, body.theme-amber .meteo, body.theme-amber #sortable .
  */
 #search input {
   background: rgba(255, 255, 255, 0.05) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 8px !important; color: #fff !important; padding: 10px 18px !important;
+  border-radius: 8px !important; color: var(--text-main) !important; padding: 10px 18px !important;
   backdrop-filter: blur(16px) !important; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
 }
 #search input:focus {
-  background: rgba(255, 255, 255, 0.08) !important; border-color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.08) !important; border-color: var(--accent) !important;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.3) !important; outline: none !important;
 }
-.search-highlight { box-shadow: 0 0 15px rgba(255,255,255,0.3), inset 0 1px 2px rgba(255,255,255,0.4) !important; transform: scale(1.03) !important; }
+.search-highlight { box-shadow: 0 0 15px var(--accent), inset 0 1px 2px rgba(255,255,255,0.4) !important; transform: scale(1.03) !important; }
 
 /* =========================================================================
  * REDESIGNED TOGGLE-HIDDEN THEME SELECTOR DIAL
@@ -566,3 +543,8 @@ body.search-compact #search input { padding: 6px 14px !important; font-size: 0.8
 body.search-compact .headerInfos { margin-top: 60px !important; }
 #sortable { gap: var(--widget-gap, 16px) !important; }
 
+/* Scrollbars */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
