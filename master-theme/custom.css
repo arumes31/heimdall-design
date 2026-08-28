@@ -9,7 +9,7 @@
  * 4. 40 High-Contrast Theme Profiles
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;600;800&family=Quicksand:wght@500;700&family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@500;700&family=Permanent+Marker&family=Patrick+Hand&family=VT323&display=swap');
+/* Deliberately self-contained: use local/system fonts and make no remote font request. */
 
 /* Global Text Color Overrides for perfect readability */
 #sortable .item .title,

@@ -72,20 +72,59 @@
   }
 
   // --- 1.2 SVG Inlining Engine ---
+  function sanitizeSvg(svg) {
+    const allowedElements = new Set([
+      'svg', 'g', 'path', 'circle', 'ellipse', 'rect', 'line', 'polyline',
+      'polygon', 'title', 'desc'
+    ]);
+    const allowedAttributes = new Set([
+      'id', 'class', 'viewbox', 'width', 'height', 'd', 'fill', 'fill-rule',
+      'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin', 'opacity',
+      'transform', 'points', 'x', 'y', 'x1', 'x2', 'y1', 'y2', 'cx', 'cy',
+      'r', 'rx', 'ry', 'role', 'aria-label', 'focusable'
+    ]);
+
+    [...svg.querySelectorAll('*')].forEach(element => {
+      if (!allowedElements.has(element.localName.toLowerCase())) {
+        element.remove();
+        return;
+      }
+      [...element.attributes].forEach(attribute => {
+        if (!allowedAttributes.has(attribute.name.toLowerCase())) {
+          element.removeAttribute(attribute.name);
+        }
+      });
+    });
+    [...svg.attributes].forEach(attribute => {
+      if (!allowedAttributes.has(attribute.name.toLowerCase())) {
+        svg.removeAttribute(attribute.name);
+      }
+    });
+    return svg;
+  }
+
   function inlineSvgIcons() {
     const images = document.querySelectorAll('#sortable .item img[src$=".svg"]');
     images.forEach(img => {
-      fetch(img.src).then(r => r.text()).then(data => {
+      const source = new URL(img.src, window.location.href);
+      if (source.origin !== window.location.origin) return;
+      fetch(source, { credentials: 'same-origin', redirect: 'error' }).then(r => {
+        if (!r.ok || !r.headers.get('content-type')?.includes('image/svg+xml')) {
+          throw new Error('invalid SVG response');
+        }
+        return r.text();
+      }).then(data => {
         const parser = new DOMParser();
         const xml = parser.parseFromString(data, 'image/svg+xml');
-        const svg = xml.querySelector('svg');
+        const parsedSvg = xml.querySelector('svg');
+        const svg = parsedSvg ? sanitizeSvg(parsedSvg) : null;
         if (svg) {
           if (img.id) svg.id = img.id;
           if (img.className) svg.classList.add(...img.className.split(' '));
           svg.setAttribute('width', '48'); svg.setAttribute('height', '48');
           img.parentNode.replaceChild(svg, img);
         }
-      });
+      }).catch(() => {});
     });
   }
 
