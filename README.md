@@ -22,8 +22,8 @@ Transform your Heimdall dashboard into a state-of-the-art interface! This versio
 1. Open your **Heimdall Dashboard**.
 2. Click the **Settings** icon (⚙️).
 3. Scroll to **Advanced**.
-4. Copy and paste **[custom.css](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/master-theme/custom.css)** into **Custom CSS**.
-5. Copy and paste **[custom.js](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/master-theme/custom.js)** into **Custom JavaScript**.
+4. Copy and paste **[custom.css](master-theme/custom.css)** into **Custom CSS**.
+5. Copy and paste **[custom.js](master-theme/custom.js)** into **Custom JavaScript**.
 6. Click **Save**!
 
 ---
@@ -41,3 +41,13 @@ Transform your Heimdall dashboard into a state-of-the-art interface! This versio
 9.  **🍋 Cyber Lime**: High-energy neon green on obsidian.
 10. **🥊 Cyber Red**: Intense red-line hacker aesthetic.
 *...and 30 other premium profiles included!*
+
+## Support and security
+
+The theme targets current Heimdall releases and is maintained on a best-effort
+basis. It is self-contained and does not import remote fonts. Animated SVG
+inlining accepts same-origin icons only and removes active or linking content
+before inserting an icon into the page.
+
+Please report compatibility problems through GitHub Issues and security issues
+through GitHub private vulnerability reporting. See [SECURITY.md](SECURITY.md).

@@ -1,0 +1,32 @@
+name: Validate theme
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7 (actions/checkout@v7)
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7 (actions/setup-node@v7)
+        with:
+          node-version: 24
+      - name: Validate JavaScript syntax
+        run: node --check master-theme/custom.js
+      - name: Validate self-contained assets
+        shell: bash
+        run: |
+          test -s master-theme/custom.css
+          test -s master-theme/custom.js
+          ! grep -En '@import|javascript:' master-theme/custom.css master-theme/custom.js
