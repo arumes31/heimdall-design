@@ -72,20 +72,49 @@
   }
 
   // --- 1.2 SVG Inlining Engine ---
+  // Icons can be set by any dashboard user, so strip anything that could run
+  // script once the SVG is part of the live page (handlers, scripts, embeds,
+  // javascript: links and animations that rewrite href/on* attributes).
+  const SVG_BLOCKED_TAGS = ['script', 'foreignobject', 'iframe', 'embed', 'object', 'handler', 'listener'];
+  const SVG_ANIM_TAGS = ['animate', 'set', 'animatemotion', 'animatetransform'];
+
+  function sanitizeSvg(svg) {
+    svg.querySelectorAll('*').forEach(el => {
+      const tag = el.localName.toLowerCase();
+      if (SVG_BLOCKED_TAGS.includes(tag)) { el.remove(); return; }
+      if (SVG_ANIM_TAGS.includes(tag)) {
+        const target = (el.getAttribute('attributeName') || '').toLowerCase();
+        if (target.startsWith('on') || target.endsWith('href')) { el.remove(); return; }
+      }
+    });
+    [svg, ...svg.querySelectorAll('*')].forEach(el => {
+      [...el.attributes].forEach(attr => {
+        const name = attr.name.toLowerCase();
+        const value = attr.value.replace(/[\s\u0000-\u001f]/g, '').toLowerCase();
+        if (name.startsWith('on') || (name.endsWith('href') && /^(javascript|data|vbscript):/.test(value))) {
+          el.removeAttribute(attr.name);
+        }
+      });
+    });
+    return svg;
+  }
+
   function inlineSvgIcons() {
     const images = document.querySelectorAll('#sortable .item img[src$=".svg"]');
     images.forEach(img => {
       fetch(img.src).then(r => r.text()).then(data => {
         const parser = new DOMParser();
         const xml = parser.parseFromString(data, 'image/svg+xml');
+        if (xml.querySelector('parsererror')) return;
         const svg = xml.querySelector('svg');
         if (svg) {
+          sanitizeSvg(svg);
           if (img.id) svg.id = img.id;
           if (img.className) svg.classList.add(...img.className.split(' '));
           svg.setAttribute('width', '48'); svg.setAttribute('height', '48');
-          img.parentNode.replaceChild(svg, img);
+          img.parentNode.replaceChild(document.importNode(svg, true), img);
         }
-      });
+      }).catch(() => {});
     });
   }
 
@@ -125,6 +154,17 @@
   updateClock(); setInterval(updateClock, 1000);
 
   // --- 4. Latency Monitors (Multi-Probe Engine) ---
+  // Opt-in: probes run from every viewer's browser, so they only touch the
+  // service origin's favicon (never the configured deep link, which may
+  // trigger actions on GET).
+  let pingMonitorTimer = null;
+
+  function stopLatencyPingMonitors() {
+    clearInterval(pingMonitorTimer);
+    pingMonitorTimer = null;
+    document.querySelectorAll('#sortable .item .latency-dot').forEach(dot => dot.remove());
+  }
+
   function initLatencyPingMonitors() {
     document.querySelectorAll('#sortable .item').forEach(card => {
       const link = card.querySelector('a');
@@ -146,32 +186,25 @@
           dot.title = status === 'online' ? "Service Reachable" : "Service Offline or Restricted";
         };
 
-        const probe = (url) => fetch(url, { mode: 'no-cors', cache: 'no-store', signal: controller.signal, referrerPolicy: 'no-referrer' });
+        const probe = (url) => fetch(url, { method: 'HEAD', mode: 'no-cors', cache: 'no-store', signal: controller.signal, referrerPolicy: 'no-referrer' });
 
-        // Phase 1: Direct Deep Link Fetch
-        probe(link.href)
+        let origin;
+        try { origin = new URL(link.href).origin; } catch(e) { setStatus('offline'); return; }
+
+        // Phase 1: HEAD request to the origin's favicon (Often lacks strict CORP/CORS)
+        probe(origin + '/favicon.ico')
         .then(() => setStatus('online'))
         .catch(() => {
-          // Phase 2: Fallback to Root Favicon (Often lacks strict CORP/CORS)
-          try {
-            const origin = new URL(link.href).origin;
-            probe(origin + '/favicon.ico')
-            .then(() => setStatus('online'))
-            .catch(() => {
-              // Phase 3: Legacy Image Probe (Most permissive cross-origin method)
-              const img = new Image();
-              img.onload = () => setStatus('online');
-              img.onerror = () => setStatus('offline');
-              img.src = origin + '/favicon.ico?v=' + Date.now();
-            });
-          } catch(e) { setStatus('offline'); }
+          // Phase 2: Legacy Image Probe (Most permissive cross-origin method)
+          const img = new Image();
+          img.referrerPolicy = 'no-referrer';
+          img.onload = () => setStatus('online');
+          img.onerror = () => setStatus('offline');
+          img.src = origin + '/favicon.ico?v=' + Date.now();
         });
       }
     });
   }
-  // Run every 60 seconds for live health updates
-  initLatencyPingMonitors();
-  setInterval(initLatencyPingMonitors, 60000);
 
   // --- 5. Theme Engine ---
   const themes = [
@@ -278,6 +311,11 @@
   addToggle('Animated Icons', 'animated-icons', true, (v) => v && inlineSvgIcons());
   addToggle('Animated Borders', 'animated-borders', false);
   addToggle('Health Pulse', 'health-pulse', true);
+  // Run every 60 seconds for live health updates (opt-in, see section 4)
+  addToggle('Status Probes', 'status-probes', false, (v) => {
+    stopLatencyPingMonitors();
+    if (v) { initLatencyPingMonitors(); pingMonitorTimer = setInterval(initLatencyPingMonitors, 60000); }
+  });
   addToggle('Zen Mode (Icon Only)', 'zen-mode', false);
 
   let autoRefreshTimer;

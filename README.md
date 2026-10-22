@@ -11,9 +11,11 @@ Transform your Heimdall dashboard into a state-of-the-art interface! This versio
 3.  **💓 Health Pulse Status**: Service-aware animation. Any card detected as offline will automatically pulse with a soft red warning glow.
 4.  **🎨 40 Injected Themes**: Includes popular styles like Tokyo Midnight, Catppuccin, Nord, Rose Pine, Dracula Pro, and many more.
 5.  **💎 Glassmorphic Ripple Effects**: Rich tactile response when clicking any dashboard card.
-6.  **📈 Self-Host Ping Monitors**: Real-time connectivity dots that indicate the status of your services.
+6.  **📈 Self-Host Ping Monitors**: Real-time connectivity dots that indicate the status of your services. Opt-in via the **Status Probes** toggle in the 🎨 panel (off by default): when enabled, each viewer's browser sends a `HEAD` request to every service origin's `/favicon.ico` once a minute (deep links are never requested).
 7.  **🌸 Ambient Particles & Auroras**: Togglable flowing background effects for a premium "living" dashboard feel.
-8.  **✨ Animated SVG Engine**: Automatically inlines icons to enable internal path animations (spinning gears, pulsing hearts, etc.).
+8.  **✨ Animated SVG Engine**: Automatically inlines icons to enable internal path animations (spinning gears, pulsing hearts, etc.). Inlined icons are sanitised first (scripts, `on*` event handlers, `<foreignObject>` and `javascript:` links are stripped).
+
+No third-party resources are loaded: the theme uses the dashboard's own fonts and makes no requests to external font CDNs.
 
 ---
 
