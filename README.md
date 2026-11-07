@@ -1,6 +1,6 @@
-# 🎨 HEIMDALL MASTER ENGINE v2.5
+# 🎨 HEIMDALL MASTER ENGINE v2.6
 
-Transform your Heimdall dashboard into a state-of-the-art interface! This version introduces a clean, premium dashboard redesign containing **40 highly-polished built-in themes** toggleable instantly on-the-fly.
+Transform your Heimdall dashboard into a state-of-the-art interface! This version introduces a clean, premium dashboard redesign containing **60 highly-polished built-in themes** toggleable instantly on-the-fly.
 
 ---
 
@@ -9,11 +9,15 @@ Transform your Heimdall dashboard into a state-of-the-art interface! This versio
 1.  **🎛️ Ultra-Compact Smart Sizing**: Redesigned from the ground up to be even more space-efficient than the native Heimdall view. Fits up to 14 widgets per row on desktop while automatically expanding for detailed metrics.
 2.  **🐍 Precision Snake Borders**: A high-end animated border effect that features a sharp glowing line traveling around the perimeter of your app cards on hover.
 3.  **💓 Health Pulse Status**: Service-aware animation. Any card detected as offline will automatically pulse with a soft red warning glow.
-4.  **🎨 40 Injected Themes**: Includes popular styles like Tokyo Midnight, Catppuccin, Nord, Rose Pine, Dracula Pro, and many more.
+4.  **🎨 60 Injected Themes**: Includes popular styles like Tokyo Midnight, Catppuccin, Nord, Rose Pine, Dracula Pro, and many more.
 5.  **💎 Glassmorphic Ripple Effects**: Rich tactile response when clicking any dashboard card.
 6.  **📈 Self-Host Ping Monitors**: Real-time connectivity dots that indicate the status of your services. Opt-in via the **Status Probes** toggle in the 🎨 panel (off by default): when enabled, each viewer's browser sends a `HEAD` request to every service origin's `/favicon.ico` once a minute (deep links are never requested).
 7.  **🌸 Ambient Particles & Auroras**: Togglable flowing background effects for a premium "living" dashboard feel.
 8.  **✨ Animated SVG Engine**: Automatically inlines icons to enable internal path animations (spinning gears, pulsing hearts, etc.). Inlined icons are sanitised first (scripts, `on*` event handlers, `<foreignObject>` and `javascript:` links are stripped).
+9.  **🔍 Spotlight Search (Cmd/Ctrl+K)**: Instant quick launcher overlay to filter and jump to any app card by name or description with keyboard navigation (`Esc` to dismiss).
+10. **🕒 Live Clock & Date**: Clean header clock and date widget with continuous updates.
+11. **🧘 Zen Mode**: Minimalist icon-only mode togglable in settings for an uncluttered overview.
+12. **🔄 Auto-Refresh**: Optional hourly dashboard reload timer to keep service state indicators current.
 
 No third-party resources are loaded: the theme uses the dashboard's own fonts and makes no requests to external font CDNs.
 
@@ -24,13 +28,13 @@ No third-party resources are loaded: the theme uses the dashboard's own fonts an
 1. Open your **Heimdall Dashboard**.
 2. Click the **Settings** icon (⚙️).
 3. Scroll to **Advanced**.
-4. Copy and paste **[custom.css](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/master-theme/custom.css)** into **Custom CSS**.
-5. Copy and paste **[custom.js](file:///c:/DR/Nextcloud/BUILD/heimdall-mod/master-theme/custom.js)** into **Custom JavaScript**.
+4. Copy and paste **[custom.css](master-theme/custom.css)** into **Custom CSS**.
+5. Copy and paste **[custom.js](master-theme/custom.js)** into **Custom JavaScript**.
 6. Click **Save**!
 
 ---
 
-## 🎨 Featured Themes (40 Total)
+## 🎨 Featured Themes (60 Total)
 
 1.  **🌌 Tokyo Midnight**: Deep indigo glass with electric accents.
 2.  **📐 Swiss Brutalism**: High-contrast black and white.
@@ -42,4 +46,4 @@ No third-party resources are loaded: the theme uses the dashboard's own fonts an
 8.  **🌑 One Dark**: Refined syntax-style dark theme.
 9.  **🍋 Cyber Lime**: High-energy neon green on obsidian.
 10. **🥊 Cyber Red**: Intense red-line hacker aesthetic.
-*...and 30 other premium profiles included!*
+*...and 50 other premium profiles included!*
